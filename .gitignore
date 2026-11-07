@@ -1,0 +1,11 @@
+node_modules
+dist
+test-results
+playwright-report
+*.local
+.env*
+video/node_modules
+video/out
+video/public/audio
+video/.cache
+*.tsbuildinfo

@@ -1,0 +1,220 @@
+import type { Capitulo } from '../tipos';
+import { dev, g, hacerFicha, mcGen, mcReal, mn, par, vfGen, vfReal } from '../h';
+
+const f = hacerFicha('ser');
+
+export const serotoninergico: Capitulo = {
+  id: 'ser',
+  n: 4,
+  titulo: 'Serotoninérgicos',
+  objetivo: 'Asociar cada receptor 5-HT con sus fármacos y su efecto.',
+  avisos: [
+    'Metoclopramida, risperidona y fluoxetina aparecen en casi todos los cuadros reales.',
+    'La pizarra dice "recaptación de catecolaminas" para los ISRS: es recaptación de serotonina. El preguntero lo marca falso.',
+  ],
+  mapa: [
+    { titulo: 'Agonistas', grupos: ['ser-1a', 'ser-trip', 'ser-4'] },
+    { titulo: 'Antagonistas', grupos: ['ser-2', 'ser-3'] },
+    { titulo: 'Inhibidores', grupos: ['ser-isrs', 'ser-atc', 'ser-mao'] },
+  ],
+  grupos: [
+    g('ser-1a', 'Agonistas 5-HT1A', 'agonista', 'Ansiolíticos', { regla: 'Agonistas parciales del receptor 5-HT1A.', patron: 'Terminan en -pirona.' }),
+    g('ser-trip', 'Triptanes', 'agonista', 'Antimigrañosos', { regla: 'Agonistas 5-HT1B, 1D y 1F: vasoconstricción del territorio carotídeo.', patron: 'Terminan en -triptán.' }),
+    g('ser-4', 'Agonistas 5-HT4', 'agonista', 'Proquinéticos', { regla: 'Aumentan la motilidad. Además bloquean receptores dopaminérgicos y 5-HT3.' }),
+    g('ser-2', 'Antagonistas 5-HT2', 'antagonista', 'Antihipertensivo o antipsicótico', { regla: 'Bloquean 5-HT2. Ketanserina vasodilata; risperidona y clozapina son antipsicóticos.' }),
+    g('ser-3', 'Antagonistas 5-HT3', 'antagonista', 'Antieméticos', { regla: 'Actúan en el área quimiorreceptora y en las aferencias vagales del tubo digestivo alto.' }),
+    g('ser-isrs', 'ISRS', 'inhibidor', 'Antidepresivos', { regla: 'Inhiben selectivamente la recaptación de serotonina.', patron: 'Muchos terminan en -etina o -alina, pero no es una regla general.' }),
+    g('ser-atc', 'Antidepresivos tricíclicos', 'inhibidor', 'Antidepresivos', { regla: 'Inhibidores no selectivos de la recaptación de catecolaminas.', patron: 'Terminan en -triptilina.' }),
+    g('ser-mao', 'Inhibidores de MAO-A', 'inhibidor', '↑ noradrenalina y serotonina', { regla: 'Moclobemida es reversible y clorgilina es irreversible.', excepcion: 'Selegilina inhibe MAO-B y está en el capítulo de dopamina.' }),
+  ],
+  farmacos: [
+    f('buspirona', 'Buspirona', 'ser-1a', 'agonista', '5-HT1A', 'Agonista parcial de los receptores 5-HT1A', 'Ansiolítico', 1, ['PIZ', 'SER 15', 'SER 19']),
+    f('ipsapirona', 'Ipsapirona', 'ser-1a', 'agonista', '5-HT1A', 'Agonista parcial de los receptores 5-HT1A', 'Ansiolítico', 1, ['PIZ', 'SER 19']),
+    f('gepirona', 'Gepirona', 'ser-1a', 'agonista', '5-HT1A', 'Agonista parcial de los receptores 5-HT1A', 'Ansiolítico', 1, ['PIZ', 'SER 19']),
+    f('sumatriptan', 'Sumatriptán', 'ser-trip', 'agonista', '5-HT1B/1D/1F', 'Agonista de los receptores 5-HT1', 'Antimigrañoso', 1, ['PIZ', 'SER 15', 'SER 19', 'EXA 7'], { variantes: ['Sumatriptan'], confusiones: ['naratriptan'] }),
+    f('zolmitriptan', 'Zolmitriptán', 'ser-trip', 'agonista', '5-HT1B/1D/1F', 'Agonista de los receptores 5-HT1', 'Antimigrañoso', 1, ['PIZ', 'SER 19'], { variantes: ['Zolmitriptan'] }),
+    f('naratriptan', 'Naratriptán', 'ser-trip', 'agonista', '5-HT1B/1D/1F', 'Agonista de los receptores 5-HT1', 'Antimigrañoso', 1, ['PIZ', 'SER 19'], { variantes: ['Naratriptan'] }),
+    f('cisaprida', 'Cisaprida', 'ser-4', 'agonista', '5-HT4', 'Agonista de los receptores 5-HT4', 'Proquinético', 1, ['SER 18', 'SER 21', 'DES c27', 'DES c30', 'PRE 11'], { variantes: ['Cisapride'], confusiones: ['metoclopramida'] }),
+    f('cleboprida', 'Cleboprida', 'ser-4', 'agonista', '5-HT4', 'Agonista 5-HT4', 'Proquinético', 2, ['SER 21']),
+    f('mosaprida', 'Mosaprida', 'ser-4', 'agonista', '5-HT4', 'Agonista 5-HT4', 'Proquinético', 4, ['APU 61']),
+    f('clozapina', 'Clozapina', 'ser-2', 'antagonista', '5-HT2', 'Antagonista de los receptores 5-HT2', 'Antipsicótico atípico', 1, ['PIZ', 'SER 16'], { confusiones: ['clonidina', 'risperidona'], discrepancia: 'd-5ht2' }),
+    f('ketanserina', 'Ketanserina', 'ser-2', 'antagonista', '5-HT2', 'Antagonista de los receptores 5-HT2', 'Vasodilatación arterial e hipotensión', 1, ['PIZ', 'SER 16', 'SER 20', 'PRE 11'], { variantes: ['Ketaserina'], discrepancia: 'd-5ht2', adversos: 'Antiagregante plaquetario débil' }),
+    f('ciproheptadina', 'Ciproheptadina', 'ser-2', 'antagonista', '5-HT2', 'Antagonista de los receptores 5-HT2', 'Antagonista serotoninérgico', 1, ['PIZ', 'SER 16', 'HIS 12'], { clave: 'También figura como antihistamínico H1 de primera generación.', discrepancia: 'd-5ht2' }),
+    f('risperidona', 'Risperidona', 'ser-2', 'antagonista', 'D2 y 5-HT2', 'Antagonista D2 y 5-HT2', 'Antipsicótico', 1, ['SER 20', 'DES c21', 'DES c25', 'DES c28', 'PRE 15', 'EXA 5'], {
+      confusiones: ['haloperidol', 'clozapina'], discrepancia: 'd-risperidona', clave: 'D2 y 5-HT2. Un cuadro le puso 5-HT3: está mal.',
+    }),
+    f('ondansetron', 'Ondansetrón', 'ser-3', 'antagonista', '5-HT3', 'Antagonista de los receptores 5-HT3', 'Antiemético', 1, ['PIZ', 'SER 17', 'SER 20', 'EXA 24'], { variantes: ['Ondasetron', 'Ondansetron'], confusiones: ['metoclopramida'], indicaciones: 'Vómitos por antineoplásicos' }),
+    f('metoclopramida', 'Metoclopramida', 'ser-3', 'antagonista', 'D2 y 5-HT3', 'Antagonista D2 y 5-HT3', 'Antiemético', 1, ['PIZ', 'SER 20', 'DES c17', 'DES c18', 'DES c26', 'DES c28', 'DES c30', 'PRE 53', 'PRE 16', 'EXA 7'], {
+      confusiones: ['domperidona', 'ondansetron', 'cisaprida'], discrepancia: 'd-meto', clave: 'Antagonista D2 y 5-HT3, no 5-HT4 ni 5-HT2.',
+    }),
+    f('fluoxetina', 'Fluoxetina', 'ser-isrs', 'inhibidor', 'Transportador de 5-HT', 'Inhibidor selectivo de la recaptación de serotonina', 'Antidepresivo', 1, ['PIZ', 'SER 22', 'DES c1', 'DES c21', 'DES c26', 'DES c29', 'PRE 55', 'EXA 7'], { confusiones: ['amitriptilina'], discrepancia: 'd-isrs' }),
+    f('paroxetina', 'Paroxetina', 'ser-isrs', 'inhibidor', 'Transportador de 5-HT', 'Inhibidor selectivo de la recaptación de serotonina', 'Antidepresivo', 1, ['PIZ', 'SER 22'], { discrepancia: 'd-isrs' }),
+    f('sertralina', 'Sertralina', 'ser-isrs', 'inhibidor', 'Transportador de 5-HT', 'Inhibidor selectivo de la recaptación de serotonina', 'Antidepresivo', 1, ['PIZ', 'SER 22', 'DES c18', 'DES c28', 'PRE 24'], { discrepancia: 'd-isrs' }),
+    f('citalopram', 'Citalopram', 'ser-isrs', 'inhibidor', 'Transportador de 5-HT', 'Inhibidor selectivo de la recaptación de serotonina', 'Antidepresivo', 3, ['APU 61']),
+    f('fluvoxamina', 'Fluvoxamina', 'ser-isrs', 'inhibidor', 'Transportador de 5-HT', 'Inhibidor selectivo de la recaptación de serotonina', 'Antidepresivo', 3, ['SER 6']),
+    f('amitriptilina', 'Amitriptilina', 'ser-atc', 'inhibidor', 'Recaptación de catecolaminas', 'Inhibidor no selectivo de la recaptación de catecolaminas', 'Antidepresivo tricíclico', 1, ['SER 22', 'DES c18', 'DES c30'], { variantes: ['Amitriplina'], confusiones: ['fluoxetina'] }),
+    f('nortriptilina', 'Nortriptilina', 'ser-atc', 'inhibidor', 'Recaptación de catecolaminas', 'Inhibidor no selectivo de la recaptación de catecolaminas', 'Antidepresivo tricíclico', 2, ['SER 22', 'ADR 12']),
+    f('desipramina', 'Desipramina', 'ser-atc', 'inhibidor', 'Recaptación de NA', 'Inhibe la recaptación de noradrenalina', 'Antidepresivo', 3, ['ADR 12', 'ADR 14']),
+    f('moclobemida', 'Moclobemida', 'ser-mao', 'inhibidor', 'MAO-A', 'Inhibidor reversible de la MAO-A', '↑ noradrenalina y serotonina', 1, ['PIZ', 'ADR 12', 'DES c18', 'DES 24'], { confusiones: ['clorgilina', 'selegilina'] }),
+    f('clorgilina', 'Clorgilina', 'ser-mao', 'inhibidor', 'MAO-A', 'Inhibidor irreversible de la MAO-A', 'Aumenta efectos simpáticos', 1, ['PIZ', 'ADR 12', 'SER 5', 'DES c18', 'DES c25', 'DES c29', 'DES 24'], { confusiones: ['moclobemida', 'selegilina'], discrepancia: 'd-clorgilina' }),
+    f('tranilcipromina', 'Tranilcipromina', 'ser-mao', 'inhibidor', 'MAO-A y B', 'Inhibidor de MAO-A y MAO-B', 'Antidepresivo', 3, ['SER 5']),
+  ],
+  mnemotecnias: [
+    mn('m-pirona', 'ser-1a', 'Bus, Ipsa, Ge: tres que calman, todos en -pirona', [['Bus', 'Buspirona'], ['Ipsa', 'Ipsapirona'], ['Ge', 'Gepirona']],
+      'Los tres ansiolíticos 5-HT1A.', 'Confundirlos con benzodiacepinas: estos no actúan sobre GABA.'),
+    mn('m-trip', 'ser-trip', 'Suma Nara Zol para la migraña', [['Suma', 'Sumatriptán'], ['Nara', 'Naratriptán'], ['Zol', 'Zolmitriptán']],
+      'Los tres triptanes de la pizarra.', 'Olvidar uno. La terminación -triptán te avisa del grupo.'),
+    mn('m-5ht', 'ser-trip', 'Uno calma, dos alucina, tres vomita, cuatro empuja', [['Uno calma', '5-HT1: ansiolisis y migraña'], ['Dos alucina', '5-HT2: LSD lo activa'], ['Tres vomita', '5-HT3: emesis'], ['Cuatro empuja', '5-HT4: motilidad']],
+      'Qué hace cada receptor. Con eso deducís si el fármaco lo activa o bloquea.', 'Cruzar 5-HT3 con 5-HT4 en la metoclopramida.'),
+    mn('m-ser2', 'ser-2', 'Keta Cipro Cloza, y la Risperidona se suma', [['Keta', 'Ketanserina'], ['Cipro', 'Ciproheptadina'], ['Cloza', 'Clozapina'], ['Risperidona', 'Antagonista D2 y 5-HT2']],
+      'Los antagonistas 5-HT2.', 'Olvidar que risperidona también bloquea D2.'),
+    mn('m-ser3', 'ser-3', 'Ondas de náusea, Meto freno', [['Ondas', 'Ondansetrón'], ['Meto', 'Metoclopramida']],
+      'Los dos antieméticos del grupo.', 'Poner metoclopramida como agonista.'),
+    mn('m-isrs', 'ser-isrs', 'Flu, Para y Ser: alegría serotonina', [['Flu', 'Fluoxetina'], ['Para', 'Paroxetina'], ['Ser', 'Sertralina']],
+      'Los tres ISRS.', 'Escribir catecolaminas en lugar de serotonina.'),
+    mn('m-mao', 'ser-mao', 'Mi Clor A, mi Sele B', [['Mi', 'Moclobemida, reversible'], ['Clor', 'Clorgilina, irreversible'], ['A', 'MAO-A'], ['Sele B', 'Selegilina, MAO-B']],
+      'Quién inhibe cada MAO.', 'Confundir selegilina con los inhibidores de MAO-A.'),
+  ],
+  parejas: [
+    par('metoclopramida', 'cisaprida', 'Los dos en estómago y con 5-HT.', 'Antagonista D2 y 5-HT3: antiemético.', 'Agonista 5-HT4: proquinético.', 'Cuatro empuja.'),
+    par('metoclopramida', 'domperidona', 'Antieméticos muy parecidos.', 'D2 y 5-HT3.', 'Solo D2.', 'Domperidona no toca serotonina.'),
+    par('moclobemida', 'clorgilina', 'Las dos inhiben MAO-A.', 'Reversible.', 'Irreversible.', 'Clorgilina se clava.'),
+    par('fluoxetina', 'amitriptilina', 'Dos antidepresivos por recaptación.', 'Selectiva de serotonina.', 'No selectiva, tricíclico.', 'ISRS elige. Tricíclico no.'),
+    par('risperidona', 'haloperidol', 'Dos antipsicóticos.', 'Bloquea D2 y 5-HT2.', 'Bloquea D2.', 'Risperidona tiene doble blanco.'),
+    par('ondansetron', 'metoclopramida', 'Los dos antieméticos 5-HT3.', 'Solo 5-HT3.', 'D2 y 5-HT3.', 'Metoclopramida tiene dos.'),
+    par('buspirona', 'sumatriptan', 'Los dos agonistas 5-HT1.', '5-HT1A: ansiolítico.', '5-HT1B/1D/1F: antimigrañoso.', 'Pirona calma. Triptán contrae vasos.'),
+  ],
+  escenas: [
+    {
+      tipo: 'ruta', id: 'ser-1', titulo: 'Síntesis y metabolismo de serotonina',
+      nodos: ['Triptófano', '5-hidroxitriptófano', 'Serotonina', '5-HIAA'],
+      enzimas: ['Triptófano hidroxilasa', 'Decarboxilasa', 'MAO-A'],
+      pasos: [
+        { di: 'La serotonina sale de un aminoácido esencial: el triptófano. Compite con la tirosina por el mismo transportador para cruzar la barrera hematoencefálica.', hasta: 0, luz: 0 },
+        { di: 'Primero una hidroxilación.', hasta: 1, luz: 1 },
+        { di: 'Después una decarboxilación. Hidroxilación y decarboxilación: esas dos palabras son la respuesta exacta del preguntero.', hasta: 2, luz: 2, retener: ['Hidroxilación y decarboxilación'] },
+        { di: 'Su vía metabólica principal es la MAO. El producto final es el ácido cinco hidroxi indolacético.', hasta: 3, luz: 3, retener: ['Metabolito: 5-HIAA'] },
+      ],
+    },
+    {
+      tipo: 'cadenas', id: 'ser-2', titulo: 'Los receptores 5-HT',
+      filas: [
+        { chips: ['5-HT1', 'Baja AMPc', 'Inhibitorio', 'Ansiolisis, vasoconstricción'], color: 'agonista' },
+        { chips: ['5-HT2', 'FLC: DAG e IP3', 'Estimulante', 'Alucinaciones, HTA'], color: 'antagonista' },
+        { chips: ['5-HT3', 'Canal Na+/K+', 'Estimulante', 'Emesis'], color: 'modulador' },
+        { chips: ['5-HT4', 'Sube AMPc', 'Tubo digestivo', 'Motilidad'], color: 'precursor' },
+      ],
+      pasos: [
+        { di: 'Son siete tipos y te interesan cuatro. El 5-HT1 baja el AMP cíclico y es inhibitorio. Da ansiolisis y, en la periferia, vasoconstricción.', fila: 0, retener: ['Uno calma'] },
+        { di: 'El 5-HT2 actúa por fosfolipasa C. Es estimulante postsináptico. Da alucinaciones e hipertensión. El LSD lo activa.', fila: 1, retener: ['Dos alucina'] },
+        { di: 'El 5-HT3 es distinto a todos: es un canal iónico de sodio y potasio. Está en terminaciones del tubo digestivo y en el área postrema. Su efecto es la emesis.', fila: 2, retener: ['Tres vomita', '5-HT3 es canal'] },
+        { di: 'Y el 5-HT4 sube el AMP cíclico en el tubo digestivo: aumenta la motilidad. Uno calma, dos alucina, tres vomita, cuatro empuja.', fila: 3, retener: ['Cuatro empuja'] },
+      ],
+    },
+    {
+      tipo: 'sinapsis', id: 'ser-3', titulo: 'Fármacos sobre receptores', nt: '5-HT', autor: '5-HT1A', transportador: 'SERT',
+      receptores: [{ n: '5-HT2', k: 'g' }, { n: '5-HT3', k: 'c' }, { n: '5-HT4', k: 'g' }],
+      pasos: [
+        { di: 'Buspirona, ipsapirona y gepirona son agonistas parciales del receptor 5-HT1A. Actúan como autorreceptor en los núcleos del rafe. Efecto: ansiolíticos.', nivel: 0.2, drogas: [{ n: 'Buspirona', a: 'agonista', en: 'ar' }], efecto: 'Ansiolíticos', tono: 'mas', retener: ['Buspirona', 'Ipsapirona', 'Gepirona'] },
+        { di: 'Ketanserina, clozapina y ciproheptadina bloquean 5-HT2. La ketanserina produce vasodilatación e hipotensión. La risperidona bloquea 5-HT2 y además D2: es antipsicótica.', liberar: true, nivel: 0.5, activos: [1, 2], drogas: [{ n: 'Risperidona', a: 'antagonista', en: 'r0' }], efecto: 'Antagonistas 5-HT2', tono: 'menos', retener: ['Ketanserina', 'Clozapina', 'Ciproheptadina', 'Risperidona'] },
+        { di: 'Ondansetrón y metoclopramida bloquean 5-HT3. Actúan en el área quimiorreceptora y en las aferencias vagales. Son antieméticos. La metoclopramida además bloquea D2.', liberar: true, nivel: 0.5, activos: [0, 2], drogas: [{ n: 'Ondansetrón', a: 'antagonista', en: 'r1' }], efecto: 'Antieméticos', tono: 'menos', retener: ['Ondansetrón', 'Metoclopramida'] },
+        { di: 'Cisaprida y cleboprida son agonistas 5-HT4: proquinéticos. Además bloquean receptores dopaminérgicos y 5-HT3.', nivel: 0.2, drogas: [{ n: 'Cisaprida', a: 'agonista', en: 'r2' }], efecto: 'Proquinéticos', tono: 'mas', retener: ['Cisaprida', 'Cleboprida'] },
+      ],
+    },
+    {
+      tipo: 'sinapsis', id: 'ser-4', titulo: 'Antidepresivos: más serotonina', nt: '5-HT', transportador: 'SERT',
+      receptores: [{ n: '5-HT', k: 'g' }], enzima: { n: 'MAO', en: 'terminal' },
+      pasos: [
+        { di: 'La serotonina se recapta por un mecanismo que depende de sodio, y la degrada la MAO. Esos son los dos blancos de los antidepresivos.', liberar: true, nivel: 0.35, activos: [0], limpia: true, retener: ['Recaptación Na+ dependiente'] },
+        { di: 'Fluoxetina, paroxetina y sertralina inhiben de forma selectiva la recaptación de serotonina. Son los ISRS. La serotonina se queda más tiempo en la hendidura.', liberar: true, nivel: 0.9, activos: [0], drogas: [{ n: 'Fluoxetina', a: 'inhibidor', en: 't' }], efecto: 'Más serotonina en la hendidura', tono: 'mas', retener: ['Fluoxetina', 'Paroxetina', 'Sertralina'] },
+        { di: 'Amitriptilina y nortriptilina son tricíclicos: inhiben la recaptación de catecolaminas de forma no selectiva. Ojo con esa diferencia: serotonina selectiva, ISRS. Catecolaminas sin selectividad, tricíclicos.', liberar: true, nivel: 0.9, activos: [0], drogas: [{ n: 'Amitriptilina', a: 'inhibidor', en: 't' }], efecto: 'Tricíclicos: no selectivos', tono: 'mas', retener: ['Amitriptilina', 'Nortriptilina'] },
+        { di: 'Moclobemida, reversible, y clorgilina, irreversible, inhiben la MAO A. La MAO A degrada serotonina y noradrenalina, por eso ambas suben. La selegilina es de la MAO B: va para Parkinson.', liberar: true, nivel: 0.8, activos: [0], drogas: [{ n: 'Moclobemida', a: 'inhibidor', en: 'e' }], efecto: '↑ noradrenalina y serotonina', tono: 'mas', retener: ['Moclobemida', 'Clorgilina'] },
+      ],
+    },
+    {
+      tipo: 'organos', id: 'ser-5', titulo: 'Serotonina en el cuerpo',
+      pasos: [
+        { di: 'En el tubo digestivo, las células enterocromafines la guardan junto con sustancia P. El estiramiento la libera y estimula la motilidad.', organos: [{ o: 'intestino', t: 'Estimula la motilidad', c: 'agonista' }] },
+        { di: 'En los vasos: vasoconstricción de vasos esplácnicos, renales, pulmonares y cerebrales. Eso usan los triptanes.', organos: [{ o: 'vaso', t: 'Vasoconstricción', c: 'antagonista' }], retener: ['Triptanes: vasoconstricción carotídea'] },
+        { di: 'En el corazón, inotropismo y cronotropismo positivos, pero secundarios a la liberación de noradrenalina. No es directo. Eso lo preguntan.', organos: [{ o: 'corazon', t: 'Efecto indirecto', c: 'modulador' }] },
+        { di: 'Y en el sistema nervioso central regula el sueño, el dolor, la ansiedad y la depresión. No inicia el impulso motor: el preguntero lo usa como opción falsa.', organos: [{ o: 'cerebro', t: 'Sueño, ánimo, dolor', c: 'precursor' }], retener: ['No inicia el impulso motor'] },
+      ],
+    },
+    {
+      tipo: 'pizarra', id: 'ser-6', titulo: 'La pizarra serotoninérgica',
+      lineas: [
+        { lista: ['Buspirona', 'Ipsapirona', 'Gepirona'], resultado: 'Agonistas 5-HT1: ansiolíticos', a: 'agonista' },
+        { lista: ['Sumatriptán', 'Naratriptán', 'Zolmitriptán'], resultado: 'Agonistas 5-HT1: antimigrañosos', a: 'agonista' },
+        { lista: ['Clozapina', 'Ciproheptadina', 'Ketanserina'], resultado: 'Antagonistas 5-HT2', a: 'antagonista' },
+        { lista: ['Ondansetrón', 'Metoclopramida'], resultado: 'Antagonistas 5-HT3: antieméticos', a: 'antagonista' },
+        { lista: ['Moclobemida', 'Clorgilina'], resultado: 'Inhiben MAO-A', a: 'inhibidor' },
+        { lista: ['Fluoxetina', 'Paroxetina', 'Sertralina'], resultado: 'ISRS: antidepresivos', a: 'inhibidor' },
+      ],
+      pasos: [
+        { di: 'Repetí conmigo. Ansiolíticos: buspirona, ipsapirona, gepirona.', hasta: 0 },
+        { di: 'Antimigrañosos: sumatriptán, naratriptán, zolmitriptán.', hasta: 1 },
+        { di: 'Antagonistas cinco HT dos: clozapina, ciproheptadina, ketanserina.', hasta: 2 },
+        { di: 'Antieméticos: ondansetrón y metoclopramida.', hasta: 3 },
+        { di: 'Inhibidores de MAO A: moclobemida y clorgilina.', hasta: 4 },
+        { di: 'Inhibidores selectivos de la recaptación de serotonina: fluoxetina, paroxetina y sertralina.', hasta: 5 },
+      ],
+    },
+  ],
+  preguntas: [
+    mcReal('ser', 'PRE 2', 'Cuál de las siguientes NO es una acción de la serotonina sobre el SNC:', ['Control eferente de la sensibilidad dolorosa', 'Su papel fundamental es iniciar el impulso motor', 'Interviene en procesos de ansiedad y depresión', 'Actúa como neuromodulador'], [1], [
+      'Sí: está en la presentación.', 'Correcta: no inicia el impulso motor.', 'Sí.', 'Sí: neurotransmisora y neuromoduladora.',
+    ]),
+    mcReal('ser', 'PRE 8', 'Marque la INCORRECTA sobre la neurotransmisión serotoninérgica:', ['El transporte al interior de la vesícula es altamente selectivo', 'La principal vía metabólica es por medio de la MAO-a', 'La recaptación neuronal se realiza por un mecanismo dependiente de Na+', 'La liberación al espacio sináptico se realiza por un mecanismo dependiente de Ca++'], [0], [
+      'Correcta: no es altamente selectivo.', 'Es cierto.', 'Es cierto.', 'Es cierto.',
+    ]),
+    mcReal('ser', 'PRE 11', 'Cuál de las siguientes drogas actúa sobre los receptores 5-HT tipo 4 y acción farmacológica:', ['Ketaserina, antimigrañoso', 'Cisapride, proquinético', 'Ondasetron, antiemético', 'Risperidona, antipsicótico'], [1], [
+      'Ketanserina actúa en 5-HT2.', 'Correcta.', 'Actúa en 5-HT3.', 'Actúa en 5-HT2 y D2.',
+    ], { farmacos: ['cisaprida', 'ketanserina', 'ondansetron', 'risperidona'] }),
+    mcReal('ser', 'PRE 14', 'La INCORRECTA sobre los receptores serotoninérgicos:', ['Todos están asociados a la proteína G', 'Todos actúan sobre adenilato ciclasa excepto los de tipo 3 y 2', 'El receptor 5-HT-3 actúa sobre fosfolipasa C', 'El receptor 5-HT-3 interviene en el reflejo del vómito'], [2], [
+      'La presentación los agrupa así, aunque 5-HT3 es en realidad un canal iónico.', 'Es cierto.', 'Correcta: 5-HT3 es canal. FLC es de 5-HT2.', 'Es cierto.',
+    ], { estado: 'dudosa', nota: 'La opción a también es discutible: el 5-HT3 es un canal iónico. La clave y la presentación la dan por buena.' }),
+    vfReal('ser', 'PRE 15', 'La risperidona es una droga antipsicótica antagonista de los receptores 5HT-2', true, 'Y además D2.', { farmacos: ['risperidona'] }),
+    vfReal('ser', 'PRE 16', 'La metoclopramida es una droga antiemética antagonista de los receptores D2 y 5-HT-4', false, 'Es antagonista D2 y 5-HT3.', { farmacos: ['metoclopramida'] }),
+    mcReal('ser', 'PRE 17', 'La correcta sobre la síntesis de serotonina:', ['Es el producto de la carboxilación y fosforilación del triptófano', 'Es el producto de la hidroxilación y descarboxilación del triptófano', 'Es el producto de la hidroxilación y fosforilación del triptófano', 'Es el producto de la hidroxilación y conjugación del triptófano'], [1], [
+      'No.', 'Correcta.', 'No hay fosforilación.', 'No hay conjugación.',
+    ]),
+    mcReal('ser', 'PRE 18', 'La correcta sobre el metabolismo de la serotonina:', ['Es metabolizada por la COMT en el espacio sináptico', 'Es metabolizada por la MAO-b', 'Es metabolizada por la MAO a y b', 'El metabolito final es el ácido 5-hidroxindolacético'], [3], [
+      'No es sustrato de COMT.', 'La MAO-A la metaboliza.', 'Principalmente MAO-A.', 'Correcta.',
+    ]),
+    mcReal('ser', 'PRE 19', 'La INCORRECTA con respecto a la acción periférica de la serotonina:', ['Se almacena junto con otras sustancias en las células enterocromafines', 'Interviene en los mecanismos de emesis por su acción sobre los receptores 5-HT2A', 'Su liberación se aumenta con el estiramiento mecánico de la pared del tubo digestivo', 'Regula la actividad motora del TD'], [1], [
+      'Es cierto.', 'Correcta: la emesis es por 5-HT3.', 'Es cierto.', 'Es cierto.',
+    ]),
+    mcReal('ser', 'PRE 20', 'La correcta con respecto a la acción periférica de la serotonina:', ['Regula la liberación de prolactina', 'Actúa en forma directa aumentando la frecuencia cardíaca', 'Produce vasoconstricción de vasos cerebrales', 'Interviene en la adhesividad plaquetaria'], [2], [
+      'No es periférica ni se presenta así.', 'Es indirecto: por liberación de noradrenalina.', 'Correcta.', 'Agregación débil: la opción c es más exacta.',
+    ], { estado: 'dudosa', nota: 'La presentación menciona agregación plaquetaria débil, así que d no es del todo falsa. La clave es c.' }),
+    vfReal('ser', 'PRE 24', 'La sertralina es una droga antidepresiva que inhibe en forma selectiva la recaptación de catecolaminas', false, 'Inhibe selectivamente la recaptación de serotonina.', { farmacos: ['sertralina'] }),
+    mcGen('ser', 'Un paciente con quimioterapia necesita un antiemético. ¿Qué receptor conviene bloquear?', ['5-HT1', '5-HT2', '5-HT3', '5-HT4'], 2, [
+      'Agonistas para ansiedad y migraña.', 'Antipsicóticos o antihipertensivos.', 'Correcta.', 'Se usa como agonista proquinético.',
+    ], { farmacos: ['ondansetron'] }),
+    mcGen('ser', 'Inhibidor reversible de MAO-A:', ['Clorgilina', 'Moclobemida', 'Selegilina', 'Entacapona'], 1, [
+      'Irreversible.', 'Correcta.', 'MAO-B.', 'COMT.',
+    ], { farmacos: ['moclobemida', 'clorgilina'] }),
+    mcGen('ser', '¿Qué fármaco es antimigrañoso?', ['Buspirona', 'Zolmitriptán', 'Ketanserina', 'Sertralina'], 1, [
+      'Ansiolítico.', 'Correcta.', 'Antagonista 5-HT2.', 'ISRS.',
+    ], { farmacos: ['zolmitriptan'] }),
+    mcGen('ser', 'Señalá la correcta sobre el receptor 5-HT1:', ['Es un canal iónico', 'Aumenta AMPc', 'Es inhibitorio y disminuye AMPc', 'Produce emesis'], 2, [
+      'Eso es 5-HT3.', 'Eso es 5-HT4.', 'Correcta.', 'Eso es 5-HT3.',
+    ]),
+    mcGen('ser', 'Antagonista D2 y 5-HT2:', ['Haloperidol', 'Risperidona', 'Ondansetrón', 'Cisaprida'], 1, [
+      'Solo D2.', 'Correcta.', '5-HT3.', 'Agonista 5-HT4.',
+    ], { farmacos: ['risperidona', 'haloperidol'] }),
+    vfGen('ser', 'Las plaquetas sintetizan serotonina', false, 'No la sintetizan: la captan, la almacenan y la liberan.'),
+    vfGen('ser', 'La recaptación de serotonina depende de sodio', true, 'Recaptación Na+ dependiente.'),
+    vfGen('ser', 'Clorgilina inhibe en forma irreversible la MAO-A', true, 'Un cuadro dice reversible: el reversible es moclobemida.', ['clorgilina']),
+  ],
+  desarrollos: [
+    dev('ser', 'EXA 7', 'Mencione 3 drogas que actúen sobre la neurotransmisión serotoninérgica e indique su mecanismo de acción', ['Sumatriptán: agonista 5-HT1, antimigrañoso', 'Fluoxetina: inhibe la recaptación de serotonina, antidepresivo', 'Metoclopramida: antagonista 5-HT3, antiemético'], 'También: buspirona, agonista parcial 5-HT1A; ondansetrón, antagonista 5-HT3; cisaprida, agonista 5-HT4.', { farmacos: ['sumatriptan', 'fluoxetina', 'metoclopramida'] }),
+    dev('ser', 'EXA 24, DES 13', 'Mencione un ANTAGONISTA de los receptores 5-HT3 con efecto ANTIEMÉTICO', ['Ondansetrón'], 'Metoclopramida también es válida: bloquea D2 y 5-HT3.', { farmacos: ['ondansetron', 'metoclopramida'] }),
+    dev('ser', 'EXA 5', 'Mencione el efecto farmacológico y los mecanismos de acción de la Risperidona', ['Antagonista D2 y 5-HT2', 'Efecto antipsicótico'], 'Mejora la pérdida de funciones normales, las emociones y la sociabilidad. Se usa en esquizofrenia.', { farmacos: ['risperidona'] }),
+    dev('ser', 'DES 22, PRE 53', 'Mencione el mecanismo de acción y el efecto de la Metoclopramida', ['Antagonista D2 y 5-HT3', 'Antiemético'], 'Bloquea D2 en la zona quimiorreceptora y 5-HT3. Sin actividad antipsicótica.', { farmacos: ['metoclopramida'] }),
+    dev('ser', 'PRE 69', 'Mencione las drogas antieméticas y describa sus mecanismos de acción', ['Metoclopramida: antagonista D2 y 5-HT3', 'Ondansetrón: antagonista 5-HT3', 'Domperidona: antagonista D2'], 'Actúan sobre el área quimiorreceptora y las aferencias vagales del tubo digestivo alto.', {
+      encontrada: 'Metoclopramida y Ondasetron: Antagonistas 5-HT2', nota: 'La presentación los ubica en 5-HT3.', farmacos: ['metoclopramida', 'ondansetron', 'domperidona'],
+    }),
+    dev('ser', 'PRE 55', 'Mencione el mecanismo de acción de: haloperidol, selegilina, fluoxetina', ['Haloperidol: antagonista D2', 'Selegilina: inhibe selectivamente la MAO-B', 'Fluoxetina: inhibe selectivamente la recaptación de serotonina'], 'Es la combinación que más se repite en los cuadros. Tenelas de memoria con su efecto.', { farmacos: ['haloperidol', 'selegilina', 'fluoxetina'] }),
+  ],
+};
