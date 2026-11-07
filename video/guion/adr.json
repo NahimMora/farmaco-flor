@@ -1,0 +1,355 @@
+{
+ "cap": "adr",
+ "titulo": "Adrenérgicos",
+ "escenas": [
+  "Síntesis de catecolaminas",
+  "La sinapsis adrenérgica",
+  "Qué proteína G usa cada receptor",
+  "Qué hace cada receptor en el cuerpo",
+  "Agonistas: elegir el receptor",
+  "Dopamina según la dosis",
+  "Antagonistas: α y β",
+  "β-bloqueantes: adversos para el examen",
+  "La pizarra adrenérgica"
+ ],
+ "beats": [
+  {
+   "id": "adr-0-0",
+   "escena": 0,
+   "paso": 0,
+   "text": "Todo empieza con un aminoácido: la tirosina, captada desde la circulación por un transporte dependiente de sodio.",
+   "retener": []
+  },
+  {
+   "id": "adr-0-1",
+   "escena": 0,
+   "paso": 1,
+   "text": "La tirosina hidroxilasa la convierte en L-DOPA. Este es el paso limitante, el que regula toda la cadena.",
+   "retener": [
+    "Tirosina hidroxilasa: paso limitante"
+   ]
+  },
+  {
+   "id": "adr-0-2",
+   "escena": 0,
+   "paso": 2,
+   "text": "La L-aminoácido aromático decarboxilasa, una enzima poco específica, forma dopamina.",
+   "retener": []
+  },
+  {
+   "id": "adr-0-3",
+   "escena": 0,
+   "paso": 3,
+   "text": "Dentro de la vesícula, la dopamina beta hidroxilasa forma noradrenalina. Las neuronas dopaminérgicas no tienen esta enzima: por eso se quedan en dopamina.",
+   "retener": [
+    "DβH: intravesicular"
+   ]
+  },
+  {
+   "id": "adr-0-4",
+   "escena": 0,
+   "paso": 4,
+   "text": "Y en la médula suprarrenal se agrega un metilo y queda adrenalina. Mirá la ventaja: L-DOPA, dopamina y noradrenalina son la misma ruta. Lo vas a volver a usar en el capítulo que sigue.",
+   "retener": []
+  },
+  {
+   "id": "adr-1-0",
+   "escena": 1,
+   "paso": 0,
+   "text": "La noradrenalina se guarda en vesículas y se libera por exocitosis dependiente de calcio.",
+   "retener": []
+  },
+  {
+   "id": "adr-1-1",
+   "escena": 1,
+   "paso": 1,
+   "text": "Afuera activa los receptores alfa uno y beta de la célula siguiente. Ahí aparece el efecto.",
+   "retener": []
+  },
+  {
+   "id": "adr-1-2",
+   "escena": 1,
+   "paso": 2,
+   "text": "Pero también toca un receptor en su propia terminal: el alfa dos. Es un autorreceptor, un freno. Cuando se activa, baja el calcio y se libera menos noradrenalina.",
+   "retener": [
+    "α2 presináptico: freno"
+   ]
+  },
+  {
+   "id": "adr-1-3",
+   "escena": 1,
+   "paso": 3,
+   "text": "Termina por difusión y recaptación. La cocaína inhibe esa recaptación. Después la noradrenalina es metabolizada por la MAO, en la mitocondria, y por la COMT, en el citoplasma.",
+   "retener": [
+    "Recaptación",
+    "MAO: mitocondria",
+    "COMT: citoplasma"
+   ]
+  },
+  {
+   "id": "adr-2-0",
+   "escena": 2,
+   "paso": 0,
+   "text": "Alfa uno va con proteína Gq: aumenta IP3 y DAG, y contrae. Es postsináptico. Agonista: fenilefrina. Antagonista: prazosin.",
+   "retener": [
+    "α1: Gq",
+    "Fenilefrina",
+    "Prazosin"
+   ]
+  },
+  {
+   "id": "adr-2-1",
+   "escena": 2,
+   "paso": 1,
+   "text": "Alfa dos va con proteína Gi: inhibe la adenilato ciclasa. Agonista: clonidina. Antagonista: yohimbina.",
+   "retener": [
+    "α2: Gi",
+    "Clonidina",
+    "Yohimbina"
+   ]
+  },
+  {
+   "id": "adr-2-2",
+   "escena": 2,
+   "paso": 2,
+   "text": "Beta va con proteína Gs: activa la adenilato ciclasa y aumenta el AMP cíclico. Agonista general: isoproterenol. Antagonista general: propranolol.",
+   "retener": [
+    "β: Gs",
+    "Isoproterenol",
+    "Propranolol"
+   ]
+  },
+  {
+   "id": "adr-3-0",
+   "escena": 3,
+   "paso": 0,
+   "text": "Tenés un corazón y dos pulmones. Beta uno en el corazón: más frecuencia y más fuerza.",
+   "retener": [
+    "1 corazón: β1"
+   ]
+  },
+  {
+   "id": "adr-3-1",
+   "escena": 3,
+   "paso": 1,
+   "text": "Beta dos en los bronquios: broncodilatación. Ahí actúa el salbutamol.",
+   "retener": [
+    "2 pulmones: β2"
+   ]
+  },
+  {
+   "id": "adr-3-2",
+   "escena": 3,
+   "paso": 2,
+   "text": "Alfa uno en el vaso: vasoconstricción. Ahí actúa la fenilefrina.",
+   "retener": []
+  },
+  {
+   "id": "adr-3-3",
+   "escena": 3,
+   "paso": 3,
+   "text": "En el ojo, midriasis por receptores alfa.",
+   "retener": []
+  },
+  {
+   "id": "adr-3-4",
+   "escena": 3,
+   "paso": 4,
+   "text": "En el tubo digestivo baja el tono y el peristaltismo.",
+   "retener": []
+  },
+  {
+   "id": "adr-3-5",
+   "escena": 3,
+   "paso": 5,
+   "text": "En la vejiga contrae el trígono y el esfínter por alfa uno, y relaja el detrusor por beta dos.",
+   "retener": []
+  },
+  {
+   "id": "adr-3-6",
+   "escena": 3,
+   "paso": 6,
+   "text": "Y en el músculo esquelético aparece temblor fino.",
+   "retener": []
+  },
+  {
+   "id": "adr-4-0",
+   "escena": 4,
+   "paso": 0,
+   "text": "Fenilefrina activa solo alfa uno: vasoconstricción.",
+   "retener": []
+  },
+  {
+   "id": "adr-4-1",
+   "escena": 4,
+   "paso": 1,
+   "text": "Salbutamol activa beta dos: broncodilatación. Es el agonista que más aparece en los cuadros reales.",
+   "retener": []
+  },
+  {
+   "id": "adr-4-2",
+   "escena": 4,
+   "paso": 2,
+   "text": "Clonidina activa alfa dos. Fijate la trampa: es agonista, pero baja la presión, porque aprieta el freno y sale menos noradrenalina. Por eso se llama antihipertensivo central.",
+   "retener": [
+    "Clonidina: agonista α2, antihipertensivo"
+   ]
+  },
+  {
+   "id": "adr-5-0",
+   "escena": 5,
+   "paso": 0,
+   "text": "Esta pregunta sale siempre: el efecto cardiovascular de la dopamina según la dosis. A dosis bajas actúa en receptores D1: vasodilatación renal, mesentérica, cerebral y coronaria. En el túbulo inhibe la reabsorción de sodio y aumenta la diuresis.",
+   "retener": [
+    "Bajas: D1, vasodilatación"
+   ]
+  },
+  {
+   "id": "adr-5-1",
+   "escena": 5,
+   "paso": 1,
+   "text": "A dosis medias estimula beta uno: aumenta la contractilidad y da taquicardia.",
+   "retener": [
+    "Medias: β1"
+   ]
+  },
+  {
+   "id": "adr-5-2",
+   "escena": 5,
+   "paso": 2,
+   "text": "A dosis altas estimula receptores alfa: vasoconstricción. Bajas, vasodilata. Medias, corazón. Altas, vasoconstricción.",
+   "retener": [
+    "Altas: α1, vasoconstricción"
+   ]
+  },
+  {
+   "id": "adr-6-0",
+   "escena": 6,
+   "paso": 0,
+   "text": "Prazosin bloquea alfa uno. El vaso se relaja, baja la presión. Es antihipertensivo y vasodilata. Tamsulosina usa el mismo receptor para la hiperplasia prostática benigna.",
+   "retener": [
+    "Prazosin",
+    "Tamsulosina"
+   ]
+  },
+  {
+   "id": "adr-6-1",
+   "escena": 6,
+   "paso": 1,
+   "text": "Propranolol, timolol y sotalol bloquean beta uno y beta dos. Son no selectivos. Como también bloquean el bronquio, pueden dar broncoconstricción.",
+   "retener": [
+    "Propranolol",
+    "Timolol",
+    "Sotalol"
+   ]
+  },
+  {
+   "id": "adr-6-2",
+   "escena": 6,
+   "paso": 2,
+   "text": "Atenolol, metoprolol, esmolol y acebutolol bloquean solo beta uno. Son cardioselectivos: bajan la frecuencia y dejan tranquilo al bronquio.",
+   "retener": [
+    "Atenolol",
+    "Metoprolol",
+    "Esmolol",
+    "Acebutolol"
+   ]
+  },
+  {
+   "id": "adr-6-3",
+   "escena": 6,
+   "paso": 3,
+   "text": "Y carvedilol y labetalol bloquean alfa y beta. El bloqueo alfa vasodilata y el beta baja la frecuencia. Su efecto beta es diez veces mayor que el alfa.",
+   "retener": [
+    "Carvedilol",
+    "Labetalol"
+   ]
+  },
+  {
+   "id": "adr-7-0",
+   "escena": 7,
+   "paso": 0,
+   "text": "Te piden cuatro efectos adversos de los betabloqueantes. Bradicardia.",
+   "retener": []
+  },
+  {
+   "id": "adr-7-1",
+   "escena": 7,
+   "paso": 1,
+   "text": "Broncoconstricción.",
+   "retener": []
+  },
+  {
+   "id": "adr-7-2",
+   "escena": 7,
+   "paso": 2,
+   "text": "Fatiga.",
+   "retener": []
+  },
+  {
+   "id": "adr-7-3",
+   "escena": 7,
+   "paso": 3,
+   "text": "Constipación.",
+   "retener": []
+  },
+  {
+   "id": "adr-7-4",
+   "escena": 7,
+   "paso": 4,
+   "text": "Y trastornos del sueño. Además: retención de sodio, Raynaud e impotencia.",
+   "retener": [
+    "Indicaciones: HTA, ICC, cardiopatía isquémica, hipertensión portal, migraña, temblor"
+   ]
+  },
+  {
+   "id": "adr-8-0",
+   "escena": 8,
+   "paso": 0,
+   "text": "Repetí conmigo. Catecolaminas: adrenalina, noradrenalina y dopamina.",
+   "retener": []
+  },
+  {
+   "id": "adr-8-1",
+   "escena": 8,
+   "paso": 1,
+   "text": "Agonistas alfa: fenilefrina y clonidina.",
+   "retener": []
+  },
+  {
+   "id": "adr-8-2",
+   "escena": 8,
+   "paso": 2,
+   "text": "Agonistas beta: isoproterenol, dobutamina y salbutamol.",
+   "retener": []
+  },
+  {
+   "id": "adr-8-3",
+   "escena": 8,
+   "paso": 3,
+   "text": "Bloqueantes alfa: prazosin y tamsulosina.",
+   "retener": []
+  },
+  {
+   "id": "adr-8-4",
+   "escena": 8,
+   "paso": 4,
+   "text": "Beta no selectivos: propranolol, timolol y sotalol.",
+   "retener": []
+  },
+  {
+   "id": "adr-8-5",
+   "escena": 8,
+   "paso": 5,
+   "text": "Beta selectivos: atenolol y metoprolol.",
+   "retener": []
+  },
+  {
+   "id": "adr-8-6",
+   "escena": 8,
+   "paso": 6,
+   "text": "Y mixtos, Carla: carvedilol y labetalol.",
+   "retener": []
+  }
+ ]
+}

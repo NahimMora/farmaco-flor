@@ -1,0 +1,146 @@
+{
+ "cap": "fun",
+ "titulo": "Fundamentos",
+ "escenas": [
+  "Qué hace el cuerpo con el fármaco",
+  "Compartimiento presistémico",
+  "Curva concentración tiempo",
+  "Antagonismo en la curva dosis respuesta",
+  "Fases del desarrollo de un fármaco"
+ ],
+ "beats": [
+  {
+   "id": "fun-0-0",
+   "escena": 0,
+   "paso": 0,
+   "text": "Farmacocinética es lo que el cuerpo le hace al fármaco. Primero la absorción: el fármaco entra, incluyendo la liberación desde su forma farmacéutica.",
+   "retener": [
+    "Absorción"
+   ]
+  },
+  {
+   "id": "fun-0-1",
+   "escena": 0,
+   "paso": 1,
+   "text": "Después se distribuye. Depende del flujo sanguíneo, de la permeabilidad de las membranas y de la fijación a proteínas plasmáticas y tejidos.",
+   "retener": [
+    "Distribución: flujo, permeabilidad, proteínas"
+   ]
+  },
+  {
+   "id": "fun-0-2",
+   "escena": 0,
+   "paso": 2,
+   "text": "La idea es que llegue en buena concentración a la biofase, el lugar donde actúa.",
+   "retener": []
+  },
+  {
+   "id": "fun-0-3",
+   "escena": 0,
+   "paso": 3,
+   "text": "Y por último se elimina: por metabolismo, transformándolo en moléculas más polares, y por excreción. Algunos libros cuentan tres procesos y otros cuatro: es la misma idea.",
+   "retener": [
+    "Biotransformación: más polar"
+   ]
+  },
+  {
+   "id": "fun-1-0",
+   "escena": 1,
+   "paso": 0,
+   "text": "El compartimiento presistémico es el conjunto de elementos ubicados entre el sitio de absorción y las venas pulmonares. Esa definición la piden tal cual.",
+   "retener": [
+    "Presistémico: sitio de absorción a venas pulmonares"
+   ]
+  },
+  {
+   "id": "fun-1-1",
+   "escena": 1,
+   "paso": 1,
+   "text": "Por vía oral el fármaco pasa por el intestino y la vena porta, y entra al hígado antes de llegar a la circulación.",
+   "retener": []
+  },
+  {
+   "id": "fun-1-2",
+   "escena": 1,
+   "paso": 2,
+   "text": "En ese primer paso hepático una parte se metaboliza. Lo que sobrevive llega a la circulación sistémica. La vía sublingual se salta ese paso, por eso usualmente requiere menores dosis.",
+   "retener": [
+    "Sublingual evita el primer paso"
+   ]
+  },
+  {
+   "id": "fun-2-0",
+   "escena": 2,
+   "paso": 0,
+   "text": "Esta curva te la pueden pedir dibujada. Sube mientras la absorción le gana a la eliminación. En el pico está la concentración máxima, en el tiempo máximo. Después cae. El área bajo la curva representa la cantidad que llegó a circulación.",
+   "retener": [
+    "Cmáx",
+    "Tmáx",
+    "ABC"
+   ]
+  },
+  {
+   "id": "fun-3-0",
+   "escena": 3,
+   "paso": 0,
+   "text": "El agonista solo da esta curva sigmoidea. La potencia se mide con la CE cincuenta: cuanto menor, más potente. La eficacia es el efecto máximo.",
+   "retener": [
+    "Potencia: CE50",
+    "Eficacia: Emax"
+   ]
+  },
+  {
+   "id": "fun-3-1",
+   "escena": 3,
+   "paso": 1,
+   "text": "Con un antagonista competitivo la curva se corre a la derecha y en paralelo, y llega al mismo máximo. Se pierde potencia, no eficacia.",
+   "retener": [
+    "Competitivo: derecha y mismo Emax"
+   ]
+  },
+  {
+   "id": "fun-3-2",
+   "escena": 3,
+   "paso": 2,
+   "text": "Con un antagonista irreversible, unión covalente, baja el efecto máximo. Ese es el cambio que te tienen que ver en el dibujo.",
+   "retener": [
+    "Irreversible: baja el Emax"
+   ]
+  },
+  {
+   "id": "fun-4-0",
+   "escena": 4,
+   "paso": 0,
+   "text": "Preclínica o fase cero: en animales. Estima los índices terapéutico y de seguridad.",
+   "retener": []
+  },
+  {
+   "id": "fun-4-1",
+   "escena": 4,
+   "paso": 1,
+   "text": "Fase uno: veinte a cincuenta voluntarios sanos. Dosis máxima tolerada y reacciones adversas.",
+   "retener": []
+  },
+  {
+   "id": "fun-4-2",
+   "escena": 4,
+   "paso": 2,
+   "text": "Fase dos: pacientes enfermos. Establece la eficacia terapéutica preliminar.",
+   "retener": []
+  },
+  {
+   "id": "fun-4-3",
+   "escena": 4,
+   "paso": 3,
+   "text": "Fase tres: de dos mil a cinco mil pacientes, en muchas instituciones y países, con la dosis ya seleccionada.",
+   "retener": []
+  },
+  {
+   "id": "fun-4-4",
+   "escena": 4,
+   "paso": 4,
+   "text": "Fase cuatro: el fármaco ya se vende. Farmacovigilancia.",
+   "retener": []
+  }
+ ]
+}

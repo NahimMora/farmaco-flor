@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { CAPITULOS, FARMACOS } from '../data';
 import { Entrenador } from '../components/Entrenador';
-import { sesionCapitulo, sesionGlobal, sesionGrupo, type Ejercicio } from '../lib/ejercicios';
+import { parejasDeConfusiones, sesionCapitulo, sesionGlobal, sesionGrupo, type Ejercicio } from '../lib/ejercicios';
 import { esConfusion, urgencia } from '../lib/srs';
 import { useEstado } from '../lib/store';
 
@@ -36,7 +36,7 @@ export function Memorizar() {
       <div className="seccion" style={{ marginTop: 16 }}>
         <button type="button" className="boton ancho" onClick={() => setSel({ t: 'Repaso recomendado', gen: repaso })}>Repaso recomendado</button>
       </div>
-      {confusos.length > 0 && <button type="button" className="boton sec ancho" style={{ marginTop: 8 }} onClick={() => setSel({ t: 'Mis confusiones', gen: () => sesionGlobal(12, confusos.map(f => f.id)) })}>Mis confusiones ({confusos.length})</button>}
+      {confusos.length > 0 && <button type="button" className="boton sec ancho" style={{ marginTop: 8 }} onClick={() => setSel({ t: 'Mis confusiones', gen: () => [...parejasDeConfusiones(), ...sesionGlobal(10, confusos.map(f => f.id))] })}>Mis confusiones ({confusos.length})</button>}
       <section className="seccion">
         <h2>Por capítulo</h2>
         {CAPITULOS.map(c => (

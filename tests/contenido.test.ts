@@ -5,22 +5,9 @@ import { CUADROS, filaCuadro } from '../src/data/cuadros';
 import { DISCREPANCIAS } from '../src/data/discrepancias';
 import { PIZARRA } from '../src/data/pizarra';
 import { coincide, normal } from '../src/lib/ejercicios';
+import { DESARROLLAR, ERA1, EXAMEN, PREGUNTERO, citas } from '../src/data/inventario';
 
-/** Inventario de cada pregunta original, para detectar si alguna quedó afuera. */
-const PREGUNTERO = Array.from({ length: 86 }, (_, i) => `PRE ${i + 1}`);
-const ERA1 = Array.from({ length: 20 }, (_, i) => `ERA ${i + 1}`);
-const EXAMEN = [...Array.from({ length: 38 }, (_, i) => `EXA ${i + 1}`), ...Array.from({ length: 7 }, (_, i) => `EXA Y${i + 1}`)];
-const DESARROLLAR = Array.from({ length: 30 }, (_, i) => `DES ${i + 1}`);
 const TODAS = [...PREGUNTERO, ...ERA1, ...EXAMEN, ...DESARROLLAR];
-
-function citas(): Set<string> {
-  const s = new Set<string>();
-  const add = (loc?: string) => loc?.split(',').forEach(x => s.add(x.trim().replace(/^DES c/, 'DES ')));
-  PREGUNTAS.forEach(p => add(p.fuente?.loc));
-  DESARROLLOS.forEach(d => add(d.fuente?.loc));
-  CUADROS.forEach(c => add(c.fuente.loc));
-  return s;
-}
 
 describe('cobertura', () => {
   it('toda pregunta original está incorporada', () => {

@@ -1,0 +1,300 @@
+{
+ "cap": "col",
+ "titulo": "Colinérgicos",
+ "escenas": [
+  "Cómo funciona la sinapsis colinérgica",
+  "Receptores: quién hace qué",
+  "Efectos de la acetilcolina en el cuerpo",
+  "Anticolinesterásicos: más acetilcolina",
+  "Antimuscarínicos: bloquear el receptor M",
+  "Efectos anticolinérgicos",
+  "Bloqueantes neuromusculares",
+  "La pizarra colinérgica"
+ ],
+ "beats": [
+  {
+   "id": "col-0-0",
+   "escena": 0,
+   "paso": 0,
+   "text": "Arrancamos por lo normal, porque cada fármaco de este capítulo toca una parte de este dibujo. Arriba está la terminal nerviosa. Acá, la colina acetiltransferasa une colina con acetil coenzima A y forma acetilcolina, que se guarda en vesículas.",
+   "retener": [
+    "Colina acetiltransferasa"
+   ]
+  },
+  {
+   "id": "col-0-1",
+   "escena": 0,
+   "paso": 1,
+   "text": "Cuando llega el potencial de acción entra calcio, la vesícula se fusiona y libera acetilcolina a la hendidura. Esa liberación depende de calcio, y la toxina botulínica la impide.",
+   "retener": [
+    "Liberación Ca++ dependiente",
+    "Toxina botulínica la inhibe"
+   ]
+  },
+  {
+   "id": "col-0-2",
+   "escena": 0,
+   "paso": 2,
+   "text": "La acetilcolina activa dos familias de receptores: los muscarínicos, acoplados a proteína G, y los nicotínicos, que son canales iónicos. Tiene más afinidad por los muscarínicos, pero activa los dos. Por eso no es selectiva.",
+   "retener": [
+    "M: proteína G",
+    "N: canal iónico"
+   ]
+  },
+  {
+   "id": "col-0-3",
+   "escena": 0,
+   "paso": 3,
+   "text": "Y así termina su efecto: en la hendidura está la acetilcolinesterasa, que la parte en acetato y colina. Esa enzima es uno de los blancos más importantes del capítulo.",
+   "retener": [
+    "Acetilcolinesterasa: acetato + colina"
+   ]
+  },
+  {
+   "id": "col-1-0",
+   "escena": 1,
+   "paso": 0,
+   "text": "Los muscarínicos M2 y M4 van con proteína G inhibitoria. El M2 está en el miocardio: abre canales de potasio, hiperpolariza y baja la frecuencia cardíaca. Por eso la acetilcolina frena el corazón.",
+   "retener": [
+    "M2: miocardio",
+    "Bradicardia"
+   ]
+  },
+  {
+   "id": "col-1-1",
+   "escena": 1,
+   "paso": 1,
+   "text": "Los M1, M3 y M5 van con proteína Gq, que activa la fosfolipasa C y forma IP3 y DAG. El M3 está en músculo liso y glándulas: contrae y hace secretar.",
+   "retener": [
+    "M3: músculo liso y glándulas",
+    "Gq: IP3 y DAG"
+   ]
+  },
+  {
+   "id": "col-1-2",
+   "escena": 1,
+   "paso": 2,
+   "text": "El nicotínico es otra cosa: un pentámero con un poro central. Entran cationes y la célula se despolariza. Está en la placa motora y en los ganglios autonómicos, tanto simpáticos como parasimpáticos.",
+   "retener": [
+    "N: pentámero",
+    "Placa motora y ganglios"
+   ]
+  },
+  {
+   "id": "col-2-0",
+   "escena": 2,
+   "paso": 0,
+   "text": "Esto te lo piden casi textual: cinco efectos de la acetilcolina en distintos tejidos. En el ojo, contrae la pupila: miosis.",
+   "retener": []
+  },
+  {
+   "id": "col-2-1",
+   "escena": 2,
+   "paso": 1,
+   "text": "En las glándulas, más secreción: saliva y lágrimas.",
+   "retener": []
+  },
+  {
+   "id": "col-2-2",
+   "escena": 2,
+   "paso": 2,
+   "text": "En el corazón, baja la frecuencia. Bradicardia.",
+   "retener": []
+  },
+  {
+   "id": "col-2-3",
+   "escena": 2,
+   "paso": 3,
+   "text": "En el tubo digestivo, aumenta la motilidad.",
+   "retener": []
+  },
+  {
+   "id": "col-2-4",
+   "escena": 2,
+   "paso": 4,
+   "text": "En la vejiga contrae el detrusor y ayuda a orinar. Por eso el betanecol sirve en la retención urinaria.",
+   "retener": [
+    "Betanecol: retención urinaria"
+   ]
+  },
+  {
+   "id": "col-2-5",
+   "escena": 2,
+   "paso": 5,
+   "text": "Y en el músculo esquelético, por el receptor nicotínico, contracción. Con esos seis ya te sobra para la pregunta.",
+   "retener": []
+  },
+  {
+   "id": "col-3-0",
+   "escena": 3,
+   "paso": 0,
+   "text": "Ahora sí, los fármacos. Si bloqueo la enzima que degrada a la acetilcolina, la acetilcolina se acumula. Eso hacen los anticolinesterásicos. Ojo con la palabra: no son antagonistas.",
+   "retener": [
+    "Anticolinesterásico ≠ antagonista"
+   ]
+  },
+  {
+   "id": "col-3-1",
+   "escena": 3,
+   "paso": 1,
+   "text": "Los reversibles son fisostigmina y neostigmina. Inhiben la enzima un rato y se sueltan. Aumentan la acetilcolina, y por eso se usan en miastenia gravis.",
+   "retener": [
+    "Fisostigmina",
+    "Neostigmina"
+   ]
+  },
+  {
+   "id": "col-3-2",
+   "escena": 3,
+   "paso": 2,
+   "text": "Los irreversibles son los organofosforados: paratión, malatión y ecotiofato. Se pegan a la enzima con unión covalente y no se sueltan. La acetilcolina sube sin control y aparece la crisis colinérgica.",
+   "retener": [
+    "Paratión",
+    "Malatión",
+    "Ecotiofato"
+   ]
+  },
+  {
+   "id": "col-4-0",
+   "escena": 4,
+   "paso": 0,
+   "text": "Lo opuesto: dejo que haya acetilcolina, pero le tapo el receptor. La atropina compite por el sitio muscarínico. Es competitiva y no selectiva: no elige entre M1 y M5. Ese no selectiva es entre subtipos muscarínicos, no significa que bloquee nicotínicos.",
+   "retener": [
+    "Atropina",
+    "Bloqueo competitivo"
+   ]
+  },
+  {
+   "id": "col-4-1",
+   "escena": 4,
+   "paso": 1,
+   "text": "La misma lógica vale para hioscina, escopolamina, oxibutinina y propinoxato, que se usan como antiespasmódicos. Y para ipratropio y tiotropio, que se inhalan y broncodilatan.",
+   "retener": [
+    "Hioscina = escopolamina",
+    "Ipratropio",
+    "Tiotropio"
+   ]
+  },
+  {
+   "id": "col-5-0",
+   "escena": 5,
+   "paso": 0,
+   "text": "Si bloqueo el receptor muscarínico, aparece lo contrario de lo que vimos. Esta lista también la piden: cuatro efectos anticolinérgicos. Ojo: midriasis y parálisis de la acomodación, con fotofobia.",
+   "retener": []
+  },
+  {
+   "id": "col-5-1",
+   "escena": 5,
+   "paso": 1,
+   "text": "Boca seca, porque baja la secreción.",
+   "retener": []
+  },
+  {
+   "id": "col-5-2",
+   "escena": 5,
+   "paso": 2,
+   "text": "Taquicardia. Ese es el efecto que la pizarra le anota a la atropina.",
+   "retener": []
+  },
+  {
+   "id": "col-5-3",
+   "escena": 5,
+   "paso": 3,
+   "text": "En los bronquios, menos secreción y broncodilatación.",
+   "retener": []
+  },
+  {
+   "id": "col-5-4",
+   "escena": 5,
+   "paso": 4,
+   "text": "Menos motilidad gastrointestinal.",
+   "retener": []
+  },
+  {
+   "id": "col-5-5",
+   "escena": 5,
+   "paso": 5,
+   "text": "Dilatación de uréteres y vejiga. Por eso están contraindicados en la retención urinaria aguda y en la hipertrofia prostática.",
+   "retener": [
+    "Contraindicados: glaucoma, íleo paralítico, HPB, taquiarritmias"
+   ]
+  },
+  {
+   "id": "col-5-6",
+   "escena": 5,
+   "paso": 6,
+   "text": "Piel seca y caliente, porque se frena el sudor.",
+   "retener": []
+  },
+  {
+   "id": "col-5-7",
+   "escena": 5,
+   "paso": 7,
+   "text": "Y en el sistema nervioso central: excitación, desorientación y alucinaciones.",
+   "retener": []
+  },
+  {
+   "id": "col-6-0",
+   "escena": 6,
+   "paso": 0,
+   "text": "Última familia. En la placa motora el receptor es nicotínico. Si lo bloqueo de forma reversible, el músculo esquelético no recibe la orden y se paraliza. Eso se usa para intubar.",
+   "retener": [
+    "Receptor N de la placa"
+   ]
+  },
+  {
+   "id": "col-6-1",
+   "escena": 6,
+   "paso": 1,
+   "text": "Son succinilcolina, atracurio, tubocurarina y pancuronio. La succinilcolina es la distinta: es despolarizante. Atracurio y tubocurarina compiten con la acetilcolina.",
+   "retener": [
+    "Succinilcolina",
+    "Atracurio",
+    "Tubocurarina",
+    "Pancuronio"
+   ]
+  },
+  {
+   "id": "col-7-0",
+   "escena": 7,
+   "paso": 0,
+   "text": "Repasemos con la pizarra. Decilos en voz alta conmigo. Agonistas muscarínicos: betanecol y pilocarpina.",
+   "retener": []
+  },
+  {
+   "id": "col-7-1",
+   "escena": 7,
+   "paso": 1,
+   "text": "Anticolinesterásicos reversibles: fisostigmina y neostigmina.",
+   "retener": []
+  },
+  {
+   "id": "col-7-2",
+   "escena": 7,
+   "paso": 2,
+   "text": "Irreversibles: paratión, malatión y ecotiofato.",
+   "retener": []
+  },
+  {
+   "id": "col-7-3",
+   "escena": 7,
+   "paso": 3,
+   "text": "Bloqueantes muscarínicos: atropina, hioscina, oxibutinina y propinoxato.",
+   "retener": []
+  },
+  {
+   "id": "col-7-4",
+   "escena": 7,
+   "paso": 4,
+   "text": "Broncodilatadores: ipratropio y tiotropio.",
+   "retener": []
+  },
+  {
+   "id": "col-7-5",
+   "escena": 7,
+   "paso": 5,
+   "text": "Y bloqueantes neuromusculares: succinilcolina, atracurio, tubocurarina y pancuronio. Ahora andá a la sección de nombres e intentá escribirlos sin mirar.",
+   "retener": []
+  }
+ ]
+}

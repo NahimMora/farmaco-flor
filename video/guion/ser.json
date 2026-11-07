@@ -1,0 +1,240 @@
+{
+ "cap": "ser",
+ "titulo": "Serotoninérgicos",
+ "escenas": [
+  "Síntesis y metabolismo de serotonina",
+  "Los receptores 5-HT",
+  "Fármacos sobre receptores",
+  "Antidepresivos: más serotonina",
+  "Serotonina en el cuerpo",
+  "La pizarra serotoninérgica"
+ ],
+ "beats": [
+  {
+   "id": "ser-0-0",
+   "escena": 0,
+   "paso": 0,
+   "text": "La serotonina sale de un aminoácido esencial: el triptófano. Compite con la tirosina por el mismo transportador para cruzar la barrera hematoencefálica.",
+   "retener": []
+  },
+  {
+   "id": "ser-0-1",
+   "escena": 0,
+   "paso": 1,
+   "text": "Primero una hidroxilación.",
+   "retener": []
+  },
+  {
+   "id": "ser-0-2",
+   "escena": 0,
+   "paso": 2,
+   "text": "Después una decarboxilación. Hidroxilación y decarboxilación: esas dos palabras son la respuesta exacta del preguntero.",
+   "retener": [
+    "Hidroxilación y decarboxilación"
+   ]
+  },
+  {
+   "id": "ser-0-3",
+   "escena": 0,
+   "paso": 3,
+   "text": "Su vía metabólica principal es la MAO. El producto final es el ácido cinco hidroxi indolacético.",
+   "retener": [
+    "Metabolito: 5-HIAA"
+   ]
+  },
+  {
+   "id": "ser-1-0",
+   "escena": 1,
+   "paso": 0,
+   "text": "Son siete tipos y te interesan cuatro. El 5-HT1 baja el AMP cíclico y es inhibitorio. Da ansiolisis y, en la periferia, vasoconstricción.",
+   "retener": [
+    "Uno calma"
+   ]
+  },
+  {
+   "id": "ser-1-1",
+   "escena": 1,
+   "paso": 1,
+   "text": "El 5-HT2 actúa por fosfolipasa C. Es estimulante postsináptico. Da alucinaciones e hipertensión. El LSD lo activa.",
+   "retener": [
+    "Dos alucina"
+   ]
+  },
+  {
+   "id": "ser-1-2",
+   "escena": 1,
+   "paso": 2,
+   "text": "El 5-HT3 es distinto a todos: es un canal iónico de sodio y potasio. Está en terminaciones del tubo digestivo y en el área postrema. Su efecto es la emesis.",
+   "retener": [
+    "Tres vomita",
+    "5-HT3 es canal"
+   ]
+  },
+  {
+   "id": "ser-1-3",
+   "escena": 1,
+   "paso": 3,
+   "text": "Y el 5-HT4 sube el AMP cíclico en el tubo digestivo: aumenta la motilidad. Uno calma, dos alucina, tres vomita, cuatro empuja.",
+   "retener": [
+    "Cuatro empuja"
+   ]
+  },
+  {
+   "id": "ser-2-0",
+   "escena": 2,
+   "paso": 0,
+   "text": "Buspirona, ipsapirona y gepirona son agonistas parciales del receptor 5-HT1A. Actúan como autorreceptor en los núcleos del rafe. Efecto: ansiolíticos.",
+   "retener": [
+    "Buspirona",
+    "Ipsapirona",
+    "Gepirona"
+   ]
+  },
+  {
+   "id": "ser-2-1",
+   "escena": 2,
+   "paso": 1,
+   "text": "Ketanserina, clozapina y ciproheptadina bloquean 5-HT2. La ketanserina produce vasodilatación e hipotensión. La risperidona bloquea 5-HT2 y además D2: es antipsicótica.",
+   "retener": [
+    "Ketanserina",
+    "Clozapina",
+    "Ciproheptadina",
+    "Risperidona"
+   ]
+  },
+  {
+   "id": "ser-2-2",
+   "escena": 2,
+   "paso": 2,
+   "text": "Ondansetrón y metoclopramida bloquean 5-HT3. Actúan en el área quimiorreceptora y en las aferencias vagales. Son antieméticos. La metoclopramida además bloquea D2.",
+   "retener": [
+    "Ondansetrón",
+    "Metoclopramida"
+   ]
+  },
+  {
+   "id": "ser-2-3",
+   "escena": 2,
+   "paso": 3,
+   "text": "Cisaprida y cleboprida son agonistas 5-HT4: proquinéticos. Además bloquean receptores dopaminérgicos y 5-HT3.",
+   "retener": [
+    "Cisaprida",
+    "Cleboprida"
+   ]
+  },
+  {
+   "id": "ser-3-0",
+   "escena": 3,
+   "paso": 0,
+   "text": "La serotonina se recapta por un mecanismo que depende de sodio, y la degrada la MAO. Esos son los dos blancos de los antidepresivos.",
+   "retener": [
+    "Recaptación Na+ dependiente"
+   ]
+  },
+  {
+   "id": "ser-3-1",
+   "escena": 3,
+   "paso": 1,
+   "text": "Fluoxetina, paroxetina y sertralina inhiben de forma selectiva la recaptación de serotonina. Son los ISRS. La serotonina se queda más tiempo en la hendidura.",
+   "retener": [
+    "Fluoxetina",
+    "Paroxetina",
+    "Sertralina"
+   ]
+  },
+  {
+   "id": "ser-3-2",
+   "escena": 3,
+   "paso": 2,
+   "text": "Amitriptilina y nortriptilina son tricíclicos: inhiben la recaptación de catecolaminas de forma no selectiva. Ojo con esa diferencia: serotonina selectiva, ISRS. Catecolaminas sin selectividad, tricíclicos.",
+   "retener": [
+    "Amitriptilina",
+    "Nortriptilina"
+   ]
+  },
+  {
+   "id": "ser-3-3",
+   "escena": 3,
+   "paso": 3,
+   "text": "Moclobemida, reversible, y clorgilina, irreversible, inhiben la MAO A. La MAO A degrada serotonina y noradrenalina, por eso ambas suben. La selegilina es de la MAO B: va para Parkinson.",
+   "retener": [
+    "Moclobemida",
+    "Clorgilina"
+   ]
+  },
+  {
+   "id": "ser-4-0",
+   "escena": 4,
+   "paso": 0,
+   "text": "En el tubo digestivo, las células enterocromafines la guardan junto con sustancia P. El estiramiento la libera y estimula la motilidad.",
+   "retener": []
+  },
+  {
+   "id": "ser-4-1",
+   "escena": 4,
+   "paso": 1,
+   "text": "En los vasos: vasoconstricción de vasos esplácnicos, renales, pulmonares y cerebrales. Eso usan los triptanes.",
+   "retener": [
+    "Triptanes: vasoconstricción carotídea"
+   ]
+  },
+  {
+   "id": "ser-4-2",
+   "escena": 4,
+   "paso": 2,
+   "text": "En el corazón, inotropismo y cronotropismo positivos, pero secundarios a la liberación de noradrenalina. No es directo. Eso lo preguntan.",
+   "retener": []
+  },
+  {
+   "id": "ser-4-3",
+   "escena": 4,
+   "paso": 3,
+   "text": "Y en el sistema nervioso central regula el sueño, el dolor, la ansiedad y la depresión. No inicia el impulso motor: el preguntero lo usa como opción falsa.",
+   "retener": [
+    "No inicia el impulso motor"
+   ]
+  },
+  {
+   "id": "ser-5-0",
+   "escena": 5,
+   "paso": 0,
+   "text": "Repetí conmigo. Ansiolíticos: buspirona, ipsapirona, gepirona.",
+   "retener": []
+  },
+  {
+   "id": "ser-5-1",
+   "escena": 5,
+   "paso": 1,
+   "text": "Antimigrañosos: sumatriptán, naratriptán, zolmitriptán.",
+   "retener": []
+  },
+  {
+   "id": "ser-5-2",
+   "escena": 5,
+   "paso": 2,
+   "text": "Antagonistas cinco HT dos: clozapina, ciproheptadina, ketanserina.",
+   "retener": []
+  },
+  {
+   "id": "ser-5-3",
+   "escena": 5,
+   "paso": 3,
+   "text": "Antieméticos: ondansetrón y metoclopramida.",
+   "retener": []
+  },
+  {
+   "id": "ser-5-4",
+   "escena": 5,
+   "paso": 4,
+   "text": "Inhibidores de MAO A: moclobemida y clorgilina.",
+   "retener": []
+  },
+  {
+   "id": "ser-5-5",
+   "escena": 5,
+   "paso": 5,
+   "text": "Inhibidores selectivos de la recaptación de serotonina: fluoxetina, paroxetina y sertralina.",
+   "retener": []
+  }
+ ]
+}

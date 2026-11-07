@@ -1,0 +1,141 @@
+{
+ "cap": "acm",
+ "titulo": "Anticuerpos monoclonales",
+ "escenas": [
+  "Estructura del anticuerpo",
+  "Cómo se obtienen",
+  "Cómo leer el nombre",
+  "Blancos e indicaciones"
+ ],
+ "beats": [
+  {
+   "id": "acm-0-0",
+   "escena": 0,
+   "paso": 0,
+   "text": "Un anticuerpo tiene cuatro cadenas: dos livianas y dos pesadas. Tiene dos partes que importan.",
+   "retener": []
+  },
+  {
+   "id": "acm-0-1",
+   "escena": 0,
+   "paso": 1,
+   "text": "Fab es la fracción que une antígeno: la porción variable, la que le da la especificidad.",
+   "retener": [
+    "Fab: especificidad"
+   ]
+  },
+  {
+   "id": "acm-0-2",
+   "escena": 0,
+   "paso": 2,
+   "text": "Fc es la fracción constante, que se une a los receptores de células efectoras. Con eso activa citotoxicidad dependiente de anticuerpos, opsonización y complemento.",
+   "retener": [
+    "Fc: función efectora, ADCC"
+   ]
+  },
+  {
+   "id": "acm-1-0",
+   "escena": 1,
+   "paso": 0,
+   "text": "En mil novecientos setenta y cinco, Köhler y el argentino César Milstein desarrollaron los hibridomas. Premio Nobel en mil novecientos ochenta y cuatro.",
+   "retener": []
+  },
+  {
+   "id": "acm-1-1",
+   "escena": 1,
+   "paso": 1,
+   "text": "Fusionan un linfocito B que produce el anticuerpo buscado con una célula de mieloma, que es inmortal y no produce inmunoglobulina propia.",
+   "retener": [
+    "Hibridoma: linfocito B + mieloma"
+   ]
+  },
+  {
+   "id": "acm-1-2",
+   "escena": 1,
+   "paso": 2,
+   "text": "El resultado es una línea celular inmortal que produce un único anticuerpo.",
+   "retener": []
+  },
+  {
+   "id": "acm-2-0",
+   "escena": 2,
+   "paso": 0,
+   "text": "Todos terminan en mab, de monoclonal antibody. La letra de antes te dice el origen. O: murino.",
+   "retener": []
+  },
+  {
+   "id": "acm-2-1",
+   "escena": 2,
+   "paso": 1,
+   "text": "Xi: quimérico. Setenta y cinco por ciento humano. Rituximab, infliximab, brentuximab.",
+   "retener": [
+    "-ximab: 75%"
+   ]
+  },
+  {
+   "id": "acm-2-2",
+   "escena": 2,
+   "paso": 2,
+   "text": "Zu: humanizado. Noventa y cinco por ciento de proteína humana. Alemtuzumab, tocilizumab.",
+   "retener": [
+    "-zumab: 95%"
+   ]
+  },
+  {
+   "id": "acm-2-3",
+   "escena": 2,
+   "paso": 3,
+   "text": "U: secuencias enteramente humanas. Y si fue diseñado contra un blanco tumoral, se antepone tu, como en rituximab.",
+   "retener": []
+  },
+  {
+   "id": "acm-3-0",
+   "escena": 3,
+   "paso": 0,
+   "text": "Rituximab: quimérico, CD veinte. Linfoma no Hodgkin B, leucemia linfática crónica y artritis reumatoide.",
+   "retener": []
+  },
+  {
+   "id": "acm-3-1",
+   "escena": 3,
+   "paso": 1,
+   "text": "Alemtuzumab: humanizado, CD cincuenta y dos. Leucemia linfática crónica.",
+   "retener": []
+  },
+  {
+   "id": "acm-3-2",
+   "escena": 3,
+   "paso": 2,
+   "text": "Brentuximab: quimérico, CD treinta. Linfoma de Hodgkin.",
+   "retener": []
+  },
+  {
+   "id": "acm-3-3",
+   "escena": 3,
+   "paso": 3,
+   "text": "Daratumumab: CD treinta y ocho. Mieloma múltiple.",
+   "retener": []
+  },
+  {
+   "id": "acm-3-4",
+   "escena": 3,
+   "paso": 4,
+   "text": "Ibalizumab: humanizado, CD cuatro. HIV multirresistente.",
+   "retener": []
+  },
+  {
+   "id": "acm-3-5",
+   "escena": 3,
+   "paso": 5,
+   "text": "Tocilizumab: humanizado, receptor de interleuquina seis. Artritis reumatoide.",
+   "retener": []
+  },
+  {
+   "id": "acm-3-6",
+   "escena": 3,
+   "paso": 6,
+   "text": "Infliximab: quimérico, TNF alfa. Artritis reumatoide, Crohn y colitis ulcerosa.",
+   "retener": []
+  }
+ ]
+}

@@ -6,7 +6,7 @@ import { VIDEOS } from '../data/videos';
 import { Cinta, EnlaceFarmaco, estiloAccion } from '../components/base';
 import { Cuestionario, TarjetaDesarrollo } from '../components/Cuestionario';
 import { Entrenador } from '../components/Entrenador';
-import { MapaCapitulo } from '../components/Mapa';
+import { FamiliaMapa, MapaCapitulo } from '../components/Mapa';
 import { Teoria } from '../components/Teoria';
 import { completarFamilia, listaEnBlanco, sesionCapitulo } from '../lib/ejercicios';
 import { actualizar, useEstado } from '../lib/store';
@@ -27,7 +27,7 @@ function marcar(cap: string, paso: string) {
 }
 
 function Nombres({ c }: { c: Cap }) {
-  const [modo, setModo] = useState<'estudiar' | 'practicar'>('estudiar');
+  const [modo, setModo] = useState<'estudiar' | 'practicar' | 'vacio'>('estudiar');
   const [clave, setClave] = useState(0);
   const ej = useMemo(() => sesionCapitulo(c.id, 14), [c.id, clave]);
   return (
@@ -35,7 +35,12 @@ function Nombres({ c }: { c: Cap }) {
       <div className="segmento" role="group">
         <button type="button" aria-pressed={modo === 'estudiar'} onClick={() => setModo('estudiar')}>Familias y trucos</button>
         <button type="button" aria-pressed={modo === 'practicar'} onClick={() => { setClave(k => k + 1); setModo('practicar'); }}>Practicar nombres</button>
+        <button type="button" aria-pressed={modo === 'vacio'} onClick={() => setModo('vacio')}>Mapa vacío</button>
       </div>
+      {modo === 'vacio' && <div className="seccion" style={{ marginTop: 14 }}>
+        <p>Reconstruí cada grupo en voz alta o en papel. Después tocá las franjas para corregirte.</p>
+        {c.grupos.map(g => <FamiliaMapa key={g.id} g={g} oculto />)}
+      </div>}
       {modo === 'estudiar' && <>
         {c.grupos.map(g => {
           const m = miembros(g.id).filter(f => f.prioridad <= 2);
@@ -165,7 +170,11 @@ export function Capitulo() {
   const nav = useNavigate();
   const c = capitulo(id ?? '');
   const estado = useEstado();
-  useEffect(() => { window.scrollTo(0, 0); if (c && paso) marcar(c.id, paso === 'nombres' ? 'mapa' : paso); }, [c, paso]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    if (c && paso) marcar(c.id, paso === 'nombres' ? 'mapa' : paso);
+    document.querySelector('.riel a.activo')?.scrollIntoView({ inline: 'center', block: 'nearest' });
+  }, [c, paso]);
   if (!c) return <Navigate to="/capitulos" replace />;
   if (!paso) return <Navigate to={`/c/${c.id}/mapa`} replace />;
   const hechos = estado.pasos[c.id] ?? [];
@@ -195,10 +204,10 @@ export function Capitulo() {
             </div>
           : <p className="nota">La clase en video de este capítulo todavía no está publicada. La misma explicación, paso a paso, está en Teoría.</p>)}
         {paso === 'cuadro' && <Cuadro c={c} />}
-        {paso === 'choice' && <Cuestionario preguntas={c.preguntas} tipo={`Choice: ${c.titulo}`} />}
+        {paso === 'choice' && <Cuestionario preguntas={c.preguntas} tipo={`Choice: ${c.titulo}`} onFin={() => setTimeout(() => nav(`/c/${c.id}/desarrollo`), 1800)} />}
         {paso === 'desarrollo' && <div>{c.desarrollos.map(d => <TarjetaDesarrollo key={d.id} d={d} />)}</div>}
         {paso === 'examen' && <ExamenCap c={c} />}
-        {sig && paso !== 'examen' && <Link className="boton sec ancho seccion" to={`/c/${c.id}/${sig[0]}`} onClick={() => marcar(c.id, paso)}>Seguir con {sig[1].toLowerCase()}</Link>}
+        {sig && paso !== 'examen' && paso !== 'choice' && <Link className="boton sec ancho seccion" to={`/c/${c.id}/${sig[0]}`} onClick={() => marcar(c.id, paso)}>Seguir con {sig[1].toLowerCase()}</Link>}
       </main>
     </div>
   );

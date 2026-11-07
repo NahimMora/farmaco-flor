@@ -107,12 +107,11 @@ function Sinapsis({ e, i, t }: { e: EscenaSinapsis; i: number; t: number }) {
       {/* neurona presináptica */}
       <path d="M300 -10 C300 60 170 80 170 170 C170 250 300 262 480 262 C660 262 790 250 790 170 C790 80 660 60 660 -10 Z"
         fill="var(--celula)" stroke={tinta} strokeWidth={4} strokeLinejoin="round" />
-      <T x={480} y={28} s={29} c={tenue}>{e.precursor ? `${e.precursor} se convierte en ${e.nt}` : `Terminal que libera ${e.nt}`}</T>
+      <T x={480} y={30} s={27} c={tenue}>{e.precursor ? `Forma ${e.nt}: ${e.precursor}` : `Libera ${e.nt}`}</T>
       {/* vesículas */}
-      {[[300, 130], [395, 90], [420, 180], [530, 110], [560, 190], [640, 150]].map(([x, y], k) => {
-        const baja = p.liberar && k === 3 ? 0 : 0;
+      {[[300, 130], [395, 90], [420, 180], [530, 110], [560, 190], [670, 170]].filter((_, k) => !(k === 3 && e.enzima?.en === 'terminal')).map(([x, y], k) => {
         return (
-          <g key={k} transform={`translate(${x} ${y + baja})`}>
+          <g key={k} transform={`translate(${x} ${y})`}>
             <circle r={32} fill={fondo} stroke={tinta} strokeWidth={3.5} />
             {[0, 1, 2, 3, 4].map(j => <circle key={j} cx={Math.cos(j * 1.3) * 15} cy={Math.sin(j * 1.3) * 15} r={6.5} fill="var(--nt)" />)}
           </g>
@@ -176,7 +175,7 @@ function Sinapsis({ e, i, t }: { e: EscenaSinapsis; i: number; t: number }) {
         const x0 = izq ? -120 : 1080; const y0 = y + (k % 2 ? 40 : -30);
         const cx = x0 + (x - x0) * llega; const cy = y0 + (y - y0) * llega;
         const offY = d.en.startsWith('r') ? -54 : d.en === 't' ? 34 : d.en === 'e' ? -62 : d.en === 'ar' ? 34 : -52;
-        const yy = Math.max(26, cy + offY);
+        const yy = Math.max(26, cy + offY - (d.en.startsWith('r') && k % 2 ? 56 : 0));
         return <g key={d.n + d.en}>
           {bloquea(d.a) && llega > 0.95 && <g transform={`translate(${x} ${y})`} opacity={ap(t, 0.95 + k * 0.25, 0.3)}>
             <path d="M-26 -26 L26 26 M26 -26 L-26 26" stroke={color('antagonista')} strokeWidth={9} strokeLinecap="round" />
@@ -214,7 +213,7 @@ function Ruta({ e, i, t }: { e: EscenaRuta; i: number; t: number }) {
       return <g key={k}>
         {prev && <g opacity={o}>
           <line x1={prev[0] + Math.sign(x - prev[0]) * 92} y1={prev[1] + (y === prev[1] ? 0 : 42)} x2={x - Math.sign(x - prev[0]) * 104} y2={y - (y === prev[1] ? 0 : 42)} stroke={tinta} strokeWidth={5} markerEnd="url(#fl)" />
-          <Multi x={(x + prev[0]) / 2} y={(y + prev[1]) / 2 + (y === prev[1] ? -34 : 0)} t={e.enzimas[k - 1] ?? ''} n={16} s={22} c={color('inhibidor')} w={700} halo />
+          <Multi x={(x + prev[0]) / 2} y={(y + prev[1]) / 2 + (y === prev[1] ? -82 : 0)} t={e.enzimas[k - 1] ?? ''} n={16} s={24} c={color('inhibidor')} w={700} halo />
           {dr.map((d, j) => <Pastilla key={d.n} x={(x + prev[0]) / 2} y={(y + prev[1]) / 2 + 62 + j * 50} n={d.n} a={d.a} s={22} o={ap(t, 0.3 + j * 0.3)} />)}
         </g>}
         <g opacity={o}>
@@ -244,7 +243,12 @@ function Cadenas({ e, i, t }: { e: EscenaCadenas; i: number; t: number }) {
           return <g key={j}>
             {j < c - 1 && <line x1={x + paso / 2 - 28} y1={y} x2={x + paso / 2 + 2} y2={y} stroke={tinta} strokeWidth={4} markerEnd="url(#fl)" />}
             <rect x={x - paso / 2 + 8} y={y - 44} width={paso - 44} height={88} rx={16} fill={j === 0 ? tinte(f.color) : 'var(--celula)'} stroke={j === 0 ? color(f.color) : tinta} strokeWidth={4} />
-            <Multi x={x - 14} y={y} t={ch} n={Math.floor((paso - 50) / 14)} s={25} w={700} />
+            {(() => {
+              const ancho = paso - 60;
+              const mayor = Math.max(...ch.split(' ').map(w => w.length));
+              const fs = Math.min(27, ancho / (mayor * 0.58));
+              return <Multi x={x - 14} y={y} t={ch} n={Math.max(mayor, Math.floor(ancho / (fs * 0.55)))} s={fs} w={700} />;
+            })()}
           </g>;
         })}
         {activa && <circle cx={40 + paso * 0.5 + u * paso * (c - 1) - 14} cy={y - 56} r={9} fill={color(f.color)} />}
@@ -323,20 +327,20 @@ function Canal({ e, i, t }: { e: EscenaCanal; i: number; t: number }) {
     puntos.push(`${560 + k * 1.8},${on ? 440 : 500}`);
   }
   return <g>
-    <rect x={0} y={my - 40} width={600} height={80} fill={tinte('modulador')} />
-    <path d={`M0 ${my - 40} H${cx - 92} M${cx + 92} ${my - 40} H600 M0 ${my + 40} H${cx - 92} M${cx + 92} ${my + 40} H600`} stroke={tinta} strokeWidth={4} />
+    <rect x={0} y={my - 40} width={570} height={80} fill={tinte('modulador')} />
+    <path d={`M0 ${my - 40} H${cx - 92} M${cx + 92} ${my - 40} H570 M0 ${my + 40} H${cx - 92} M${cx + 92} ${my + 40} H570`} stroke={tinta} strokeWidth={4} />
     <rect x={cx - 92} y={my - 92} width={92 - hueco} height={184} rx={26} fill="var(--receptor)" stroke={tinta} strokeWidth={4} />
     <rect x={cx + hueco} y={my - 92} width={92 - hueco} height={184} rx={26} fill="var(--receptor)" stroke={tinta} strokeWidth={4} />
     <T x={80} y={92} s={25} c={tenue} a="start">Afuera</T>
     <T x={80} y={374} s={25} c={tenue} a="start">Adentro</T>
     {ions.map((q, k) => <g key={k} opacity={q.o}><circle cx={q.x} cy={q.y} r={15} fill={color('modulador')} /></g>)}
-    <T x={500} y={92} s={28} w={800} c={color('modulador')}>{e.ion}</T>
+    <T x={470} y={92} s={34} w={800} c={color('modulador')}>{e.ion}</T>
     {(p.ligandos ?? []).map((l, k) => <Pastilla key={l.n} x={k === 0 ? 118 : 118} y={166 + k * 62 - (p.ligandos!.length - 1) * 30} n={l.n} a={l.a} o={ap(t, 0.1 + k * 0.2)} s={24} />)}
     {p.modo === 'bloqueado' && <path d={`M${cx - 30} ${my - 30} L${cx + 30} ${my + 30} M${cx + 30} ${my - 30} L${cx - 30} ${my + 30}`} stroke={color('antagonista')} strokeWidth={10} strokeLinecap="round" />}
     <T x={740} y={400} s={24} c={tenue}>Aperturas del canal</T>
     <polyline points={puntos.join(' ')} fill="none" stroke={color('modulador')} strokeWidth={5} strokeLinejoin="round" />
     <line x1={560} y1={516} x2={920} y2={516} stroke={linea} strokeWidth={3} />
-    {p.texto && <Multi x={740} y={210} t={p.texto} n={24} s={30} w={800} c={tinta} o={ap(t, 0.2)} />}
+    {p.texto && <Multi x={782} y={200} t={p.texto} n={17} s={31} w={800} c={tinta} o={ap(t, 0.2)} />}
   </g>;
 }
 
@@ -348,13 +352,13 @@ function Escalera({ e, i, t }: { e: EscenaEscalera; i: number; t: number }) {
   return <g>
     <T x={480} y={32} s={24} c={tenue}>{e.eje}</T>
     {e.zonas.map((z, k) => {
-      const x = 40 + k * ancho; const h = 150 + k * 90; const y = 540 - h;
+      const x = 40 + k * ancho; const h = 290 + k * 90; const y = 544 - h;
       const luz = k === p.zona; const visto = k <= p.zona;
       return <g key={k} opacity={visto ? (luz ? ap(t) : 0.45) : 0.12}>
         <rect x={x + 8} y={y} width={ancho - 16} height={h} rx={14} fill={luz ? tinte(z.c) : 'var(--celula)'} stroke={luz ? color(z.c) : tinta} strokeWidth={luz ? 6 : 3} />
         <T x={x + ancho / 2} y={y + 36} s={28} w={800}>{z.t}</T>
         <T x={x + ancho / 2} y={y + 80} s={32} w={800} c={color(z.c)}>{z.r}</T>
-        <Multi x={x + ancho / 2} y={y + 80 + Math.max(70, (h - 80) / 2)} t={z.e} n={Math.floor(ancho / 14.5)} s={24} w={600} />
+        <Multi x={x + ancho / 2} y={y + 190} t={z.e} n={Math.floor(ancho / 14.5)} s={25} w={600} />
       </g>;
     })}
     <line x1={40} y1={566} x2={916} y2={566} stroke={tinta} strokeWidth={5} markerEnd="url(#fl)" />
@@ -372,17 +376,21 @@ function Pizarra({ e, i, t }: { e: EscenaPizarra; i: number; t: number }) {
     {mostrar.map((l, k) => {
       const nuevo = k === mostrar.length - 1 && pag + k === p.hasta; const h = alturas[k]; const y0 = y; y += h;
       const dosCol = l.lista.length > 4;
+      const mayor = Math.max(...l.lista.map(n => n.length));
+      const anchoCol = Math.min(280, mayor * 19.5 + 26);
+      const fs = Math.min(35, (anchoCol - 16) / (mayor * 0.56));
+      const finLista = dosCol ? 46 + anchoCol * 2 : Math.max(330, 46 + anchoCol);
       const filas = dosCol ? Math.ceil(l.lista.length / 2) : l.lista.length;
       const alto = filas * 50;
       const ini = y0 + (h - alto) / 2;
       return <g key={l.resultado + k} opacity={nuevo ? 1 : 0.8}>
         {l.lista.map((nom, j) => {
           const col = dosCol ? j % 2 : 0; const fil = dosCol ? Math.floor(j / 2) : j;
-          return <T key={nom} x={46 + col * 220} y={ini + 25 + fil * 50} a="start" s={35} w={700} c={color(l.a)} o={nuevo ? ap(t, 0.1 + j * 0.28, 0.35) : 1}>{nom}</T>;
+          return <T key={nom} x={46 + col * anchoCol} y={ini + 25 + fil * 50} a="start" s={fs} w={700} c={color(l.a)} o={nuevo ? ap(t, 0.1 + j * 0.28, 0.35) : 1}>{nom}</T>;
         })}
-        <path d={`M${dosCol ? 500 : 366} ${ini + 4} h16 v${alto - 8} h-16`} fill="none" stroke={color(l.a)} strokeWidth={5} strokeLinecap="round" strokeLinejoin="round"
+        <path d={`M${finLista} ${ini + 4} h16 v${alto - 8} h-16`} fill="none" stroke={color(l.a)} strokeWidth={5} strokeLinecap="round" strokeLinejoin="round"
           opacity={nuevo ? ap(t, 0.1 + l.lista.length * 0.28, 0.3) : 1} />
-        <Multi x={dosCol ? 542 : 412} y={ini + alto / 2} t={l.resultado} n={dosCol ? 22 : 28} s={30} w={700} a="start" o={nuevo ? ap(t, 0.3 + l.lista.length * 0.28, 0.4) : 1} />
+        <Multi x={finLista + 40} y={ini + alto / 2} t={l.resultado} n={Math.floor((920 - finLista - 40) / 16)} s={30} w={700} a="start" o={nuevo ? ap(t, 0.3 + l.lista.length * 0.28, 0.4) : 1} />
       </g>;
     })}
   </g>;
@@ -406,7 +414,6 @@ function Flujo({ e, i, t }: { e: EscenaFlujo; i: number; t: number }) {
       const c = l.inhibe ? color('antagonista') : tinta;
       return <g key={l.a + l.b} opacity={Math.min(op(l.a), op(l.b))}>
         <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={c} strokeWidth={4.5} strokeDasharray={l.inhibe ? '12 9' : undefined} markerEnd={l.inhibe ? 'url(#fr)' : 'url(#fl)'} />
-        {l.t && <Multi x={(x1 + x2) / 2} y={(y1 + y2) / 2} t={l.t} n={18} s={21} c={l.inhibe ? color('antagonista') : tenue} w={700} halo />}
       </g>;
     })}
     {e.nodos.filter(n => vistos.has(n.id)).map(n => {
@@ -414,6 +421,13 @@ function Flujo({ e, i, t }: { e: EscenaFlujo; i: number; t: number }) {
       return <g key={n.id} opacity={op(n.id)}>
         <rect x={n.x - w / 2} y={n.y - 44} width={w} height={88} rx={16} fill={n.a ? tinte(n.a) : 'var(--celula)'} stroke={n.a ? color(n.a) : tinta} strokeWidth={luz ? 7 : 4} />
         <Multi x={n.x} y={n.y} t={n.t} n={Math.floor(w / 13.2)} s={24} w={700} />
+      </g>;
+    })}
+    {e.lazos.filter(l => l.t && vistos.has(l.a) && vistos.has(l.b)).map(l => {
+      const a = nodo(l.a), b = nodo(l.b);
+      const horizontal = Math.abs(a.y - b.y) < 20;
+      return <g key={l.a + l.b + 't'} opacity={Math.min(op(l.a), op(l.b))}>
+        <Multi x={(a.x + b.x) / 2} y={(a.y + b.y) / 2 - (horizontal ? 62 : 0)} t={l.t!} n={18} s={23} c={l.inhibe ? color('antagonista') : tenue} w={700} halo />
       </g>;
     })}
   </g>;
@@ -518,6 +532,7 @@ function Anticuerpo({ e, i, t }: { e: EscenaAnticuerpo; i: number; t: number }) 
 function Vias({ e, i, t }: { e: EscenaVias; i: number; t: number }) {
   const p = e.pasos[i];
   return <g>
+    <g transform="translate(-120 30)">
     <path d="M170 330 C120 200 250 60 460 60 C660 60 800 170 800 300 C800 370 750 400 690 400 C650 400 640 440 590 440 C540 440 520 410 470 420 C440 430 440 520 400 560 L350 556 C372 500 372 450 350 420 C280 420 200 400 170 330 Z"
       fill="var(--celula)" stroke={tinta} strokeWidth={4} strokeLinejoin="round" />
     {e.vias.map(v => {
@@ -526,11 +541,12 @@ function Vias({ e, i, t }: { e: EscenaVias; i: number; t: number }) {
         <path d={v.d} fill="none" stroke={luz ? color(v.a) : 'var(--receptor)'} strokeWidth={luz ? 9 : 5} strokeLinecap="round" strokeDasharray={luz ? '20 13' : undefined} strokeDashoffset={luz ? -t * 40 : 0} />
       </g>;
     })}
+    </g>
     {(p.tag ?? []).map((q, k) => {
       const v = e.vias.find(x => x.id === q.id);
       return <g key={q.id} opacity={ap(t, 0.2 + k * 0.3)}>
-        <T x={938} y={70 + k * 112} s={27} w={800} c={color(v?.a)} a="end">{v?.n}</T>
-        <Multi x={938} y={112 + k * 112} t={q.t} n={26} s={23} w={600} a="end" />
+        <T x={944} y={70 + k * 120} s={32} w={800} c={color(v?.a)} a="end">{v?.n}</T>
+        <Multi x={944} y={122 + k * 120} t={q.t} n={18} s={27} w={600} a="end" />
       </g>;
     })}
   </g>;

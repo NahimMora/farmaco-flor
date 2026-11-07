@@ -1,0 +1,198 @@
+{
+ "cap": "dop",
+ "titulo": "Dopaminérgicos",
+ "escenas": [
+  "Dopamina: síntesis y terminación",
+  "Las vías dopaminérgicas",
+  "Tratar el Parkinson: subir la señal",
+  "Tratar la psicosis: bajar la señal",
+  "La pizarra dopaminérgica"
+ ],
+ "beats": [
+  {
+   "id": "dop-0-0",
+   "escena": 0,
+   "paso": 0,
+   "text": "Misma ruta del capítulo anterior: tirosina, L-DOPA y dopamina. Solo que estas neuronas no tienen dopamina beta hidroxilasa, así que se quedan en dopamina.",
+   "retener": [
+    "Sin DβH"
+   ]
+  },
+  {
+   "id": "dop-0-1",
+   "escena": 0,
+   "paso": 1,
+   "text": "La dopamina se libera y activa dos familias. La familia D1 incluye D1 y D5: activa la adenilato ciclasa y sube el AMP cíclico. La familia D2 incluye D2, D3 y D4: inhibe la adenilato ciclasa.",
+   "retener": [
+    "Familia D1: D1 y D5",
+    "Familia D2: D2, D3 y D4"
+   ]
+  },
+  {
+   "id": "dop-0-2",
+   "escena": 0,
+   "paso": 2,
+   "text": "Hay un autorreceptor presináptico, y siempre es D2. Regula la propia vía. Postsinápticos hay de todos los tipos.",
+   "retener": [
+    "Presináptico: D2"
+   ]
+  },
+  {
+   "id": "dop-0-3",
+   "escena": 0,
+   "paso": 3,
+   "text": "Termina por recaptación con el transportador DAT, que depende de sodio y cloro, trabaja en las dos direcciones y se inhibe con cocaína y anfetaminas. Después la degradan la MAO y la COMT hasta ácido homovanílico.",
+   "retener": [
+    "DAT: Na+ y Cl-",
+    "Ácido homovanílico"
+   ]
+  },
+  {
+   "id": "dop-1-0",
+   "escena": 1,
+   "paso": 0,
+   "text": "Las vías largas son tres: nigroestriada, mesolímbica y mesocortical. Mesopontina no es larga: es intermedia. El preguntero usa esa trampa.",
+   "retener": [
+    "Mesopontina: intermedia"
+   ]
+  },
+  {
+   "id": "dop-1-1",
+   "escena": 1,
+   "paso": 1,
+   "text": "La nigroestriada va de la sustancia negra al caudado y putamen: controla el movimiento. En el Parkinson se pierde. Los síntomas no aparecen hasta que se perdió cerca del ochenta por ciento de las neuronas.",
+   "retener": [
+    "Parkinson: pérdida nigroestriada, 80%"
+   ]
+  },
+  {
+   "id": "dop-1-2",
+   "escena": 1,
+   "paso": 2,
+   "text": "La mesolímbica sale del área tegmental ventral. En la esquizofrenia hay hiperactividad dopaminérgica. Ahí bloqueamos con antipsicóticos.",
+   "retener": [
+    "Esquizofrenia: hiperactividad"
+   ]
+  },
+  {
+   "id": "dop-1-3",
+   "escena": 1,
+   "paso": 3,
+   "text": "Y la tuberohipofisaria controla la prolactina: la dopamina la inhibe. Si bloqueo dopamina, sube la prolactina. Si la activo con bromocriptina o cabergolina, baja.",
+   "retener": [
+    "Dopamina ⊖ prolactina"
+   ]
+  },
+  {
+   "id": "dop-2-0",
+   "escena": 2,
+   "paso": 0,
+   "text": "Falta dopamina. Primera idea: dar materia prima. Levodopa es el precursor. La dopamina no atraviesa la barrera hematoencefálica, pero la levodopa sí, y adentro se transforma.",
+   "retener": [
+    "Levodopa"
+   ]
+  },
+  {
+   "id": "dop-2-1",
+   "escena": 2,
+   "paso": 1,
+   "text": "Segunda: que salga más. Amantadina aumenta la liberación. Se usa en las primeras etapas.",
+   "retener": [
+    "Amantadina"
+   ]
+  },
+  {
+   "id": "dop-2-2",
+   "escena": 2,
+   "paso": 2,
+   "text": "Tercera: saltar la dopamina y activar el receptor directo. Bromocriptina es agonista selectivo de D2. Pergolida y cabergolina son agonistas no selectivos.",
+   "retener": [
+    "Bromocriptina",
+    "Pergolida",
+    "Cabergolina"
+   ]
+  },
+  {
+   "id": "dop-2-3",
+   "escena": 2,
+   "paso": 3,
+   "text": "Cuarta: que no se degrade. Selegilina inhibe de forma irreversible y selectiva la MAO B.",
+   "retener": [
+    "Selegilina"
+   ]
+  },
+  {
+   "id": "dop-2-4",
+   "escena": 2,
+   "paso": 4,
+   "text": "Entacapona y tolcapona hacen lo mismo con la otra enzima: inhiben la COMT. Con eso, las cuatro ideas: precursor, liberación, agonismo e inhibir la degradación.",
+   "retener": [
+    "Entacapona",
+    "Tolcapona"
+   ]
+  },
+  {
+   "id": "dop-3-0",
+   "escena": 3,
+   "paso": 0,
+   "text": "En la esquizofrenia hay hiperactividad dopaminérgica. Los antipsicóticos bloquean receptores dopaminérgicos en el cerebro.",
+   "retener": []
+  },
+  {
+   "id": "dop-3-1",
+   "escena": 3,
+   "paso": 1,
+   "text": "Haloperidol y clorpromazina son antagonistas D2. Efecto: antipsicótico. Pero si bloqueo D2 también en la vía nigroestriada aparece parkinsonismo, y en la hipófisis sube la prolactina.",
+   "retener": [
+    "Haloperidol",
+    "Clorpromazina",
+    "Parkinsonismo",
+    "Prolactina alta"
+   ]
+  },
+  {
+   "id": "dop-3-2",
+   "escena": 3,
+   "paso": 2,
+   "text": "Domperidona bloquea el mismo D2, pero se la usa como antiemético y proquinético. Por eso en los cuadros va antagonista D2, antiemético.",
+   "retener": [
+    "Domperidona"
+   ]
+  },
+  {
+   "id": "dop-4-0",
+   "escena": 4,
+   "paso": 0,
+   "text": "Repetí conmigo. Bromocriptina: agonista D2.",
+   "retener": []
+  },
+  {
+   "id": "dop-4-1",
+   "escena": 4,
+   "paso": 1,
+   "text": "Pergolida y cabergolina: agonistas no selectivos, bajan la prolactina.",
+   "retener": []
+  },
+  {
+   "id": "dop-4-2",
+   "escena": 4,
+   "paso": 2,
+   "text": "Haloperidol y domperidona: antagonistas D2.",
+   "retener": []
+  },
+  {
+   "id": "dop-4-3",
+   "escena": 4,
+   "paso": 3,
+   "text": "Selegilina inhibe la MAO B. Entacapona inhibe la COMT.",
+   "retener": []
+  },
+  {
+   "id": "dop-4-4",
+   "escena": 4,
+   "paso": 4,
+   "text": "Levodopa, precursor. Amantadina, aumenta la liberación.",
+   "retener": []
+  }
+ ]
+}

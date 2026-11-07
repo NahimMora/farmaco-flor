@@ -13,8 +13,10 @@ import { sesionGlobal, TEXTO_ACCION } from '../lib/ejercicios';
 import { esConfusion, urgencia } from '../lib/srs';
 import { actualizar, useEstado } from '../lib/store';
 import { PERFIL } from '../data/perfil';
+import { cobertura } from '../data/inventario';
+import { frecuencias } from '../data/cuadros';
 
-const VISTAS = [['cuadro', 'Cuadro maestro'], ['mapa', 'Mapa maestro'], ['lista', 'Lista de nombres'], ['errores', 'Errores que cuestan'], ['minimo', 'Desarrollo mínimo'], ['ultima', 'Última hora'], ['calidad', 'Control de calidad']] as const;
+const VISTAS = [['toman', 'Lo que más toman'], ['cuadro', 'Cuadro maestro'], ['mapa', 'Mapa maestro'], ['lista', 'Lista de nombres'], ['errores', 'Errores que cuestan'], ['minimo', 'Desarrollo mínimo'], ['ultima', 'Última hora'], ['calidad', 'Control de calidad']] as const;
 
 function CuadroMaestro() {
   const [ocultar, setOcultar] = useState(false);
@@ -86,6 +88,21 @@ function ListaNombres() {
   );
 }
 
+function LoQueToman() {
+  const top = [...frecuencias().entries()].filter(([id]) => ficha(id)).sort((a, b) => b[1] - a[1]).slice(0, 24);
+  return (
+    <div>
+      <p>Salió de contar los cuadros y desarrollos reales de los archivos. El repaso usa este orden para decidir qué te pregunta primero.</p>
+      <h2 className="seccion">Cómo preguntan</h2>
+      {PERFIL.formatos.map(f => <div key={f.t} className="tarjeta-fila"><b>{f.t}</b><div className="chico">{f.d}</div></div>)}
+      <h2 className="seccion">Los que más se repiten</h2>
+      {top.map(([id, n]) => { const f = ficha(id)!; return <div key={id} className="entre tarjeta-fila" style={estiloAccion(f.accion)}><span><Link className="nom" to={`/f/${id}`}>{f.nombre}</Link><div className="chico tenue">{f.mecanismo}</div></span><b>{n}</b></div>; })}
+      <h2 className="seccion">Sobre la grabación</h2>
+      <p className="chico">{PERFIL.audio}</p>
+    </div>
+  );
+}
+
 function Errores() {
   return (
     <div>
@@ -134,6 +151,10 @@ function UltimaHora() {
 function Calidad() {
   return (
     <div>
+      <h2>Cobertura</h2>
+      <p className="tenue chico">Contada contra el inventario de cada archivo.</p>
+      {cobertura().map(c => <div key={c.t} className="entre tarjeta-fila"><span>{c.t}</span><b>{c.hay} de {c.total}</b></div>)}
+      <h2 className="seccion">Contradicciones del material</h2>
       <p>Cuando el material se contradice, acá está qué decía cada fuente y qué conviene responder.</p>
       {DISCREPANCIAS.map(d => (
         <article key={d.id} className="tarjeta-fila">
@@ -152,13 +173,14 @@ function Calidad() {
 }
 
 export function Esencial() {
-  const { vista = 'cuadro' } = useParams();
+  const { vista = 'toman' } = useParams();
   return (
     <main className="pagina">
       <h1>Lo esencial para aprobar</h1>
       <div className="segmento no-imprimir" style={{ margin: '12px 0 16px' }}>
         {VISTAS.map(([k, t]) => <Link key={k} to={`/esencial/${k}`} replace><button type="button" aria-pressed={vista === k}>{t}</button></Link>)}
       </div>
+      {vista === 'toman' && <LoQueToman />}
       {vista === 'cuadro' && <CuadroMaestro />}
       {vista === 'mapa' && <MapaMaestro />}
       {vista === 'lista' && <ListaNombres />}
@@ -168,6 +190,71 @@ export function Esencial() {
       {vista === 'calidad' && <Calidad />}
     </main>
   );
+}
+
+/** Sistema, diana, tipo de acción, fármaco y efecto, con cada nivel ocultable. */
+function MapaNiveles() {
+  const [ver, setVer] = useState({ diana: true, accion: true, farmaco: true, efecto: true });
+  const op: [keyof typeof ver, string][] = [['diana', 'Diana'], ['accion', 'Acción'], ['farmaco', 'Fármaco'], ['efecto', 'Efecto']];
+  return (
+    <div>
+      <p className="tenue chico">Apagá un nivel y reconstruilo de memoria.</p>
+      <div className="segmento" style={{ margin: '8px 0' }}>{op.map(([k, t]) => <button key={k} type="button" aria-pressed={ver[k]} onClick={() => setVer(v => ({ ...v, [k]: !v[k] }))}>{t}</button>)}</div>
+      {CAPITULOS.map(c => {
+        const dianas = [...new Set(c.farmacos.filter(f => f.prioridad === 1).map(f => f.diana))];
+        return (
+          <details key={c.id} style={{ padding: '6px 0' }}>
+            <summary style={{ fontWeight: 700, minHeight: 34 }}>{c.titulo}</summary>
+            {dianas.map(d => (
+              <div key={d} className="tarjeta-fila">
+                {ver.diana && <b>{d}</b>}
+                {c.farmacos.filter(f => f.diana === d && f.prioridad === 1).map(f => (
+                  <div key={f.id} style={{ ...estiloAccion(f.accion), marginTop: 4 }}>
+                    {ver.accion && <span className="etiqueta" style={{ marginRight: 6 }}>{TEXTO_ACCION[f.accion]}</span>}
+                    {ver.farmaco && <Link style={{ color: 'var(--c)', fontWeight: 800 }} to={`/f/${f.id}`}>{f.nombre}</Link>}
+                    {ver.efecto && <div className="chico">{f.efecto}</div>}
+                  </div>
+                ))}
+              </div>
+            ))}
+          </details>
+        );
+      })}
+    </div>
+  );
+}
+
+function Comparador() {
+  const lista = useMemo(() => [...FARMACOS].filter(f => f.prioridad <= 2).sort((a, b) => a.nombre.localeCompare(b.nombre)), []);
+  const [a, setA] = useState('bromocriptina');
+  const [b, setB] = useState('haloperidol');
+  const fa = ficha(a)!, fb = ficha(b)!;
+  const filas: [string, string, string][] = [['Grupo', grupoDe(fa).nombre, grupoDe(fb).nombre], ['Diana', fa.diana, fb.diana], ['Acción', TEXTO_ACCION[fa.accion], TEXTO_ACCION[fb.accion]], ['Mecanismo', fa.mecanismo, fb.mecanismo], ['Efecto', fa.efecto, fb.efecto]];
+  return (
+    <div>
+      <div className="dos" style={{ marginTop: 8 }}>
+        <select className="campo" aria-label="Primer fármaco" value={a} onChange={e => setA(e.target.value)}>{lista.map(f => <option key={f.id} value={f.id}>{f.nombre}</option>)}</select>
+        <select className="campo" aria-label="Segundo fármaco" value={b} onChange={e => setB(e.target.value)}>{lista.map(f => <option key={f.id} value={f.id}>{f.nombre}</option>)}</select>
+      </div>
+      {filas.map(([t, x, y]) => <div key={t} className="tarjeta-fila"><span className="rotulo">{t}</span><div className="dos chico"><div>{x}</div><div>{y}</div></div></div>)}
+    </div>
+  );
+}
+
+function DosCaras() {
+  const dianas = useMemo(() => {
+    const m = new Map<string, Farmaco[]>();
+    FARMACOS.filter(f => f.prioridad <= 2).forEach(f => m.set(f.diana, [...(m.get(f.diana) ?? []), f]));
+    return [...m.entries()].filter(([, l]) => l.some(f => f.accion === 'agonista') && l.some(f => f.accion === 'antagonista' || f.accion === 'bloqueante'));
+  }, []);
+  return <div>{dianas.map(([d, l]) => (
+    <div key={d} className="tarjeta-fila"><b>{d}</b>
+      <div className="dos">
+        <div className="chips">{l.filter(f => f.accion === 'agonista').map(f => <EnlaceFarmaco key={f.id} f={f} />)}</div>
+        <div className="chips">{l.filter(f => f.accion !== 'agonista').map(f => <EnlaceFarmaco key={f.id} f={f} />)}</div>
+      </div>
+    </div>
+  ))}</div>;
 }
 
 const ACCIONES: Accion[] = ['agonista', 'antagonista', 'inhibidor', 'modulador', 'bloqueante'];
@@ -207,10 +294,9 @@ export function Integracion() {
           </div>
         ))}
       </section>
-      <section className="seccion">
-        <h2>Mapa maestro</h2>
-        <MapaMaestro />
-      </section>
+      <section className="seccion"><h2>Mismo receptor: activar o bloquear</h2><DosCaras /></section>
+      <section className="seccion"><h2>Comparar dos fármacos</h2><Comparador /></section>
+      <section className="seccion"><h2>Mapa maestro</h2><MapaNiveles /></section>
       <section className="seccion">
         <h2>Motor intercapítulos</h2>
         <p>Una tanda que mezcla todos los sistemas, priorizando tus nombres más débiles.</p>

@@ -1,0 +1,239 @@
+{
+ "cap": "gab",
+ "titulo": "GABA y glutamato",
+ "escenas": [
+  "GABA y glutamato: dos caras",
+  "Receptores",
+  "Frecuencia contra tiempo",
+  "Efectos de BZD y barbitúricos",
+  "Ácido valproico: tres mecanismos",
+  "Antiepilépticos sobre sodio",
+  "La pizarra de GABA"
+ ],
+ "beats": [
+  {
+   "id": "gab-0-0",
+   "escena": 0,
+   "paso": 0,
+   "text": "El GABA es el principal neurotransmisor inhibitorio y el más abundante. Es un aminoácido. Y sale del glutamato, el principal excitatorio.",
+   "retener": []
+  },
+  {
+   "id": "gab-0-1",
+   "escena": 0,
+   "paso": 1,
+   "text": "El glutamato se forma desde el alfa cetoglutarato del ciclo de Krebs, por transaminación. También desde glutamina.",
+   "retener": [
+    "Glutamato: desde α-cetoglutarato o glutamina"
+   ]
+  },
+  {
+   "id": "gab-0-2",
+   "escena": 0,
+   "paso": 2,
+   "text": "La glutamato decarboxilasa convierte glutamato en GABA, usando fosfato de piridoxal, la vitamina B seis, como cofactor. Esa es la respuesta del preguntero.",
+   "retener": [
+    "Cofactor: piridoxal, vitamina B6"
+   ]
+  },
+  {
+   "id": "gab-0-3",
+   "escena": 0,
+   "paso": 3,
+   "text": "La GABA transaminasa lo degrada, y el shunt devuelve los productos al ciclo. Si inhibo esta enzima, aumenta el GABA. Eso hacen vigabatrina y ácido valproico.",
+   "retener": [
+    "Vigabatrina: inhibe GABA-T"
+   ]
+  },
+  {
+   "id": "gab-1-0",
+   "escena": 1,
+   "paso": 0,
+   "text": "El GABA-A es un canal ionotrópico de cinco subunidades, un pentámero. Cuando se abre entra cloro y la neurona se inhibe. Acá actúan benzodiacepinas y barbitúricos. El GABA se une a la subunidad beta.",
+   "retener": [
+    "GABA-A: pentámero, Cl−",
+    "GABA se une a β"
+   ]
+  },
+  {
+   "id": "gab-1-1",
+   "escena": 1,
+   "paso": 1,
+   "text": "El GABA-B es metabotrópico: va con proteína G inhibitoria. Está pre y postsináptico, e interviene en el pulmón.",
+   "retener": [
+    "GABA-B: proteína G"
+   ]
+  },
+  {
+   "id": "gab-1-2",
+   "escena": 1,
+   "paso": 2,
+   "text": "El GABA-C es ionotrópico y está en la retina.",
+   "retener": []
+  },
+  {
+   "id": "gab-1-3",
+   "escena": 1,
+   "paso": 3,
+   "text": "En glutamato, tres ionotrópicos. El NMDA necesita glicina como coagonista, deja pasar calcio y participa en la plasticidad.",
+   "retener": [
+    "NMDA: glicina y Ca++"
+   ]
+  },
+  {
+   "id": "gab-1-4",
+   "escena": 1,
+   "paso": 4,
+   "text": "El AMPA deja pasar sodio y potasio, y hace la transmisión rápida. No es canal de calcio ni metabotrópico.",
+   "retener": []
+  },
+  {
+   "id": "gab-1-5",
+   "escena": 1,
+   "paso": 5,
+   "text": "Y el kainato es ionotrópico y se ubica pre y postsináptico. Esa es la opción correcta del preguntero.",
+   "retener": [
+    "Kainato: pre y post"
+   ]
+  },
+  {
+   "id": "gab-2-0",
+   "escena": 2,
+   "paso": 0,
+   "text": "Este dibujo es el corazón del capítulo. Sin GABA, el canal está cerrado.",
+   "retener": []
+  },
+  {
+   "id": "gab-2-1",
+   "escena": 2,
+   "paso": 1,
+   "text": "Con GABA el canal se abre de a ratos y entra cloro. Mirá el trazado de la derecha: cada escalón es una apertura.",
+   "retener": []
+  },
+  {
+   "id": "gab-2-2",
+   "escena": 2,
+   "paso": 2,
+   "text": "Las benzodiacepinas no abren el canal solas. Se unen a otro sitio, y hacen que con el mismo GABA se abra muchas más veces. Más frecuencia.",
+   "retener": [
+    "BZD: ↑ frecuencia"
+   ]
+  },
+  {
+   "id": "gab-2-3",
+   "escena": 2,
+   "paso": 3,
+   "text": "Los barbitúricos hacen otra cosa: cada apertura dura mucho más. Más tiempo. Fijate el trazado: los escalones son largos.",
+   "retener": [
+    "Barbitúricos: ↑ tiempo"
+   ]
+  },
+  {
+   "id": "gab-2-4",
+   "escena": 2,
+   "paso": 4,
+   "text": "Y el flumazenil se sienta en el sitio de las benzodiacepinas y compite. Revierte la intoxicación.",
+   "retener": [
+    "Flumazenil: antagonista"
+   ]
+  },
+  {
+   "id": "gab-3-0",
+   "escena": 3,
+   "paso": 0,
+   "text": "Cuatro efectos de benzodiacepinas: ansiolítico, sedante, hipnótico y anticonvulsivante. Cinco, si sumás miorrelajante.",
+   "retener": [
+    "4 efectos de BZD"
+   ]
+  },
+  {
+   "id": "gab-3-1",
+   "escena": 3,
+   "paso": 1,
+   "text": "Barbitúricos: anticonvulsivante, antiepiléptico y sedante.",
+   "retener": []
+  },
+  {
+   "id": "gab-4-0",
+   "escena": 4,
+   "paso": 0,
+   "text": "Primer mecanismo: inhibe la recaptación de GABA. El GABA se queda en la hendidura.",
+   "retener": [
+    "1. Inhibe recaptación de GABA"
+   ]
+  },
+  {
+   "id": "gab-4-1",
+   "escena": 4,
+   "paso": 1,
+   "text": "Segundo: inhibe la GABA transaminasa. Se degrada menos.",
+   "retener": [
+    "2. Inhibe GABA-T"
+   ]
+  },
+  {
+   "id": "gab-4-2",
+   "escena": 4,
+   "paso": 2,
+   "text": "Y tercero, por fuera del GABA: inhibe los canales de sodio, aumenta el tiempo de inactivación y baja la excitación. Recaptación, transaminasa y sodio. Decilo tres veces. Sale siempre.",
+   "retener": [
+    "3. Inhibe canales de Na+"
+   ]
+  },
+  {
+   "id": "gab-5-0",
+   "escena": 5,
+   "paso": 0,
+   "text": "La epilepsia es un desequilibrio entre excitación e inhibición. Hay dos caminos: aumentar la inhibición GABA o bajar la excitación. Este es el segundo. El canal de sodio dispara la descarga.",
+   "retener": []
+  },
+  {
+   "id": "gab-5-1",
+   "escena": 5,
+   "paso": 1,
+   "text": "Carbamazepina, fenitoína, lamotrigina y ácido valproico aumentan el tiempo de inactivación del canal de sodio. Se abre menos veces.",
+   "retener": [
+    "Carbamazepina",
+    "Fenitoína",
+    "Lamotrigina"
+   ]
+  },
+  {
+   "id": "gab-5-2",
+   "escena": 5,
+   "paso": 2,
+   "text": "Además, etosuximida bloquea canales de calcio. Felbamato y lamotrigina bajan la excitación por glutamato.",
+   "retener": [
+    "Etosuximida: Ca++"
+   ]
+  },
+  {
+   "id": "gab-6-0",
+   "escena": 6,
+   "paso": 0,
+   "text": "Repetí conmigo. Benzodiacepinas: clonazepam, diazepam, alprazolam, midazolam. Frecuencia.",
+   "retener": []
+  },
+  {
+   "id": "gab-6-1",
+   "escena": 6,
+   "paso": 1,
+   "text": "Barbitúricos: fenobarbital y tiopental. Tiempo.",
+   "retener": []
+  },
+  {
+   "id": "gab-6-2",
+   "escena": 6,
+   "paso": 2,
+   "text": "Ácido valproico: recaptación, transaminasa y sodio.",
+   "retener": []
+  },
+  {
+   "id": "gab-6-3",
+   "escena": 6,
+   "paso": 3,
+   "text": "Carbamazepina y fenitoína: inactivación del canal de sodio.",
+   "retener": []
+  }
+ ]
+}

@@ -93,6 +93,20 @@ export function completarFamilia(g: Grupo): Ejercicio | null {
   return { k: 'hueco', id: g.id + '-hueco', grupo: g.id, visibles: m.slice(ocultar).map(x => x.id), ocultos: m.slice(0, ocultar).map(x => x.id) };
 }
 
+/** Si Flor confunde dos fármacos varias veces, arma una comparación directa entre ellos. */
+export function parejasDeConfusiones(): Ejercicio[] {
+  const out: Ejercicio[] = [];
+  for (const [id, m] of Object.entries(obtener().memoria)) {
+    for (const [otro, n] of Object.entries(m.confusiones)) {
+      const a = ficha(id), b = ficha(otro);
+      if (n >= 2 && a && b) {
+        out.push({ k: 'pareja', id: `${id}-${otro}`, pareja: { a: id, b: otro, porQue: `Los confundiste ${n} veces.`, aEs: `${a.mecanismo}. ${a.efecto}.`, bEs: `${b.mecanismo}. ${b.efecto}.`, truco: a.clave ?? b.clave ?? `${a.nombre}: ${grupoDe(a).nombre}. ${b.nombre}: ${grupoDe(b).nombre}.` } });
+      }
+    }
+  }
+  return out;
+}
+
 /** Sesión escalonada: primero reconocer, después recuperar sin ayuda. */
 export function sesionCapitulo(cap: CapId, n = 14): Ejercicio[] {
   const c = CAPITULOS.find(x => x.id === cap)!;

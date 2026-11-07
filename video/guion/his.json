@@ -1,0 +1,180 @@
+{
+ "cap": "his",
+ "titulo": "Histamina, hierro y EPO",
+ "escenas": [
+  "Los cuatro receptores de histamina",
+  "Bloquear la histamina",
+  "Eritropoyetina",
+  "El camino del hierro",
+  "Repaso"
+ ],
+ "beats": [
+  {
+   "id": "his-0-0",
+   "escena": 0,
+   "paso": 0,
+   "text": "La histamina se forma desde histidina y se guarda en mastocitos y basófilos. Tiene cuatro receptores acoplados a proteína G. H1 va con Gq: hincha y pica. Da broncoconstricción, vasodilatación, edema y prurito.",
+   "retener": [
+    "H1: alergia"
+   ]
+  },
+  {
+   "id": "his-0-1",
+   "escena": 0,
+   "paso": 1,
+   "text": "H2 va con Gs, sube el AMP cíclico y estimula la secreción ácida gástrica.",
+   "retener": [
+    "H2: ácido"
+   ]
+  },
+  {
+   "id": "his-0-2",
+   "escena": 0,
+   "paso": 2,
+   "text": "H3 es presináptico: regula la propia liberación de histamina.",
+   "retener": []
+  },
+  {
+   "id": "his-0-3",
+   "escena": 0,
+   "paso": 3,
+   "text": "Y H4 está en células hematopoyéticas: media respuestas inflamatorias y pruriginosas.",
+   "retener": []
+  },
+  {
+   "id": "his-1-0",
+   "escena": 1,
+   "paso": 0,
+   "text": "El mastocito libera histamina en las reacciones de hipersensibilidad tipo uno.",
+   "retener": []
+  },
+  {
+   "id": "his-1-1",
+   "escena": 1,
+   "paso": 1,
+   "text": "Puedo actuar en tres lugares. Primero, impedir la liberación: cromoglicato y nedocromilo estabilizan la membrana del mastocito.",
+   "retener": [
+    "Cromoglicato",
+    "Nedocromilo"
+   ]
+  },
+  {
+   "id": "his-1-2",
+   "escena": 1,
+   "paso": 2,
+   "text": "Segundo, bloquear H1. La mayoría de los antihistamínicos son en realidad agonistas inversos: estabilizan el receptor inactivo. Primera generación atraviesa la barrera y seda: difenhidramina. Segunda casi no: loratadina y cetirizina.",
+   "retener": [
+    "Difenhidramina",
+    "Loratadina",
+    "Cetirizina"
+   ]
+  },
+  {
+   "id": "his-1-3",
+   "escena": 1,
+   "paso": 3,
+   "text": "Tercero, bloquear H2 en la célula parietal: famotidina y ranitidina. Inhiben la secreción de ácido. Si se cortan de golpe aparece hipersecreción de rebote.",
+   "retener": [
+    "Famotidina",
+    "Ranitidina"
+   ]
+  },
+  {
+   "id": "his-2-0",
+   "escena": 2,
+   "paso": 0,
+   "text": "Ante la hipoxia, las células junto a los túbulos proximales del riñón sintetizan eritropoyetina, una glucoproteína de ciento sesenta y cinco aminoácidos.",
+   "retener": []
+  },
+  {
+   "id": "his-2-1",
+   "escena": 2,
+   "paso": 1,
+   "text": "Actúa en la médula ósea, sobre el receptor Epo-R de los progenitores eritroides.",
+   "retener": []
+  },
+  {
+   "id": "his-2-2",
+   "escena": 2,
+   "paso": 2,
+   "text": "El receptor activa JAK dos, que activa STAT cinco, y hay inducción génica en el núcleo. No es proteína G: en los cuadros va asociado a tirosina quinasa, vía JAK STAT.",
+   "retener": [
+    "Epo-R, JAK-2, STAT 5"
+   ]
+  },
+  {
+   "id": "his-2-3",
+   "escena": 2,
+   "paso": 3,
+   "text": "Resultado: se forman eritrocitos. Adversos: hipertensión en insuficiencia renal crónica, malestar y escalofríos, y aumento de viscosidad.",
+   "retener": [
+    "Adverso: HTA en IRC"
+   ]
+  },
+  {
+   "id": "his-3-0",
+   "escena": 3,
+   "paso": 0,
+   "text": "La dieta aporta seis miligramos cada mil calorías, y en el duodeno se absorbe solo el diez por ciento.",
+   "retener": [
+    "Absorción en duodeno: 10%"
+   ]
+  },
+  {
+   "id": "his-3-1",
+   "escena": 3,
+   "paso": 1,
+   "text": "Viaja por la transferrina, que tiene más afinidad por el hierro férrico y circula saturada al treinta por ciento.",
+   "retener": [
+    "Transferrina"
+   ]
+  },
+  {
+   "id": "his-3-2",
+   "escena": 3,
+   "paso": 2,
+   "text": "Se usa en la médula y se guarda como ferritina. No hay vía de excreción: se pierde por menstruación y descamación digestiva.",
+   "retener": [
+    "Sin vía de excreción"
+   ]
+  },
+  {
+   "id": "his-3-3",
+   "escena": 3,
+   "paso": 3,
+   "text": "La hepcidina, hepática e inducida por la inflamación, regula la absorción. En cuanto a los preparados: oral ferroso, mejor absorción. Parenteral férrico, solo si la vía oral fracasa, con riesgo de anafilaxia por vía endovenosa.",
+   "retener": [
+    "Oral: ferroso",
+    "Parenteral: férrico, solo si falla la oral"
+   ]
+  },
+  {
+   "id": "his-4-0",
+   "escena": 4,
+   "paso": 0,
+   "text": "Primera generación: difenhidramina y clorfeniramina.",
+   "retener": []
+  },
+  {
+   "id": "his-4-1",
+   "escena": 4,
+   "paso": 1,
+   "text": "Segunda generación: loratadina y cetirizina.",
+   "retener": []
+  },
+  {
+   "id": "his-4-2",
+   "escena": 4,
+   "paso": 2,
+   "text": "Anti H2: famotidina y ranitidina.",
+   "retener": []
+  },
+  {
+   "id": "his-4-3",
+   "escena": 4,
+   "paso": 3,
+   "text": "Eritropoyetina: receptor, JAK y STAT.",
+   "retener": []
+  }
+ ]
+}

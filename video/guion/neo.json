@@ -1,0 +1,179 @@
+{
+ "cap": "neo",
+ "titulo": "Antineoplásicos",
+ "escenas": [
+  "Ciclo celular",
+  "Qué droga actúa en cada fase",
+  "Mecanismos sobre el ADN",
+  "Vinca contra taxanos",
+  "Toxicidad según el tiempo"
+ ],
+ "beats": [
+  {
+   "id": "neo-0-0",
+   "escena": 0,
+   "paso": 0,
+   "text": "Las drogas citotóxicas dañan el potencial reproductivo de la célula. Por eso conviene mirar el ciclo. G uno: la célula crece y se prepara.",
+   "retener": []
+  },
+  {
+   "id": "neo-0-1",
+   "escena": 0,
+   "paso": 1,
+   "text": "S: síntesis de ADN, dieciocho a veinte horas.",
+   "retener": []
+  },
+  {
+   "id": "neo-0-2",
+   "escena": 0,
+   "paso": 2,
+   "text": "G dos: revisión del ADN.",
+   "retener": []
+  },
+  {
+   "id": "neo-0-3",
+   "escena": 0,
+   "paso": 3,
+   "text": "Y M: mitosis, treinta a sesenta minutos. Los tumores que crecen más rápido responden mejor: leucemias, linfomas y testículo responden más que colon o páncreas.",
+   "retener": [
+    "Crecen rápido: responden mejor"
+   ]
+  },
+  {
+   "id": "neo-1-0",
+   "escena": 1,
+   "paso": 0,
+   "text": "Hay dos grandes grupos. Los no específicos de fase matan a la célula en cualquier momento, y dependen de la dosis: alquilantes, nitrosoureas, antibióticos y platino.",
+   "retener": [
+    "No específicos: dosis dependientes"
+   ]
+  },
+  {
+   "id": "neo-1-1",
+   "escena": 1,
+   "paso": 1,
+   "text": "Los específicos dependen de una fase. En G uno: esteroides y asparaginasa.",
+   "retener": []
+  },
+  {
+   "id": "neo-1-2",
+   "escena": 1,
+   "paso": 2,
+   "text": "En fase S: antimetabolitos.",
+   "retener": [
+    "Fase S: antimetabolitos"
+   ]
+  },
+  {
+   "id": "neo-1-3",
+   "escena": 1,
+   "paso": 3,
+   "text": "En G dos: etopósido, bleomicina, mitoxantrona e irinotecán.",
+   "retener": [
+    "G2: etopósido, bleomicina"
+   ]
+  },
+  {
+   "id": "neo-1-4",
+   "escena": 1,
+   "paso": 4,
+   "text": "Y en mitosis: alcaloides de la vinca, taxanos y podofilotoxinas.",
+   "retener": [
+    "M: vinca y taxanos"
+   ]
+  },
+  {
+   "id": "neo-2-0",
+   "escena": 2,
+   "paso": 0,
+   "text": "Alquilantes: moléculas muy reactivas que se unen covalentemente con un grupo alquilo a los ácidos nucleicos. Dan error de lectura, enlaces cruzados y roturas. Ejemplo que piden: ciclofosfamida.",
+   "retener": [
+    "Ciclofosfamida"
+   ]
+  },
+  {
+   "id": "neo-2-1",
+   "escena": 2,
+   "paso": 1,
+   "text": "Antibióticos antitumorales: se unen a los pares de bases de manera intercalada y bloquean la transcripción. Ejemplo: doxorrubicina. La bleomicina forma especies reactivas de oxígeno y daña directo.",
+   "retener": [
+    "Doxorrubicina",
+    "Bleomicina"
+   ]
+  },
+  {
+   "id": "neo-2-2",
+   "escena": 2,
+   "paso": 2,
+   "text": "Antimetabolitos: interfieren con la síntesis de ácidos nucleicos. Análogo de ácido fólico: metotrexato. Pirimidinas: citarabina y cinco fluorouracilo. Purinas: mercaptopurina.",
+   "retener": [
+    "Metotrexato",
+    "5-Fluorouracilo",
+    "Citarabina",
+    "Mercaptopurina"
+   ]
+  },
+  {
+   "id": "neo-2-3",
+   "escena": 2,
+   "paso": 3,
+   "text": "Y epipodofilotoxinas, como etopósido: inhiben la topoisomerasa dos y evitan que la célula entre en mitosis. Producen roturas dobles.",
+   "retener": [
+    "Etopósido"
+   ]
+  },
+  {
+   "id": "neo-3-0",
+   "escena": 3,
+   "paso": 0,
+   "text": "La tubulina se ensambla en microtúbulos, que forman el huso mitótico.",
+   "retener": []
+  },
+  {
+   "id": "neo-3-1",
+   "escena": 3,
+   "paso": 1,
+   "text": "Vincristina, vinblastina y vinorelbine se unen a la tubulina e inhiben el ensamblaje. El huso se disuelve.",
+   "retener": [
+    "Vinca: inhibe ensamblaje"
+   ]
+  },
+  {
+   "id": "neo-3-2",
+   "escena": 3,
+   "paso": 2,
+   "text": "Paclitaxel y docetaxel hacen lo contrario: se unen a los microtúbulos ya formados y los estabilizan. Como no se desarman, la división se detiene.",
+   "retener": [
+    "Taxanos: estabilizan"
+   ]
+  },
+  {
+   "id": "neo-4-0",
+   "escena": 4,
+   "paso": 0,
+   "text": "El trabajo práctico pide toxicidad inmediata, temprana, diferida y tardía. Inmediata: náuseas y vómitos, flebitis y anafilaxia.",
+   "retener": []
+  },
+  {
+   "id": "neo-4-1",
+   "escena": 4,
+   "paso": 1,
+   "text": "Temprana: leucopenia, trombocitopenia, alopecia, estomatitis y diarrea.",
+   "retener": []
+  },
+  {
+   "id": "neo-4-2",
+   "escena": 4,
+   "paso": 2,
+   "text": "Diferida: anemia, aspermia y fibrosis pulmonar.",
+   "retener": []
+  },
+  {
+   "id": "neo-4-3",
+   "escena": 4,
+   "paso": 3,
+   "text": "Tardía: esterilidad y carcinogénesis, como leucemia aguda y linfomas.",
+   "retener": []
+  }
+ ]
+}

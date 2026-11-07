@@ -1,5 +1,6 @@
 // Repetición espaciada. Regla central: acertar con opciones a la vista solo llega a "reconocido".
 // Para avanzar hay que recordar el nombre sin pistas, y para consolidar, hacerlo en días distintos.
+import { frecuencias } from '../data/cuadros';
 import { actualizar, obtener, type Memoria, type NivelNombre } from './store';
 
 const HORA = 3600e3;
@@ -67,10 +68,13 @@ export function registrar(id: string, r: Resultado) {
 
 export const nivelDe = (id: string): NivelNombre => obtener().memoria[id]?.nivel ?? 'nuevo';
 
-/** Puntaje de urgencia para ordenar el repaso: vencidos, confusiones y prioridad de examen. */
+let frec: Map<string, number> | undefined;
+
+/** Puntaje de urgencia: vencidos, confusiones, prioridad y cuánto salió en exámenes reales. */
 export function urgencia(id: string, prioridad: number, ahora = Date.now()): number {
   const m = obtener().memoria[id];
-  let p = (5 - prioridad) * 10;
+  frec ??= frecuencias();
+  let p = (5 - prioridad) * 10 + Math.min(24, (frec.get(id) ?? 0) * 3);
   if (!m || m.nivel === 'nuevo') return p;
   if (m.proximo <= ahora) p += 40;
   if (esConfusion(m)) p += 30;
