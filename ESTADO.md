@@ -11,10 +11,10 @@
 
 ## Alcance decidido por el usuario
 
-- Fármacos: `Farmacos ERA 2.pdf` más la pizarra (unos 122) y solo los que exigen las preguntas reales de las fotos. Total 136.
+- Fármacos: `Farmacos ERA 2.pdf` más la pizarra (120) y solo los que exigen las preguntas reales de las fotos (16). Total 136.
 - Práctica: solo lo que sale de las fotos (`pdf24_convertido.pdf` e imágenes de WhatsApp). Sin preguntas inventadas.
 - Presentaciones de Campregher: solo para corregir o agregar lo importante.
-- Sin primera ERA. Rinde el 2026-11-09 aproximadamente: pidió reducir la extensión.
+- De primera ERA, solo una pestaña mínima con lo que aparece en las hojas de examen. Rinde alrededor del 2026-11-09 y pidió reducir la extensión.
 
 ## Decisiones tomadas
 
