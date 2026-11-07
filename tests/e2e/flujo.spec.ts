@@ -18,13 +18,12 @@ test('reconocer con opciones no consolida un nombre', async ({ page }) => {
   await page.getByRole('button', { name: 'Colinérgicos' }).click();
   for (let i = 0; i < 6; i++) {
     const op = page.locator('.opcion:not([disabled])').first();
-    if (await op.count() === 0) break;
-    await op.click();
+    if (await op.count()) await op.click();
     const seguir = page.getByRole('button', { name: /Seguir|Entendido/ });
     if (await seguir.count()) await seguir.click();
   }
   const e = await page.evaluate(() => JSON.parse(localStorage.getItem('farmaco-flor') ?? '{}'));
-  const niveles = Object.values(e.memoria as Record<string, { nivel: string }>).map(m => m.nivel);
+  const niveles = Object.values((e.memoria ?? {}) as Record<string, { nivel: string }>).map(m => m.nivel);
   expect(niveles).not.toContain('consolidado');
   expect(niveles).not.toContain('recordado');
 });
@@ -82,4 +81,14 @@ test('recorrer la teoría y llegar al video', async ({ page }) => {
   await page.getByRole('button', { name: 'Siguiente' }).click();
   await expect(page.locator('.narracion')).not.toBeEmpty();
   await expect(page.locator('.lienzo svg')).toBeVisible();
+});
+
+test('la guía abre desde el inicio y baja hasta cada fármaco', async ({ page }) => {
+  await page.goto('/farmaco-flor/#/');
+  await page.getByRole('link', { name: 'Ver el mapa de la 2ª ERA' }).click();
+  await expect(page.getByRole('heading', { name: 'El mapa de la 2ª ERA' })).toBeVisible();
+  await page.getByRole('button', { name: /Antagonistas D2/ }).click();
+  await expect(page.locator('.hoja.abierta .chip', { hasText: 'Haloperidol' })).toBeVisible();
+  await page.getByRole('button', { name: 'Serotoninérgicos' }).click();
+  await expect(page.locator('.lugares .chip', { hasText: 'Fluoxetina' })).toBeVisible();
 });

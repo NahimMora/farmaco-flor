@@ -8,6 +8,7 @@
 - Repositorio: NahimMora/farmaco-flor. Deploy automático con GitHub Actions al hacer push a `main`.
 - 9 capítulos con los 8 pasos, integración, simulacros y Lo esencial para aprobar.
 - 9 clases en video con la voz Tomás (`public/videos`).
+- Guía general en `/guia`: mapa de la 2ª ERA, origen de cada mensajero, orden de estudio y fin. Es lo primero que ve quien recién entra.
 
 ## Archivos procesados
 

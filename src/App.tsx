@@ -9,6 +9,7 @@ const Farmacoteca = lazy(() => import('./pages/Farmacoteca').then(m => ({ defaul
 const Ficha = lazy(() => import('./pages/Farmacoteca').then(m => ({ default: m.Ficha })));
 const Esencial = lazy(() => import('./pages/Esencial').then(m => ({ default: m.Esencial })));
 const Integracion = lazy(() => import('./pages/Esencial').then(m => ({ default: m.Integracion })));
+const Guia = lazy(() => import('./pages/Guia').then(m => ({ default: m.Guia })));
 const Ajustes = lazy(() => import('./pages/Ajustes').then(m => ({ default: m.Ajustes })));
 
 function Icono({ children }: { children: ReactNode }) {
@@ -44,6 +45,7 @@ export function App() {
       <Atajo><Suspense fallback={<main className="pagina"><p className="tenue">Abriendo…</p></main>}>
         <Routes>
           <Route path="/" element={<Inicio />} />
+          <Route path="/guia" element={<Guia />} />
           <Route path="/capitulos" element={<Capitulos />} />
           <Route path="/c/:id" element={<Capitulo />} />
           <Route path="/c/:id/:paso" element={<Capitulo />} />

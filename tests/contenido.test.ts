@@ -4,6 +4,7 @@ import { CAPITULOS, DESARROLLOS, FARMACOS, GRUPOS, PAREJAS, PREGUNTAS, ficha, mi
 import { CUADROS, filaCuadro } from '../src/data/cuadros';
 import { DISCREPANCIAS } from '../src/data/discrepancias';
 import { PIZARRA } from '../src/data/pizarra';
+import { BLOQUES, EJEMPLOS_FIN, LUGARES } from '../src/data/guia';
 import { coincide, normal } from '../src/lib/ejercicios';
 import { DESARROLLAR, ERA1, EXAMEN, PREGUNTERO, citas } from '../src/data/inventario';
 
@@ -35,6 +36,23 @@ describe('cobertura', () => {
       expect(c.preguntas.length, c.id).toBeGreaterThanOrEqual(10);
       expect(c.desarrollos.length, c.id).toBeGreaterThan(0);
     }
+  });
+});
+
+describe('guía', () => {
+  it('cada capítulo está una sola vez en el mapa general', () => {
+    const caps = BLOQUES.flatMap(b => b.caps);
+    expect([...caps].sort()).toEqual(CAPITULOS.map(c => c.id).sort());
+  });
+  it('los fármacos citados existen y actúan como dice la guía', () => {
+    const malos: string[] = [];
+    for (const l of LUGARES) for (const e of Object.values(l.ejemplos)) {
+      for (const id of [...(e.activa ?? []), ...(e.frena ?? [])]) if (!ficha(id)) malos.push(id);
+      for (const id of e.activa ?? []) { const a = ficha(id)?.accion; if (a === 'antagonista' || a === 'bloqueante') malos.push(`${id} no activa`); }
+      for (const id of e.frena ?? []) { const a = ficha(id)?.accion; if (a === 'agonista') malos.push(`${id} no frena`); }
+    }
+    EJEMPLOS_FIN.forEach(e => { if (!ficha(e.id)) malos.push(e.id); });
+    expect(malos).toEqual([]);
   });
 });
 
