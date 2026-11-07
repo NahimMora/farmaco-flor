@@ -8,7 +8,7 @@ import { Cuestionario, TarjetaDesarrollo } from '../components/Cuestionario';
 import { Entrenador } from '../components/Entrenador';
 import { FamiliaMapa, MapaCapitulo } from '../components/Mapa';
 import { Teoria } from '../components/Teoria';
-import { completarFamilia, listaEnBlanco, sesionCapitulo } from '../lib/ejercicios';
+import { completarFamilia, listaEnBlanco, normal, sesionCapitulo } from '../lib/ejercicios';
 import { actualizar, useEstado } from '../lib/store';
 import { esConfusion } from '../lib/srs';
 
@@ -91,7 +91,9 @@ function Nombres({ c }: { c: Cap }) {
 function Cuadro({ c }: { c: Cap }) {
   const [filtro, setFiltro] = useState('todos');
   const [ocultas, setOcultas] = useState({ mec: false, efe: false });
-  const lista = c.farmacos.filter(f => f.prioridad <= 2 && (filtro === 'todos' || f.grupo === filtro));
+  const [txt, setTxt] = useState('');
+  const q = normal(txt);
+  const lista = c.farmacos.filter(f => f.prioridad <= 2 && (filtro === 'todos' || f.grupo === filtro) && (!q || normal(`${f.diana} ${f.mecanismo} ${f.nombre}`).includes(q)));
   const claveCinta = `${ocultas.mec}${ocultas.efe}`;
   return (
     <div>
@@ -99,6 +101,7 @@ function Cuadro({ c }: { c: Cap }) {
         <button type="button" aria-pressed={filtro === 'todos'} onClick={() => setFiltro('todos')}>Todos</button>
         {c.grupos.map(g => <button key={g.id} type="button" aria-pressed={filtro === g.id} onClick={() => setFiltro(g.id)}>{g.nombre}</button>)}
       </div>
+      <input className="campo" style={{ marginTop: 8 }} type="search" value={txt} onChange={e => setTxt(e.target.value)} placeholder="Filtrar por receptor o mecanismo" aria-label="Filtrar por receptor o mecanismo" />
       <div className="fila" style={{ margin: '10px 0' }}>
         <span className="tenue chico">Ocultar para practicar:</span>
         <div className="segmento">

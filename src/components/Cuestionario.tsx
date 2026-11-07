@@ -51,7 +51,7 @@ export function TarjetaPregunta({ p, onFin }: { p: Pregunta; onFin: (ok: boolean
         {p.nota && <p className="nota mal">{p.nota}</p>}
         {fichas.length > 0 && <div className="chips">{fichas.map(f => <EnlaceFarmaco key={f!.id} f={f!} />)}</div>}
         <button type="button" className="boton ancho" onClick={() => onFin(correcta(el))}>Seguir</button>
-        <button type="button" className="enlace" onClick={marcar}>{marcada ? 'Quitar de marcadas' : 'Marcar para repasar'}</button>
+        <div className="entre"><button type="button" className="enlace" onClick={marcar}>{marcada ? 'Quitar de marcadas' : 'Marcar para repasar'}</button><IrAlMapa cap={p.cap} /></div>
       </div>}
     </div>
   );
@@ -123,5 +123,5 @@ export function TarjetaDesarrollo({ d }: { d: Desarrollo }) {
 }
 
 export function IrAlMapa({ cap }: { cap: string }) {
-  return <Link className="enlace" to={`/c/${cap}/mapa`}>Volver al mapa del capítulo</Link>;
+  return <Link className="enlace" to={`/c/${cap}/mapa`}>Ver el mapa</Link>;
 }

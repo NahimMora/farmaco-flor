@@ -32,6 +32,8 @@ function vecinos(f: Farmaco, n: number, cond: (x: Farmaco) => boolean = () => tr
   return out.slice(0, n);
 }
 
+const distinto = (f: Farmaco) => (x: Farmaco) => x.diana !== f.diana || x.accion !== f.accion;
+
 function conOpciones(correcta: string, otras: { t: string; farmaco?: string }[], farmaco?: string) {
   const unicas = otras.filter((o, i) => o.t !== correcta && otras.findIndex(p => p.t === o.t) === i).slice(0, 3);
   const opciones = mezclar([{ t: correcta, farmaco }, ...unicas]);
@@ -47,19 +49,19 @@ export function deFarmacoAGrupo(f: Farmaco): Ejercicio {
 }
 
 export function deMecanismoANombre(f: Farmaco): Ejercicio {
-  const otras = vecinos(f, 8, x => x.mecanismo !== f.mecanismo);
+  const otras = vecinos(f, 8, distinto(f));
   const { opciones, ok } = conOpciones(f.nombre, otras.map(x => ({ t: x.nombre, farmaco: x.id })), f.id);
   return { k: 'opcion', id: f.id + '-meca', titulo: '¿Qué fármaco es?', enunciado: `${f.mecanismo}. ${f.efecto}.`, opciones, ok, objetivo: f.id, explica: f.clave ?? `${f.nombre} pertenece a ${grupoDe(f).nombre}.` };
 }
 
 export function deNombreAMecanismo(f: Farmaco): Ejercicio {
-  const otras = vecinos(f, 8, x => x.mecanismo !== f.mecanismo);
+  const otras = vecinos(f, 8, distinto(f));
   const { opciones, ok } = conOpciones(f.mecanismo, otras.map(x => ({ t: x.mecanismo, farmaco: x.id })));
   return { k: 'opcion', id: f.id + '-acc', titulo: '¿Cuál es su mecanismo?', enunciado: f.nombre, opciones, ok, objetivo: f.id, deAccion: true, explica: f.clave ?? `Efecto: ${f.efecto}.` };
 }
 
 export function deNombreAEfecto(f: Farmaco): Ejercicio {
-  const otras = vecinos(f, 10, x => x.efecto !== f.efecto);
+  const otras = vecinos(f, 10, x => x.efecto !== f.efecto && distinto(f)(x));
   const { opciones, ok } = conOpciones(f.efecto, otras.map(x => ({ t: x.efecto })));
   return { k: 'opcion', id: f.id + '-efe', titulo: '¿Qué efecto produce?', enunciado: f.nombre, opciones, ok, objetivo: f.id, explica: `Mecanismo: ${f.mecanismo}.` };
 }
@@ -74,7 +76,7 @@ export function intruso(g: Grupo): Ejercicio | null {
   const dentro = mezclar(miembros(g.id).filter(x => x.prioridad <= 2));
   if (dentro.length < 3) return null;
   const base = dentro[0];
-  const fuera = vecinos(base, 12, x => x.grupo !== g.id)[0];
+  const fuera = vecinos(base, 12, x => x.grupo !== g.id && distinto(base)(x))[0];
   if (!fuera) return null;
   const { opciones, ok } = conOpciones(fuera.nombre, dentro.slice(0, 3).map(x => ({ t: x.nombre, farmaco: x.id })), fuera.id);
   return { k: 'opcion', id: g.id + '-int', titulo: 'Encontrá el intruso', enunciado: `Tres son ${g.nombre.toLowerCase()}. ¿Cuál no?`, opciones, ok, objetivo: fuera.id, explica: `${fuera.nombre} pertenece a ${grupoDe(fuera).nombre}.` };
@@ -134,9 +136,11 @@ function armar(fichas: Farmaco[], grupos: Grupo[], parejas: Pareja[], n: number)
     const nv = m?.nivel ?? 'nuevo';
     const r = Math.random();
     if (nv === 'nuevo' || nv === 'aprendiendo') {
-      out.push(r < 0.5 ? deFarmacoAGrupo(f) : r < 0.75 ? clasificar(f) : deMecanismoANombre(f));
+      const clasificable = ['agonista', 'antagonista', 'inhibidor', 'modulador'].includes(f.accion);
+      out.push(r < 0.5 || !clasificable && r < 0.75 ? deFarmacoAGrupo(f) : r < 0.75 ? clasificar(f) : deMecanismoANombre(f));
     } else {
-      out.push(r < 0.4 ? deNombreAMecanismo(f) : r < 0.7 ? deMecanismoANombre(f) : deNombreAEfecto(f));
+      const efectoUtil = f.efecto !== 'Antineoplásico';
+      out.push(r < 0.4 || !efectoUtil && r >= 0.7 ? deNombreAMecanismo(f) : r < 0.7 ? deMecanismoANombre(f) : deNombreAEfecto(f));
     }
   }
   const gm = mezclar(grupos.filter(g => miembros(g.id).some(f => f.prioridad <= 2)));

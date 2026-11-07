@@ -209,11 +209,13 @@ function Ruta({ e, i, t }: { e: EscenaRuta; i: number; t: number }) {
       const [x, y] = pos(k); const nuevo = k === p.hasta; const o = nuevo ? ap(t) : 1;
       const luz = p.luz === k;
       const prev = k > 0 ? pos(k - 1) : null;
+      const horizontal = prev ? Math.abs(y - prev[1]) < 1 : true;
+      const sx = prev && Math.abs(x - prev[0]) > 1 ? Math.sign(x - prev[0]) : 0;
       const dr = (p.drogas ?? []).filter(d => d.en === k - 1);
       return <g key={k}>
         {prev && <g opacity={o}>
-          <line x1={prev[0] + Math.sign(x - prev[0]) * 92} y1={prev[1] + (y === prev[1] ? 0 : 42)} x2={x - Math.sign(x - prev[0]) * 104} y2={y - (y === prev[1] ? 0 : 42)} stroke={tinta} strokeWidth={5} markerEnd="url(#fl)" />
-          <Multi x={(x + prev[0]) / 2} y={(y + prev[1]) / 2 + (y === prev[1] ? -82 : 0)} t={e.enzimas[k - 1] ?? ''} n={16} s={24} c={color('inhibidor')} w={700} halo />
+          <line x1={prev[0] + sx * 98} y1={prev[1] + (horizontal ? 0 : 44)} x2={x - sx * 104} y2={y - (horizontal ? 0 : 52)} stroke={tinta} strokeWidth={5} markerEnd="url(#fl)" />
+          <Multi x={(x + prev[0]) / 2 - (horizontal ? 0 : 120)} y={(y + prev[1]) / 2 + (horizontal ? (y > 240 ? 84 : -82) : 0)} t={e.enzimas[k - 1] ?? ''} n={16} s={24} c={color('inhibidor')} w={700} halo />
           {dr.map((d, j) => <Pastilla key={d.n} x={(x + prev[0]) / 2} y={(y + prev[1]) / 2 + 62 + j * 50} n={d.n} a={d.a} s={22} o={ap(t, 0.3 + j * 0.3)} />)}
         </g>}
         <g opacity={o}>

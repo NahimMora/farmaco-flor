@@ -18,7 +18,7 @@ PAUSA = 0.55
 # Lo que el motor de voz lee mal escrito como sigla.
 DICCION = [
     (r'5-HT(\d)([A-Z]?)', r'cinco hache te \1 \2'), (r'5-HT', 'cinco hache te'), (r'5-HIAA', 'ácido cinco hidroxi indolacético'),
-    (r'GABA-A', 'gaba a'), (r'GABA-B', 'gaba be'), (r'GABA-C', 'gaba ce'), (r'GABA', 'gaba'), (r'L-DOPA', 'ele dopa'),
+    (r'GABA-A', 'gaba tipo a'), (r'GABA-B', 'gaba tipo be'), (r'GABA-C', 'gaba tipo ce'), (r'AMP cíclico', 'a eme pe cíclico'), (r'\bHIV\b', 'hache i ve'), (r'\bLSD\b', 'ele ese de'), (r'GABA', 'gaba'), (r'L-DOPA', 'ele dopa'),
     (r'\bMAO-A\b', 'mao a'), (r'\bMAO-B\b', 'mao be'), (r'\bMAO\b', 'mao'), (r'\bCOMT\b', 'comt'), (r'\bDAT\b', 'dat'),
     (r'\bAMPA\b', 'ampa'), (r'\bNMDA\b', 'ene eme de a'), (r'\bIP3\b', 'i pe tres'), (r'\bDAG\b', 'dag'), (r'\bTNF\b', 'te ene efe'),
     (r'\bD1\b', 'de uno'), (r'\bD2\b', 'de dos'), (r'\bD3\b', 'de tres'), (r'\bD4\b', 'de cuatro'), (r'\bD5\b', 'de cinco'),
@@ -94,7 +94,7 @@ async def capitulo(cap):
     sem = asyncio.Semaphore(4)
     trabajos = []
     for b in g['beats']:
-        h = hashlib.sha1(f"{VOZ}|{RITMO}|{b['text']}".encode()).hexdigest()[:10]
+        h = hashlib.sha1(f"{VOZ}|{RITMO}|{dicha(b['text'])}".encode()).hexdigest()[:10]
         b['archivo'] = f"{b['id']}-{h}.mp3"
         trabajos.append(sintetizar(b['text'], adir / b['archivo'], sem))
     metas = await asyncio.gather(*trabajos)

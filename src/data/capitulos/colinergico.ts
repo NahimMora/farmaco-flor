@@ -20,7 +20,7 @@ export const colinergico: Capitulo = {
     g('col-agom', 'Agonistas muscarínicos', 'agonista', 'Imitan a la ACh en el receptor M', { regla: 'Se unen al receptor muscarínico y lo activan, como la acetilcolina.' }),
     g('col-rev', 'Anticolinesterásicos reversibles', 'inhibidor', '↑ ACh. Miastenia gravis', { regla: 'Inhiben la acetilcolinesterasa de forma reversible: la ACh dura más en la sinapsis.', patron: 'La terminación -stigmina marca a este grupo.', excepcion: 'Edrofonio también es reversible y no termina en -stigmina.' }),
     g('col-irr', 'Anticolinesterásicos irreversibles', 'inhibidor', 'Crisis colinérgica', { regla: 'Organofosforados: se unen de forma covalente a la acetilcolinesterasa y la anulan.' }),
-    g('col-atr', 'Antimuscarínicos naturales', 'antagonista', '↑ FC, midriasis, efectos anticolinérgicos', { regla: 'Todos son bloqueantes competitivos no selectivos de los receptores M.' }),
+    g('col-atr', 'Antimuscarínico clásico', 'antagonista', '↑ FC, midriasis, efectos anticolinérgicos', { regla: 'Bloqueante competitivo no selectivo de los receptores M. Es el modelo de todo el grupo.' }),
     g('col-esp', 'Antimuscarínicos antiespasmódicos', 'antagonista', 'Antiespasmódicos', { regla: 'Mismo mecanismo: bloqueo competitivo del receptor M. Relajan el músculo liso.' }),
     g('col-bro', 'Antimuscarínicos broncodilatadores', 'antagonista', 'Broncodilatación', { regla: 'Mismo mecanismo, usados en el aparato respiratorio.', patron: 'La terminación -tropio marca a los inhalados.' }),
     g('col-nm', 'Bloqueantes neuromusculares', 'bloqueante', 'Parálisis del músculo esquelético, para intubar', { regla: 'Bloquean el receptor nicotínico de la placa motora de forma reversible.', patron: 'La terminación -curio o -curonio marca a muchos.', excepcion: 'Succinilcolina es despolarizante y no termina así.' }),
@@ -58,7 +58,7 @@ export const colinergico: Capitulo = {
     f('atropina', 'Atropina', 'col-atr', 'antagonista', 'Receptores M', 'Antagonista competitivo no selectivo de los receptores muscarínicos', 'Aumenta la frecuencia cardíaca', 1, ['PIZ', 'COL 16', 'DES c25', 'DES c18', 'EXA 9'], {
       adversos: 'Midriasis, boca seca, taquicardia, alucinaciones', clave: 'Competitivo, no "no competitivo". No selectivo significa entre M1 a M5.', discrepancia: 'd-atropina', confusiones: ['atracurio', 'fisostigmina'], selectividad: 'No selectiva entre subtipos M',
     }),
-    f('hioscina', 'Hioscina', 'col-atr', 'antagonista', 'Receptores M', 'Antagonista no selectivo del receptor colinérgico muscarínico', 'Antiespasmódico', 1, ['PIZ', 'COL 16', 'DES c4', 'DES c17', 'DES c28', 'PRE 23', 'PRE 65'], {
+    f('hioscina', 'Hioscina', 'col-esp', 'antagonista', 'Receptores M', 'Antagonista no selectivo del receptor colinérgico muscarínico', 'Antiespasmódico', 1, ['PIZ', 'COL 16', 'DES c4', 'DES c17', 'DES c28', 'PRE 23', 'PRE 65'], {
       sinonimos: ['Escopolamina', 'l-hioscina', 'Hiosina'], variantes: ['Hiosina', 'Escapolamina'], clave: 'Hioscina y escopolamina son la misma droga. Es muscarínica, no nicotínica.', discrepancia: 'd-hioscina', selectividad: 'No selectiva entre subtipos M',
     }),
     f('buscapina', 'Buscapina', 'col-esp', 'antagonista', 'Receptores M', 'Antagonista muscarínico. Es butilbromuro de hioscina', 'Antiespasmódico', 1, ['PIZ', 'APU 45'], {

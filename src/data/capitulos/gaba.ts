@@ -49,7 +49,7 @@ export const gaba: Capitulo = {
     }),
     f('lamotrigina', 'Lamotrigina', 'gab-na', 'modulador', 'Canal de Na+', 'Bloquea canales de Na+ e inhibe la excitación glutamatérgica', 'Antiepiléptico', 1, ['GAB 30', 'GAB 32', 'PRE 42', 'PRE 75'], { clave: 'No inhibe la recaptación de glutamato.' }),
     f('etosuximida', 'Etosuximida', 'gab-ca', 'bloqueante', 'Canal de Ca++', 'Bloqueo de canales de Ca++', 'Antiepiléptico', 2, ['GAB 32']),
-    f('felbamato', 'Felbamato', 'gab-glu', 'antagonista', 'NMDA', 'Reduce la excitación glutamatérgica', 'Antiepiléptico', 2, ['GAB 30', 'PRE 42'], { clave: 'No inhibe AMPA: es la opción falsa del preguntero.' }),
+    f('felbamato', 'Felbamato', 'gab-glu', 'antagonista', 'NMDA', 'Reduce la excitación glutamatérgica', 'Antiepiléptico', 2, ['GAB 30', 'PRE 42'], { clave: 'No inhibe AMPA: es la opción falsa del preguntero.', externo: true }),
     f('flumazenil', 'Flumazenil', 'gab-flu', 'antagonista', 'GABA-A, sitio BZD', 'Antagonista competitivo del receptor GABA-A en el sitio de benzodiacepinas', 'Revierte la intoxicación por benzodiacepinas', 1, ['GAB 30', 'DES c17', 'APU 65'], {
       confusiones: ['diazepam'], discrepancia: 'd-flumazenil', clave: 'No "disminuye los niveles de GABA".',
     }),
