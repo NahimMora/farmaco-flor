@@ -23,7 +23,7 @@ Generada por \`scripts/cobertura.ts\`. Ningún tema confirmado queda sin capítu
 |---|---|---|---|---|---|---|
 ${filas.join('\n')}
 
-Orden elegido: colinérgicos primero porque dan el molde de la sinapsis y los efectos autonómicos; después adrenérgicos, que se entienden por contraste. Dopamina y serotonina reutilizan esa ruta y esos receptores. GABA, histamina, antineoplásicos y anticuerpos no dependen del resto. Fundamentos va al final: es de la primera evaluación, pero aparece en las preguntas.
+Orden elegido: colinérgicos primero porque dan el molde de la sinapsis y los efectos autonómicos; después adrenérgicos, que se entienden por contraste. Dopamina y serotonina reutilizan esa ruta y esos receptores. GABA, histamina, antineoplásicos y anticuerpos no dependen del resto.
 `);
 
 const cob = cobertura().map(c => `| ${c.t} | ${c.hay} | ${c.total} | ${Math.round((c.hay / c.total) * 100)}% |`).join('\n');
@@ -39,7 +39,7 @@ ${cob}
 ## Contenido publicado
 
 - ${FARMACOS.length} fichas de fármacos, ${FARMACOS.filter(x => x.prioridad === 1).length} de prioridad 1.
-- ${PREGUNTAS.filter(p => p.origen === 'real').length} preguntas reales de opciones y verdadero o falso, ${PREGUNTAS.filter(p => p.origen === 'generada').length} de práctica.
+- ${PREGUNTAS.length} preguntas reales de opciones y verdadero o falso.
 - ${DESARROLLOS.length} desarrollos con respuesta mínima y completa.
 - ${CUADROS.length} cuadros reales.
 - ${DISCREPANCIAS.length} contradicciones documentadas.
@@ -51,4 +51,5 @@ ${cob}
 ${vid}
 `);
 console.log(cob);
+for (const c of CAPITULOS) console.log(c.id, c.farmacos.length, 'fármacos', c.grupos.length, 'grupos', c.preguntas.filter(p => p.tipo === 'mc').length, 'choice', c.preguntas.filter(p => p.tipo === 'vf').length, 'vf', c.desarrollos.length, 'dev');
 console.log(FARMACOS.length, 'fármacos', PREGUNTAS.length, 'preguntas', DESARROLLOS.length, 'desarrollos', DISCREPANCIAS.length, 'discrepancias');

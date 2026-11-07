@@ -3,38 +3,58 @@ import { describe, expect, it } from 'vitest';
 import { CAPITULOS, DESARROLLOS, FARMACOS, GRUPOS, PAREJAS, PREGUNTAS, ficha, miembros } from '../src/data';
 import { CUADROS, filaCuadro } from '../src/data/cuadros';
 import { DISCREPANCIAS } from '../src/data/discrepancias';
-import { PIZARRA } from '../src/data/pizarra';
+import { CUADRO, PIZARRA } from '../src/data/pizarra';
 import { BLOQUES, EJEMPLOS_FIN, LUGARES } from '../src/data/guia';
 import { coincide, normal } from '../src/lib/ejercicios';
-import { DESARROLLAR, ERA1, EXAMEN, PREGUNTERO, citas } from '../src/data/inventario';
-
-const TODAS = [...PREGUNTERO, ...ERA1, ...EXAMEN, ...DESARROLLAR];
 
 describe('cobertura', () => {
-  it('toda pregunta original está incorporada', () => {
-    const c = citas();
-    expect(TODAS.filter(t => !c.has(t))).toEqual([]);
-  });
-  it('todos los nombres de la pizarra están en la farmacoteca', () => {
+  it('la lista base está completa y no se infló', () => {
+    expect(CUADRO.filter(n => !FARMACOS.some(f => coincide(n, f)))).toEqual([]);
     expect(PIZARRA.filter(n => !FARMACOS.some(f => coincide(n, f)))).toEqual([]);
+    expect(FARMACOS.length).toBeLessThanOrEqual(140);
+  });
+  it('están las 40 de choice y las 17 de verdadero o falso', () => {
+    expect(PREGUNTAS.filter(p => p.tipo === 'mc').length).toBe(40);
+    expect(PREGUNTAS.filter(p => p.tipo === 'vf').length).toBe(17);
+    expect(PREGUNTAS.every(p => p.origen === 'real')).toBe(true);
+  });
+  it('los 40 choice mantienen 4 opciones', () => {
+    for (const p of PREGUNTAS) if (p.tipo === 'mc') expect(p.opciones.length, p.id).toBe(4);
+  });
+  it('si la app corrige una marca de la hoja, lo aclara', () => {
+    for (const p of PREGUNTAS) if (p.tipo === 'mc' && p.claveMaterial !== undefined) {
+      expect(p.nota, p.id).toBeTruthy();
+      expect(p.correctas, p.id).not.toContain(p.claveMaterial);
+    }
   });
   it('cada grupo aparece en el mapa de su capítulo y tiene integrantes', () => {
     for (const c of CAPITULOS) {
       const enMapa = c.mapa.flatMap(b => b.grupos);
+      for (const b of c.mapa) for (const id of b.tambien ?? []) expect(ficha(id), id).toBeTruthy();
       for (const g of c.grupos) {
         expect(enMapa, g.id).toContain(g.id);
         expect(miembros(g.id).length, g.id).toBeGreaterThan(0);
       }
+      for (const id of enMapa) expect(c.grupos.some(g => g.id === id), id).toBe(true);
     }
   });
-  it('cada capítulo tiene los 8 pasos con contenido', () => {
+  it('cada grupo tiene mnemotecnia', () => {
+    const falta = CAPITULOS.flatMap(c => c.grupos.filter(g => !c.mnemotecnias.some(m => m.grupo === g.id)).map(g => g.id));
+    expect(falta).toEqual([]);
+  });
+  it('cada capítulo tiene contenido', () => {
     for (const c of CAPITULOS) {
-      expect(c.grupos.length, c.id).toBeGreaterThan(0);
       expect(c.mnemotecnias.length, c.id).toBeGreaterThan(0);
       expect(c.parejas.length, c.id).toBeGreaterThan(0);
       expect(c.escenas.length, c.id).toBeGreaterThan(2);
-      expect(c.preguntas.length, c.id).toBeGreaterThanOrEqual(10);
       expect(c.desarrollos.length, c.id).toBeGreaterThan(0);
+    }
+  });
+  it('las mnemotecnias y escenas no nombran fármacos que salieron de la lista', () => {
+    const fuera = /tiagabina|felbamato|nedocromilo|yohimbina|ifosfamida|citarabina|mitoxantrona|vinorelbine|tositumomab|reserpina|tetrabenazina/i;
+    for (const c of CAPITULOS) {
+      for (const m of c.mnemotecnias) expect(m.frase + m.reconstruye + JSON.stringify(m.partes), m.id).not.toMatch(fuera);
+      for (const e of c.escenas) expect(JSON.stringify(e), e.id).not.toMatch(fuera);
     }
   });
 });
@@ -100,10 +120,10 @@ describe('integridad', () => {
       if (p.correctas.length > 1) expect(p.nota, p.id).toBeTruthy();
     }
   });
-  it('sin preguntas duplicadas salvo las que el material repite', () => {
-    const t = PREGUNTAS.map(p => normal(p.texto));
+  it('sin preguntas duplicadas', () => {
+    const t = PREGUNTAS.map(p => normal(p.texto + (p.tipo === 'mc' ? p.opciones.join() : '')));
     const rep = PREGUNTAS.filter((_, i) => t.indexOf(t[i]) !== i).map(p => p.id);
-    expect(rep).toEqual(['PRE9']);
+    expect(rep).toEqual([]);
   });
   it('desarrollos completos', () => {
     for (const d of DESARROLLOS) {

@@ -1,21 +1,21 @@
-// Perfil de evaluación: solo lo que se puede respaldar con el material. Ver docs/perfil-docente.md.
+// Lo que muestran los exámenes de las fotos. Ver docs/perfil-docente.md.
 export const PERFIL = {
   errores: [
-    { t: 'Anticolinérgico no es anticolinesterásico.', d: 'Fisostigmina y malatión aumentan la acetilcolina. Atropina e hioscina la bloquean. Un apunte real los cruzó.' },
-    { t: 'Bromocriptina es agonista.', d: 'Varias respuestas de estudiantes la ponen como antagonista. La presentación la marca estimulando el receptor.' },
-    { t: 'Mecanismo no es efecto.', d: 'Cuando el cuadro pide mecanismo, va la diana y la acción. Antipsicótico es efecto; antagonista D2 es mecanismo.' },
-    { t: 'Benzodiacepinas: frecuencia. Barbitúricos: tiempo.', d: 'Las dos abren el canal de cloro del GABA-A, pero no igual. Es pregunta directa del preguntero.' },
-    { t: 'Metoclopramida: D2 y 5-HT3.', d: 'No 5-HT4 ni 5-HT2. Sale en casi todos los cuadros.' },
-    { t: 'ISRS: serotonina.', d: 'La pizarra dice catecolaminas. Eso corresponde a los tricíclicos.' },
-    { t: 'Levodopa atraviesa la BHE.', d: 'La que no la atraviesa es la dopamina.' },
-    { t: 'Si piden un fármaco, no des una familia.', d: 'Benzodiacepinas es una familia. Diazepam es un fármaco.' },
+    { t: 'Anticolinérgico no es anticolinesterásico.', d: 'Fisostigmina y malatión aumentan la acetilcolina. Atropina e hioscina la bloquean.' },
+    { t: 'Bromocriptina es agonista.', d: 'Haloperidol y domperidona son los antagonistas D2.' },
+    { t: 'Amantadina no toca el receptor.', d: 'Aumenta la liberación de dopamina. Por eso es la respuesta cuando preguntan cuál no actúa sobre receptores dopaminérgicos.' },
+    { t: 'Mesopontina es intermedia.', d: 'Las vías largas son nigroestriada, mesolímbica y mesocortical.' },
+    { t: 'Mecanismo no es efecto.', d: 'Antagonista D2 es mecanismo. Antipsicótico es efecto.' },
+    { t: 'Benzodiacepinas: frecuencia. Barbitúricos: tiempo.', d: 'Las dos abren el canal de cloro del GABA-A, pero no igual.' },
+    { t: 'Metoclopramida: D2 y 5-HT3.', d: 'No 5-HT4 ni 5-HT2.' },
+    { t: 'ISRS: serotonina.', d: 'Catecolaminas sin selectividad corresponde a los tricíclicos.' },
+    { t: 'Fenitoína: sodio.', d: 'No actúa en GABA-A ni en canales de potasio.' },
+    { t: 'Transferrina lleva hierro férrico.', d: 'El oral ferroso se absorbe mejor, pero en sangre viaja férrico.' },
   ],
   formatos: [
-    { t: 'Completar cuadros', d: 'Nombre, mecanismo de acción y efecto. Es el formato más repetido: 14 cuadros en los archivos.' },
-    { t: 'Mencionar ejemplos', d: 'Piden casi siempre 2, 3 o 4 fármacos, y a veces 4 o 5 efectos. Respondé exactamente esa cantidad.' },
-    { t: 'Mecanismos múltiples', d: 'Ácido valproico: los tres, siempre.' },
-    { t: 'Efecto según la dosis', d: 'Dopamina en concentraciones bajas, medias y altas.' },
-    { t: 'Definir y dibujar', d: 'Vida media, biodisponibilidad, compartimiento presistémico, curvas concentración-tiempo y dosis-respuesta.' },
+    { t: 'Parcial: 4 a desarrollar y 40 choice', d: 'Los 4 desarrollos son obligatorios: se requiere un mínimo de 3 de las 4. El choice se marca en una grilla A, B, C, D.' },
+    { t: 'Cuadros en dos sentidos', d: 'Te dan el nombre y pedís mecanismo y efecto, o te dan el mecanismo y tenés que poner el nombre.' },
+    { t: 'Cuadros de finales', d: 'Una hoja pide mínimo 5 ítems completos y correctos.' },
+    { t: 'Casos clínicos de clase', d: 'Se apoyan en mecanismo, acción, efecto y diana del fármaco.' },
   ],
-  audio: 'La grabación Farmaco 31 es una clase de farmacocinética: procesos ADME, fármaco libre y unido a proteínas, compartimiento presistémico, primer paso hepático, formas farmacéuticas y vías de administración. No trata dopamina ni serotonina. El audio es de baja calidad, así que acá no se citan frases textuales del docente ni se le atribuyen advertencias de examen.',
 };

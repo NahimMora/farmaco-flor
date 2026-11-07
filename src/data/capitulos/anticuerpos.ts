@@ -1,5 +1,5 @@
 import type { Capitulo } from '../tipos';
-import { g, hacerFicha, mcGen, mn, par, vfGen } from '../h';
+import { g, hacerFicha, mn, par } from '../h';
 
 const f = hacerFicha('acm');
 
@@ -8,18 +8,16 @@ export const anticuerpos: Capitulo = {
   n: 8,
   titulo: 'Anticuerpos monoclonales',
   objetivo: 'Leer el nombre de un anticuerpo y decir su origen, su blanco y su indicación.',
-  avisos: ['Los cuadros reales piden rituximab e infliximab. El trabajo práctico pide los siete con tipo, blanco e indicación.'],
+  avisos: ['Los exámenes piden rituximab, infliximab y tocilizumab: origen, blanco e indicación.'],
   mapa: [
     { titulo: 'Quiméricos: -ximab', grupos: ['acm-qui'] },
     { titulo: 'Humanizados: -zumab', grupos: ['acm-hum'] },
     { titulo: 'Humanos: -umab', grupos: ['acm-hu'] },
-    { titulo: 'Murinos: -omab', grupos: ['acm-mur'] },
   ],
   grupos: [
     g('acm-qui', 'Quiméricos', 'anticuerpo', '75% humanos', { regla: 'Región variable murina y constante humana.', patron: 'Terminan en -ximab.' }),
     g('acm-hum', 'Humanizados', 'anticuerpo', '95% de proteína humana', { regla: 'Solo las regiones que reconocen al antígeno son murinas.', patron: 'Terminan en -zumab.' }),
     g('acm-hu', 'Humanos', 'anticuerpo', 'Secuencias enteramente humanas', { regla: 'Provienen de secuencias de ADN humanas.', patron: 'Terminan en -umab.', excepcion: 'Daratumumab figura como humanizado en la presentación, pero su sufijo es -umab.' }),
-    g('acm-mur', 'Murinos', 'anticuerpo', 'Origen en ratón', { regla: 'Totalmente murinos.', patron: 'Terminan en -omab.' }),
   ],
   farmacos: [
     f('rituximab', 'Rituximab', 'acm-qui', 'anticuerpo', 'CD20', 'Anticuerpo monoclonal quimérico anti-CD20', 'LNH B, LLC, artritis reumatoide, PTI, AHAI', 1, ['ACM 17', 'ACM 20', 'DES c17'], { confusiones: ['infliximab', 'brentuximab'], clave: 'CD20. Tuxi: tumor y quimérico.' }),
@@ -29,8 +27,6 @@ export const anticuerpos: Capitulo = {
     f('ibalizumab', 'Ibalizumab', 'acm-hum', 'anticuerpo', 'CD4', 'Anticuerpo monoclonal humanizado anti-CD4', 'HIV multirresistente', 1, ['ACM 20'], { variantes: ['Idalizumab'], discrepancia: 'd-acm' }),
     f('tocilizumab', 'Tocilizumab', 'acm-hum', 'anticuerpo', 'Receptor IL-6', 'Anticuerpo monoclonal humanizado anti receptor de IL-6', 'Artritis reumatoide', 1, ['ACM 20']),
     f('daratumumab', 'Daratumumab', 'acm-hu', 'anticuerpo', 'CD38', 'Anticuerpo monoclonal anti-CD38', 'Mieloma múltiple', 1, ['ACM 20'], { discrepancia: 'd-acm' }),
-    f('ipilimumab', 'Ipilimumab', 'acm-hu', 'anticuerpo', 'Blanco inmunitario', 'Anticuerpo monoclonal humano', 'Ejemplo de nomenclatura', 3, ['ACM 17']),
-    f('tositumomab', 'Tositumomab', 'acm-mur', 'anticuerpo', 'Tumoral', 'Anticuerpo monoclonal murino', 'Ejemplo de nomenclatura', 3, ['ACM 17']),
   ],
   mnemotecnias: [
     mn('m-suf', 'acm-qui', 'O, Xi, Zu, U: del ratón al humano', [['-omab', 'Murino'], ['-ximab', 'Quimérico'], ['-zumab', 'Humanizado'], ['-umab', 'Humano']],
@@ -102,22 +98,6 @@ export const anticuerpos: Capitulo = {
       ],
     },
   ],
-  preguntas: [
-    mcGen('acm', 'El sufijo -ximab indica:', ['Murino', 'Quimérico', 'Humanizado', 'Humano'], 1, ['-omab.', 'Correcta.', '-zumab.', '-umab.']),
-    mcGen('acm', 'Rituximab tiene como blanco:', ['CD20', 'CD30', 'CD38', 'CD52'], 0, ['Correcta.', 'Brentuximab.', 'Daratumumab.', 'Alemtuzumab.'], { farmacos: ['rituximab'] }),
-    mcGen('acm', 'Infliximab actúa contra:', ['IL-6', 'TNF-α', 'CD4', 'CD20'], 1, ['Tocilizumab.', 'Correcta.', 'Ibalizumab.', 'Rituximab.'], { farmacos: ['infliximab'] }),
-    mcGen('acm', 'Anticuerpo indicado en mieloma múltiple:', ['Daratumumab', 'Brentuximab', 'Tocilizumab', 'Infliximab'], 0, ['Correcta.', 'Hodgkin.', 'AR.', 'AR y Crohn.'], { farmacos: ['daratumumab'] }),
-    mcGen('acm', 'Un hibridoma es la fusión de:', ['Dos linfocitos T', 'Linfocito B y mieloma', 'Macrófago y linfocito', 'Neutrófilo y mieloma'], 1, ['No.', 'Correcta.', 'No.', 'No.']),
-    mcGen('acm', 'La porción que une al antígeno es:', ['Fc', 'Fab', 'CH3', 'Bisagra'], 1, ['Función efectora.', 'Correcta.', 'Región constante.', 'No.']),
-    mcGen('acm', 'Frente a un fármaco químico, un anticuerpo monoclonal:', ['Se da por vía oral', 'Tiene vida media de semanas', 'Tiene peso menor a 700 Da', 'Actúa en dianas intracelulares'], 1, ['Va IV o SC: baja biodisponibilidad oral.', 'Correcta.', 'Eso es la molécula chica.', 'Dianas extracelulares.']),
-    vfGen('acm', 'César Milstein era argentino', true, 'Premio Nobel en 1984 junto con Köhler.'),
-    vfGen('acm', 'Los quiméricos son 95% humanos', false, 'Son 75% humanos. Los humanizados llegan a 95%.'),
-    vfGen('acm', 'Infliximab es humanizado', false, 'Es quimérico: -ximab.', ['infliximab']),
-    vfGen('acm', 'Tocilizumab actúa sobre el receptor de IL-6', true, 'Se usa en artritis reumatoide.', ['tocilizumab']),
-  ],
-  desarrollos: [
-    { id: 'd-acm-tp', cap: 'acm', texto: 'Complete el cuadro con ejemplos de anticuerpos monoclonales: tipo, molécula blanco e indicaciones', origen: 'real', fuente: { archivo: 'Anticuerpos monoclonales.pdf', loc: 'Trabajo práctico, página 19' }, estado: 'verificada',
-      minima: ['Rituximab: quimérico, CD20, LNH B, LLC, AR', 'Alemtuzumab: humanizado, CD52, LLC', 'Brentuximab: quimérico, CD30, Hodgkin', 'Daratumumab: CD38, mieloma múltiple', 'Ibalizumab: humanizado, CD4, HIV multirresistente', 'Tocilizumab: humanizado, receptor IL-6, AR', 'Infliximab: quimérico, TNF-α, AR, Crohn, colitis ulcerosa'],
-      completa: 'Terminan en -mab. La letra anterior da el origen. Si el diseño es contra un tumor, se antepone tu.', farmacos: ['rituximab', 'alemtuzumab', 'brentuximab', 'daratumumab', 'ibalizumab', 'tocilizumab', 'infliximab'] },
-  ],
+  preguntas: [],
+  desarrollos: [],
 };

@@ -13,15 +13,16 @@ import { sesionGlobal, TEXTO_ACCION } from '../lib/ejercicios';
 import { esConfusion, urgencia } from '../lib/srs';
 import { actualizar, useEstado } from '../lib/store';
 import { PERFIL } from '../data/perfil';
+import { CONCEPTOS, FARMACOS_ERA1 } from '../data/fundamental';
 import { cobertura } from '../data/inventario';
 import { frecuencias } from '../data/cuadros';
 
-const VISTAS = [['toman', 'Lo que más toman'], ['cuadro', 'Cuadro maestro'], ['mapa', 'Mapa maestro'], ['lista', 'Lista de nombres'], ['errores', 'Errores que cuestan'], ['minimo', 'Desarrollo mínimo'], ['ultima', 'Última hora'], ['calidad', 'Control de calidad']] as const;
+const VISTAS = [['toman', 'Lo que más toman'], ['cuadro', 'Cuadro maestro'], ['mapa', 'Mapa maestro'], ['lista', 'Lista de nombres'], ['errores', 'Errores que cuestan'], ['minimo', 'Desarrollo mínimo'], ['ultima', 'Última hora'], ['era1', '1ª ERA: lo mínimo'], ['calidad', 'Control de calidad']] as const;
 
 function CuadroMaestro() {
   const [ocultar, setOcultar] = useState(false);
   const [cap, setCap] = useState(CAPITULOS[0].id as string);
-  const lista = FARMACOS.filter(f => f.prioridad === 1 && (cap === 'todos' || f.cap === cap));
+  const lista = FARMACOS.filter(f => f.prioridad <= 2 && (cap === 'todos' || f.cap === cap));
   return (
     <div>
       <div className="segmento no-imprimir">
@@ -98,17 +99,28 @@ function ListaNombres() {
   );
 }
 
+function Era1() {
+  const [tapar, setTapar] = useState(false);
+  return (
+    <div>
+      <p>Solo lo que aparece en las hojas de examen. Se lee en 5 minutos.</p>
+      <button type="button" className="boton sec" onClick={() => setTapar(t => !t)}>{tapar ? 'Mostrar respuestas' : 'Tapar para practicar'}</button>
+      {CONCEPTOS.map(c => <div className="tarjeta-fila" key={c.t + String(tapar)}><b>{c.t}</b><Cinta tapada={tapar}>{c.d}</Cinta></div>)}
+      <h2 className="seccion">Fármacos que preguntan</h2>
+      {FARMACOS_ERA1.map(c => <div className="tarjeta-fila" key={c.t + String(tapar)}><b>{c.t}</b><Cinta tapada={tapar}>{c.d}</Cinta></div>)}
+    </div>
+  );
+}
+
 function LoQueToman() {
   const top = [...frecuencias().entries()].filter(([id]) => ficha(id)).sort((a, b) => b[1] - a[1]).slice(0, 24);
   return (
     <div>
-      <p>Salió de contar los cuadros y desarrollos reales de los archivos. El repaso usa este orden para decidir qué te pregunta primero.</p>
+      <p>Salió de contar los cuadros y desarrollos de las fotos. El repaso usa este orden para decidir qué te pregunta primero.</p>
       <h2 className="seccion">Cómo preguntan</h2>
       {PERFIL.formatos.map(f => <div key={f.t} className="tarjeta-fila"><b>{f.t}</b><div className="chico">{f.d}</div></div>)}
       <h2 className="seccion">Los que más se repiten</h2>
       {top.map(([id, n]) => { const f = ficha(id)!; return <div key={id} className="entre tarjeta-fila" style={estiloAccion(f.accion)}><span><Link className="nom" to={`/f/${id}`}>{f.nombre}</Link><div className="chico tenue">{f.mecanismo}</div></span><b>{n}</b></div>; })}
-      <h2 className="seccion">Sobre la grabación</h2>
-      <p className="chico">{PERFIL.audio}</p>
     </div>
   );
 }
@@ -137,10 +149,10 @@ function Errores() {
 function UltimaHora() {
   const estado = useEstado();
   const [empezar, setEmpezar] = useState(0);
-  const orden = useMemo(() => [...FARMACOS].filter(f => f.prioridad === 1).sort((a, b) => urgencia(b.id, b.prioridad) - urgencia(a.id, a.prioridad)), [empezar]);
+  const orden = useMemo(() => [...FARMACOS].filter(f => f.prioridad <= 2).sort((a, b) => urgencia(b.id, b.prioridad) - urgencia(a.id, a.prioridad)), [empezar]);
   const ej = useMemo(() => sesionGlobal(15, orden.slice(0, 22).map(f => f.id)), [empezar]);
   const confus = FARMACOS.filter(f => esConfusion(estado.memoria[f.id]));
-  const pend = FARMACOS.filter(f => f.prioridad === 1 && estado.memoria[f.id]?.nivel !== 'consolidado');
+  const pend = FARMACOS.filter(f => f.prioridad <= 2 && estado.memoria[f.id]?.nivel !== 'consolidado');
   if (empezar) return <div><Entrenador key={empezar} ejercicios={ej} tipo="Última hora" /><button type="button" className="enlace" onClick={() => setEmpezar(k => k + 1)}>Otra tanda</button></div>;
   return (
     <div>
@@ -164,8 +176,8 @@ function Calidad() {
       <h2>Cobertura</h2>
       <p className="tenue chico">Contada contra el inventario de cada archivo.</p>
       {cobertura().map(c => <div key={c.t} className="entre tarjeta-fila"><span>{c.t}</span><b>{c.hay} de {c.total}</b></div>)}
-      <h2 className="seccion">Contradicciones del material</h2>
-      <p>Cuando el material se contradice, acá está qué decía cada fuente y qué conviene responder.</p>
+      <h2 className="seccion">Correcciones</h2>
+      <p>Cuando los cuadros, la pizarra o las hojas marcadas no coinciden con Campregher, acá está qué decía cada uno y qué responder.</p>
       {DISCREPANCIAS.map(d => (
         <article key={d.id} className="tarjeta-fila">
           <h3>{d.tema}</h3>
@@ -177,7 +189,7 @@ function Calidad() {
         </article>
       ))}
       <h2 className="seccion">Fuentes usadas</h2>
-      {ARCHIVOS.map(a => <div key={a.sigla} className="tarjeta-fila"><b>{a.sigla}</b> {a.archivo}<div className="chico tenue">{a.tipo}{a.nota ? `. ${a.nota}` : ''}</div></div>)}
+      {ARCHIVOS.map(a => <div key={a.sigla} className="tarjeta-fila"><b>{a.sigla}</b> {a.archivo}<div className="chico tenue">{a.tipo}. {a.rol}.</div></div>)}
     </div>
   );
 }
@@ -195,8 +207,9 @@ export function Esencial() {
       {vista === 'mapa' && <MapaMaestro />}
       {vista === 'lista' && <ListaNombres />}
       {vista === 'errores' && <Errores />}
-      {vista === 'minimo' && DESARROLLOS.filter(d => d.origen === 'real').slice(0, 40).map(d => <TarjetaDesarrollo key={d.id} d={d} />)}
+      {vista === 'minimo' && DESARROLLOS.filter(d => !d.caso).map(d => <TarjetaDesarrollo key={d.id} d={d} />)}
       {vista === 'ultima' && <UltimaHora />}
+      {vista === 'era1' && <Era1 />}
       {vista === 'calidad' && <Calidad />}
     </main>
   );
@@ -211,14 +224,14 @@ function MapaNiveles() {
       <p className="tenue chico">Apagá un nivel y reconstruilo de memoria.</p>
       <div className="segmento" style={{ margin: '8px 0' }}>{op.map(([k, t]) => <button key={k} type="button" aria-pressed={ver[k]} onClick={() => setVer(v => ({ ...v, [k]: !v[k] }))}>{t}</button>)}</div>
       {CAPITULOS.map(c => {
-        const dianas = [...new Set(c.farmacos.filter(f => f.prioridad === 1).map(f => f.diana))];
+        const dianas = [...new Set(c.farmacos.filter(f => f.prioridad <= 2).map(f => f.diana))];
         return (
           <details key={c.id} style={{ padding: '6px 0' }}>
             <summary style={{ fontWeight: 700, minHeight: 34 }}>{c.titulo}</summary>
             {dianas.map(d => (
               <div key={d} className="tarjeta-fila">
                 {ver.diana && <b>{d}</b>}
-                {c.farmacos.filter(f => f.diana === d && f.prioridad === 1).map(f => (
+                {c.farmacos.filter(f => f.diana === d && f.prioridad <= 2).map(f => (
                   <div key={f.id} style={{ ...estiloAccion(f.accion), marginTop: 4 }}>
                     {ver.accion && <span className="etiqueta" style={{ marginRight: 6 }}>{TEXTO_ACCION[f.accion]}</span>}
                     {ver.farmaco && <Link style={{ color: 'var(--c)', fontWeight: 800 }} to={`/f/${f.id}`}>{f.nombre}</Link>}

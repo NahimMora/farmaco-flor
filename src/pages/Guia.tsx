@@ -2,9 +2,11 @@
 import { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CAPITULOS, capitulo, ficha, grupoDe, miembros } from '../data';
-import { BLOQUES, EJEMPLOS_FIN, INFO_CAP, LUGARES, ORIGENES, PASOS_CAPITULO } from '../data/guia';
+import { BLOQUES, EJEMPLOS_FIN, INFO_CAP, LUGARES, ORIGENES, PASOS_CAPITULO, PLAN } from '../data/guia';
 import type { CapId, Capitulo, Grupo } from '../data/tipos';
 import { EnlaceFarmaco, estiloAccion, signo } from '../components/base';
+
+const choice = (cap: CapId) => capitulo(cap)!.preguntas.filter(p => p.tipo === 'mc').length;
 
 function Familia({ g, abierta, alternar }: { g: Grupo; abierta: boolean; alternar: () => void }) {
   const lista = miembros(g.id).filter(f => f.prioridad <= 2);
@@ -167,26 +169,44 @@ export function Guia() {
 
       <section className="seccion">
         <h2>Cuál es el fin</h2>
-        <p style={{ marginTop: 6 }}>Llegar al examen y poder completar esto para cualquier fármaco: <b>nombre, mecanismo y efecto</b>. El formato que más se repite en los exámenes reales es ese cuadro. Todo el mapa sirve para ubicar el nombre y deducir lo demás.</p>
+        <p style={{ marginTop: 6 }}>Llegar al examen y poder completar esto para cualquier fármaco: <b>nombre, mecanismo y efecto</b>. Los exámenes lo piden en los dos sentidos: te dan el nombre, o te dan el mecanismo y ponés el nombre. Todo el mapa sirve para ubicar el nombre y deducir lo demás.</p>
         <ElFin />
       </section>
 
       <section className="seccion">
-        <h2>En qué orden estudiar</h2>
-        <p style={{ marginTop: 6 }}>Seguí este orden: cada capítulo usa algo del anterior.</p>
-        <ol className="orden">
-          {CAPITULOS.map(c => (
-            <li key={c.id}>
-              <Link className="orden-titulo" to={`/c/${c.id}`}>{c.titulo}</Link>
-              <span className="chico tenue">{c.farmacos.filter(f => f.prioridad <= 2).length} nombres. {INFO_CAP[c.id].porQue}</span>
-            </li>
+        <h2>Cómo es tu examen</h2>
+        <p style={{ marginTop: 6 }}><b>4 preguntas a desarrollar</b>, obligatorias: se requiere un mínimo de 3 de las 4. Y <b>40 choice</b> que se marcan en una grilla A, B, C, D. Así están armados los parciales del 24/06/2025 y del 11/11/2025.</p>
+        <h3 style={{ marginTop: 14 }}>Dónde están los 40 choice</h3>
+        <div className="pesos">
+          {[...CAPITULOS].filter(c => choice(c.id) > 0).sort((x, y) => choice(y.id) - choice(x.id)).map(c => (
+            <div key={c.id}><span>{c.titulo}</span><i style={{ width: `${(choice(c.id) / 9) * 100}%` }} /><b>{choice(c.id)}</b></div>
           ))}
-          <li><Link className="orden-titulo" to="/integracion">Integración</Link><span className="chico tenue">Mezclás todos los sistemas para no confundirlos.</span></li>
-          <li><Link className="orden-titulo" to="/esencial">Lo esencial para aprobar</Link><span className="chico tenue">El repaso de los últimos días.</span></li>
-        </ol>
+        </div>
+        <p className="tenue chico" style={{ marginTop: 8 }}>Dopamina, serotonina y GABA son 26 de 40. Los casos y los desarrollos, en cambio, salen mucho de colinérgicos y adrenérgicos.</p>
+      </section>
+
+      <section className="seccion">
+        <h2>Tus dos días</h2>
+        <p style={{ marginTop: 6 }}>Seguí este orden: cada capítulo usa algo del anterior.</p>
+        {PLAN.map((d, k) => (
+          <div key={d.dia}>
+            <h3 style={{ marginTop: 16 }}>{d.dia}</h3>
+            <ol className="orden" style={{ counterReset: `paso ${k * 4}` }}>
+              {d.caps.map(id => {
+                const c = capitulo(id)!;
+                return (
+                  <li key={id}>
+                    <Link className="orden-titulo" to={`/c/${id}`}>{c.titulo}</Link>
+                    <span className="chico tenue">{c.farmacos.length} nombres, {choice(id)} de 40 choice. {INFO_CAP[id].porQue}</span>
+                  </li>
+                );
+              })}
+            </ol>
+            <p className="nota">{d.cierre}</p>
+          </div>
+        ))}
         <h3 style={{ marginTop: 20 }}>Dentro de cada capítulo</h3>
         <ol className="orden compacto">{PASOS_CAPITULO.map(p => <li key={p.t}><b>{p.t}</b><span className="chico tenue">{p.d}</span></li>)}</ol>
-        <p className="nota">Cada vez que te sientes, empezá por el repaso que te marca Inicio. Si te queda poco tiempo, mirá <Link to="/esencial/toman">Lo que más toman</Link>.</p>
         <Link className="boton ancho no-imprimir" to={`/c/${CAPITULOS[0].id}`}>Empezar por {CAPITULOS[0].titulo.toLowerCase()}</Link>
       </section>
     </main>

@@ -183,7 +183,7 @@ export function Capitulo() {
   const hechos = estado.pasos[c.id] ?? [];
   const v = VIDEOS[c.id];
   const i = PASOS.findIndex(p => p[0] === paso);
-  const sig = PASOS[i + 1];
+  const sig = PASOS.slice(i + 1).find(([p]) => p !== 'choice' || c.preguntas.length > 0);
   return (
     <div>
       <header className="cabeza-cap">
@@ -191,7 +191,7 @@ export function Capitulo() {
         <h1 style={{ marginTop: 2 }}>{c.titulo}</h1>
       </header>
       <nav className="riel" aria-label="Pasos del capítulo" style={{ marginTop: 10 }}>
-        <ol>{PASOS.map(([p, t]) => (
+        <ol>{PASOS.filter(([p]) => p !== 'choice' || c.preguntas.length > 0).map(([p, t]) => (
           <li key={p}><NavLink to={`/c/${c.id}/${p}`} replace className={({ isActive }) => (isActive ? 'activo ' : '') + (hechos.includes(p) ? 'hecho' : '')}>{t}</NavLink></li>
         ))}</ol>
       </nav>

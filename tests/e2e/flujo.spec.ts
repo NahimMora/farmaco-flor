@@ -95,7 +95,7 @@ test('la guía abre desde el inicio y baja hasta cada fármaco', async ({ page }
 
 test('nada se sale de la pantalla en un celular chico', async ({ page }) => {
   await page.setViewportSize({ width: 360, height: 740 });
-  const rutas = ['/', '/guia', '/capitulos', '/integracion', '/examen/cuadros', '/farmacoteca', ...['toman', 'cuadro', 'mapa', 'lista', 'errores', 'minimo', 'calidad'].map(v => `/esencial/${v}`), ...['col', 'adr', 'dop', 'ser', 'gab', 'his', 'neo', 'acm', 'fun'].flatMap(c => ['mapa', 'nombres', 'cuadro', 'desarrollo'].map(p => `/c/${c}/${p}`))];
+  const rutas = ['/', '/guia', '/capitulos', '/integracion', '/examen/cuadros', '/examen/casos', '/farmacoteca', ...['toman', 'cuadro', 'mapa', 'lista', 'errores', 'minimo', 'era1', 'calidad'].map(v => `/esencial/${v}`), ...['col', 'adr', 'dop', 'ser', 'gab', 'his', 'neo', 'acm'].flatMap(c => ['mapa', 'nombres', 'cuadro', 'desarrollo'].map(p => `/c/${c}/${p}`))];
   const malas: string[] = [];
   for (const r of rutas) {
     await page.goto(`/farmaco-flor/#${r}`);
@@ -113,4 +113,20 @@ test('las parejas peligrosas entran con los nombres más largos', async ({ page 
   await expect(page.locator('.pareja').first()).toBeVisible();
   const o = await page.evaluate(() => [...document.querySelectorAll('.lado')].filter(e => e.getBoundingClientRect().right > document.documentElement.clientWidth).length);
   expect(o).toBe(0);
+});
+
+test('los cuadros inversos dan el mecanismo y esconden el nombre', async ({ page }) => {
+  await page.goto('/farmaco-flor/#/examen/cuadros');
+  await expect(page.getByText('Antagonista R-5HT3 / Antiemético').first()).toBeVisible();
+  const fila = page.locator('.tarjeta-fila', { hasText: 'Antagonista R-5HT3 / Antiemético' }).first();
+  await fila.locator('.cinta.tapada').click();
+  await expect(fila.getByText('Ondansetrón')).toBeVisible();
+});
+
+test('una marca corregida muestra la aclaración', async ({ page }) => {
+  await page.goto('/farmaco-flor/#/c/dop/choice');
+  for (let i = 0; i < 2; i++) { await page.locator('.opcion').first().click(); await page.getByRole('button', { name: 'Seguir' }).click(); }
+  await expect(page.getByText('Meso-pontina')).toBeVisible();
+  await page.locator('.opcion').first().click();
+  await expect(page.getByText('La hoja marcaba mesocortical', { exact: false })).toBeVisible();
 });

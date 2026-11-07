@@ -2,7 +2,7 @@
 // automáticas se derivan de estas fichas para que no haya dos versiones de un mismo fármaco.
 import type { Escena } from '../vis/tipos';
 
-export type CapId = 'col' | 'adr' | 'dop' | 'ser' | 'gab' | 'his' | 'neo' | 'acm' | 'fun';
+export type CapId = 'col' | 'adr' | 'dop' | 'ser' | 'gab' | 'his' | 'neo' | 'acm';
 
 /** Tipo de acción. Define el color de marcador y los ejercicios de clasificación. */
 export type Accion =
@@ -58,6 +58,9 @@ export interface Grupo {
 export interface BloqueMapa {
   titulo: string;
   grupos: string[];
+  /** Fármacos de otro capítulo que el cuadro repite acá. */
+  tambien?: string[];
+  efecto?: string;
 }
 
 export interface Mnemotecnia {
@@ -155,6 +158,8 @@ export interface Desarrollo {
   farmacos?: string[];
   /** Diagrama para preguntas que piden dibujar. */
   diagrama?: Diagrama;
+  /** Caso clínico mostrado en clase. */
+  caso?: boolean;
 }
 
 /** Cuadro real de examen: nombre, mecanismo, efecto. Las filas salen de la farmacoteca. */
@@ -162,7 +167,8 @@ export interface CuadroReal {
   id: string;
   titulo: string;
   fuente: Fuente;
-  filas: string[];
+  /** Id de fármaco, o fila inversa: te dan mecanismo o efecto y hay que poner el nombre. */
+  filas: (string | { pide: 'nombre'; texto: string; nombre: string })[];
 }
 
 export interface Discrepancia {

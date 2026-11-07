@@ -6,9 +6,10 @@ Web app de estudio de Farmacología para Flor, 3.º año de Medicina, Fundación
 
 ## Dónde está cada cosa
 
-- `src/data/capitulos/*.ts`: contenido por capítulo. Fichas, grupos, mapa, mnemotecnias, parejas, escenas, preguntas y desarrollos.
+- `src/data/capitulos/*.ts`: contenido por capítulo. Fichas, grupos, mapa, mnemotecnias, parejas y escenas.
+- `src/data/examen.ts`: todo el banco de práctica, sacado de las fotos de clase y de exámenes.
 - `src/data/discrepancias.ts`: contradicciones del material y qué responder.
-- `src/data/cuadros.ts`: cuadros reales. Las filas apuntan a la farmacoteca.
+- `src/data/cuadros.ts`: arma los cuadros reales desde la farmacoteca. Hay filas inversas: dan el mecanismo y piden el nombre.
 - `src/data/inventario.ts` y `pizarra.ts`: inventario de las fuentes. La cobertura se calcula contra esto.
 - `src/vis/`: motor de diagramas. Función pura de (escena, paso, t), compartido por web y video.
 - `src/lib/`: progreso (`store`), repetición espaciada (`srs`), ejercicios (`ejercicios`).
@@ -19,8 +20,9 @@ Web app de estudio de Farmacología para Flor, 3.º año de Medicina, Fundación
 ## Reglas de contenido
 
 - Una sola ficha por fármaco. Nunca repetir mecanismos en otro lado: todo se deriva de la ficha.
-- Autoridad: presentaciones de Campregher, después concordancia entre fuentes, después apoyo, respuestas de estudiantes siempre bajo revisión, fuentes externas solo para discrepancias y marcadas `externo`.
-- Pregunta real es la que está en el material. Las creadas van con `origen: 'generada'`.
+- Alcance: lo manda `Farmacos ERA 2.pdf` más la pizarra. Agregar un fármaco solo si lo exige una pregunta real. No sumar temas de 1ª ERA ni rellenar con todas las fuentes.
+- Corrección: presentaciones de Campregher. Respuestas y marcas de estudiantes siempre bajo revisión.
+- La práctica es solo material real de las fotos. No generar preguntas nuevas.
 - Si una clave del material está mal, se conserva y se aclara (`claveMaterial`, `nota`, `encontrada`). No se corrige en silencio.
 - Reconocer con opciones no consolida. Consolidar exige recordar sin pistas en días distintos.
 

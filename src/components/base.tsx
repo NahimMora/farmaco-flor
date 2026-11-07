@@ -19,10 +19,8 @@ export function Cinta({ tapada, children, onVer }: { tapada: boolean; children: 
   );
 }
 
-const SIGLAS: Record<string, string> = { PRE: 'Preguntero', ERA: 'Preguntero ERA 1', EXA: 'Examen a desarrollar', DES: 'Fármaco a desarrollar ERA 2' };
-
 export function Origen({ real, fuente, estado }: { real: boolean; fuente?: Fuente; estado?: string }) {
-  const loc = fuente?.loc.split(',').map(s => s.trim().replace(/^(\w+) (c?)(Y?\d+)$/, (_, a, c, b) => `${SIGLAS[a] ?? a}, ${c ? 'cuadro' : 'pregunta'} ${b}`)).join('. ');
+  const loc = fuente?.loc;
   return (
     <div className="fila chico" style={{ marginBottom: 8, gap: 6 }}>
       <span className={'etiqueta' + (real ? ' real' : '')}>{real ? 'Pregunta real' : 'Práctica'}</span>

@@ -101,11 +101,10 @@
    "id": "adr-2-1",
    "escena": 2,
    "paso": 1,
-   "text": "Alfa dos va con proteína Gi: inhibe la adenilato ciclasa. Agonista: clonidina. Antagonista: yohimbina.",
+   "text": "Alfa dos va con proteína Gi: inhibe la adenilato ciclasa. Agonista: clonidina.",
    "retener": [
     "α2: Gi",
-    "Clonidina",
-    "Yohimbina"
+    "Clonidina"
    ]
   },
   {

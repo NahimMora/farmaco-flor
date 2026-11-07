@@ -8,9 +8,18 @@ import { gaba } from './capitulos/gaba';
 import { histamina } from './capitulos/histamina';
 import { antineoplasicos } from './capitulos/antineoplasicos';
 import { anticuerpos } from './capitulos/anticuerpos';
-import { fundamentos } from './capitulos/fundamentos';
+import { CHOICE, DESARROLLOS_REALES } from './examen';
 
-export const CAPITULOS: Capitulo[] = [colinergico, adrenergico, dopaminergico, serotoninergico, gaba, histamina, antineoplasicos, anticuerpos, fundamentos];
+const base: Capitulo[] = [colinergico, adrenergico, dopaminergico, serotoninergico, gaba, histamina, antineoplasicos, anticuerpos];
+const ids = new Set(base.flatMap(c => c.farmacos.map(f => f.id)));
+
+// La práctica vive en un solo banco, sacado de las fotos de clase y de exámenes.
+export const CAPITULOS: Capitulo[] = base.map(c => ({
+  ...c,
+  farmacos: c.farmacos.map(f => ({ ...f, confusiones: f.confusiones?.filter(x => ids.has(x)) })),
+  preguntas: CHOICE.filter(p => p.cap === c.id),
+  desarrollos: DESARROLLOS_REALES.filter(d => d.cap === c.id),
+}));
 
 export const FARMACOS: Farmaco[] = CAPITULOS.flatMap(c => c.farmacos);
 export const GRUPOS: Grupo[] = CAPITULOS.flatMap(c => c.grupos);
@@ -27,5 +36,5 @@ export const miembros = (grupoId: string): Farmaco[] => FARMACOS.filter(f => f.g
 
 export const TEMA_CAP: Record<CapId, string> = {
   col: 'Colinérgicos', adr: 'Adrenérgicos', dop: 'Dopaminérgicos', ser: 'Serotoninérgicos', gab: 'GABA y glutamato',
-  his: 'Histamina, hierro y EPO', neo: 'Antineoplásicos', acm: 'Anticuerpos monoclonales', fun: 'Fundamentos',
+  his: 'Histamina, hierro y EPO', neo: 'Antineoplásicos', acm: 'Anticuerpos monoclonales',
 };

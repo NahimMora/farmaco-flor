@@ -52,10 +52,9 @@
    "id": "his-1-1",
    "escena": 1,
    "paso": 1,
-   "text": "Puedo actuar en tres lugares. Primero, impedir la liberación: cromoglicato y nedocromilo estabilizan la membrana del mastocito.",
+   "text": "Puedo actuar en tres lugares. Primero, impedir la liberación: el cromoglicato estabiliza la membrana del mastocito.",
    "retener": [
-    "Cromoglicato",
-    "Nedocromilo"
+    "Cromoglicato"
    ]
   },
   {

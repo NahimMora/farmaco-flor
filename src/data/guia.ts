@@ -8,7 +8,6 @@ export const BLOQUES: BloqueGuia[] = [
   { titulo: 'Mensajeros del cerebro', idea: 'Manejan movimiento, ánimo, ansiedad, sueño y convulsiones.', caps: ['dop', 'ser', 'gab'] },
   { titulo: 'Alergia, estómago y sangre', idea: 'Otro mensajero, la histamina, y lo que necesita la médula para formar glóbulos rojos.', caps: ['his'] },
   { titulo: 'Cáncer e inmunidad', idea: 'Acá no se trabaja con un mensajero: se ataca a la célula o a un blanco puntual.', caps: ['neo', 'acm'] },
-  { titulo: 'Repaso de la 1ª ERA', idea: 'No es tema nuevo, pero aparece en los exámenes a desarrollar.', caps: ['fun'] },
 ];
 
 export const INFO_CAP: Record<CapId, { mensajero: string; hace: string; sirve: string; porQue: string }> = {
@@ -20,7 +19,6 @@ export const INFO_CAP: Record<CapId, { mensajero: string; hace: string; sirve: s
   his: { mensajero: 'Histamina, más hierro y EPO', hace: 'La histamina da alergia y ácido. Hierro y EPO forman glóbulos rojos.', sirve: 'Alergia, acidez, anemia', porQue: 'H1 y H2 siguen la lógica de activar o bloquear que ya conocés, y se suma el tema de la sangre.' },
   neo: { mensajero: 'Sin mensajero: ciclo celular', hace: 'Dañan a las células que se dividen.', sirve: 'Cáncer', porQue: 'Otra lógica: cada familia actúa en una fase del ciclo celular.' },
   acm: { mensajero: 'Sin mensajero: anticuerpos', hace: 'Son anticuerpos fabricados contra un blanco.', sirve: 'Cáncer y artritis reumatoide', porQue: 'Cierra el tema del cáncer, y los nombres se leen por el sufijo.' },
-  fun: { mensajero: 'Sin mensajero: conceptos', hace: 'Qué le hace el cuerpo al fármaco y el fármaco al cuerpo.', sirve: 'Definiciones y curvas', porQue: 'Se deja para el final porque son definiciones cortas para repasar.' },
 };
 
 /** De qué materia prima sale cada mensajero. */
@@ -37,8 +35,8 @@ export interface EjemploSinapsis { lugar: string; hace: string; ejemplos: Partia
 /** Los cinco lugares donde puede actuar un fármaco, iguales en todos los sistemas. */
 export const LUGARES: EjemploSinapsis[] = [
   { lugar: 'Fabricación', hace: 'Dar la materia prima.', ejemplos: { dop: { activa: ['levodopa'] } } },
-  { lugar: 'Guardado', hace: 'Impedir que entre a la vesícula.', ejemplos: { dop: { frena: ['tetrabenazina'] }, adr: { frena: ['reserpina'] } } },
-  { lugar: 'Liberación', hace: 'Soltar más o soltar menos.', ejemplos: { col: { frena: ['toxina-botulinica'] }, adr: { activa: ['tiramina', 'efedrina'] }, dop: { activa: ['amantadina'] }, gab: { texto: 'La toxina tetánica bloquea la liberación de GABA.' } } },
+  { lugar: 'Guardado', hace: 'Sacar al mensajero de la vesícula.', ejemplos: { adr: { activa: ['tiramina', 'efedrina'] } } },
+  { lugar: 'Liberación', hace: 'Soltar más o soltar menos.', ejemplos: { col: { frena: ['toxina-botulinica'] }, adr: { frena: ['morfina-at2'] }, dop: { activa: ['amantadina'] }, gab: { texto: 'La toxina tetánica bloquea la liberación de GABA.' } } },
   { lugar: 'Receptor', hace: 'Activarlo o taparlo. Es donde actúan la mayoría.', ejemplos: {
     col: { activa: ['pilocarpina', 'betanecol'], frena: ['atropina', 'succinilcolina'] },
     adr: { activa: ['salbutamol', 'fenilefrina'], frena: ['propranolol', 'prazosin'] },
@@ -62,6 +60,12 @@ export const PASOS_CAPITULO: { t: string; d: string }[] = [
   { t: 'Mapa y nombres', d: 'Primero memorizás quién es quién. Acá va la mayor parte del tiempo.' },
   { t: 'Teoría y video', d: 'Recién ahora entendés por qué cada uno hace lo que hace.' },
   { t: 'Cuadro', d: 'Fijás nombre, mecanismo y efecto, tapando las columnas.' },
-  { t: 'Choice y desarrollo', d: 'Practicás como en el examen.' },
+  { t: 'Choice y desarrollo', d: 'Practicás con preguntas reales de las fotos.' },
   { t: 'Examen del capítulo', d: 'Te muestra qué nombres todavía no están firmes.' },
+];
+
+/** Reparto para rendir en dos días. El peso sale de contar el examen de 40 choice. */
+export const PLAN: { dia: string; caps: CapId[]; cierre: string }[] = [
+  { dia: 'Día 1', caps: ['col', 'adr', 'dop', 'ser'], cierre: 'Cerrá con los casos de clase de colinérgicos y adrenérgicos.' },
+  { dia: 'Día 2', caps: ['gab', 'his', 'neo', 'acm'], cierre: 'Leé lo mínimo de 1ª ERA, hacé un simulacro completo y repasá lo que falló.' },
 ];

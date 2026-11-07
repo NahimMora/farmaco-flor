@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import type { Capitulo, Farmaco, Grupo } from '../data/tipos';
-import { miembros } from '../data';
-import { estiloAccion, signo } from './base';
+import { ficha, miembros } from '../data';
+import { EnlaceFarmaco, estiloAccion, signo } from './base';
 
 function Nombre({ f, oculto, pista }: { f: Farmaco; oculto: boolean; pista?: boolean }) {
   const [visto, setVisto] = useState(false);
@@ -49,6 +49,10 @@ export function MapaCapitulo({ c }: { c: Capitulo }) {
         <section className="bloque" key={b.titulo}>
           <h3>{b.titulo}</h3>
           {b.grupos.map(id => { const g = c.grupos.find(x => x.id === id)!; return <FamiliaMapa key={id + String(oculto)} g={g} oculto={oculto} />; })}
+          {b.tambien && <div style={{ marginTop: 10 }}>
+            {b.efecto && <p className="chico tenue" style={{ margin: '0 0 4px' }}>{b.efecto}</p>}
+            <div className="chips" style={{ margin: 0 }}>{b.tambien.map(id => { const f = ficha(id); return f && <EnlaceFarmaco key={id} f={f} />; })}</div>
+          </div>}
         </section>
       ))}
     </div>

@@ -1,5 +1,5 @@
 import type { Capitulo } from '../tipos';
-import { dev, g, hacerFicha, mcGen, mcReal, mn, par, vfGen, vfReal } from '../h';
+import { g, hacerFicha, mn, par } from '../h';
 
 const f = hacerFicha('adr');
 
@@ -9,18 +9,21 @@ export const adrenergico: Capitulo = {
   titulo: 'Adrenérgicos',
   objetivo: 'Ubicar cada fármaco en su receptor α o β y decir si lo activa o lo bloquea.',
   avisos: [
-    'Lo más repetido en los exámenes reales: β-bloqueantes selectivos y no selectivos, 4 indicaciones y 4 efectos adversos.',
-    'Los cuadros piden salbutamol, prazosin, carvedilol, clonidina y dopamina según la dosis.',
+    'Muy pedido en desarrollo: β-bloqueantes selectivos y no selectivos, 4 indicaciones y 4 efectos adversos.',
+    'En el último parcial: atenolol y su efecto cronotrópico, y 3 efectos de la dopamina a baja dosis.',
   ],
   mapa: [
-    { titulo: 'Agonistas', grupos: ['adr-cate', 'adr-alfa', 'adr-beta', 'adr-ind'] },
-    { titulo: 'Antagonistas', grupos: ['adr-balfa', 'adr-bns', 'adr-bsel', 'adr-mix'] },
+    { titulo: 'Agonistas adrenérgicos', grupos: ['adr-cate', 'adr-alfa', 'adr-beta'] },
+    { titulo: 'Cambian cuánta noradrenalina hay', grupos: ['adr-ind'] },
+    { titulo: 'Antagonistas α', grupos: ['adr-balfa'] },
+    { titulo: 'Antagonistas β', grupos: ['adr-bns', 'adr-bsel', 'adr-mix'] },
+    { titulo: 'También en este cuadro: frenan la terminación', grupos: [], tambien: ['cocaina', 'amitriptilina', 'nortriptilina', 'moclobemida', 'clorgilina', 'selegilina', 'entacapona', 'tolcapona'], efecto: 'Aumentan los efectos simpáticos' },
   ],
   grupos: [
     g('adr-cate', 'Catecolaminas', 'agonista', 'Efecto según receptor y dosis', { regla: 'Tienen anillo catecol y activan varios receptores adrenérgicos a la vez.' }),
     g('adr-alfa', 'Agonistas α', 'agonista', 'α1 contrae vasos. α2 frena la liberación', { regla: 'α1 está en el vaso y contrae. α2 es presináptico y frena la liberación de noradrenalina.' }),
     g('adr-beta', 'Agonistas β', 'agonista', 'β1 corazón. β2 bronquio', { regla: 'Activan proteína Gs, que aumenta el AMPc.' }),
-    g('adr-ind', 'Actúan sin tocar el receptor', 'liberador', 'Cambian cuánta noradrenalina hay', { regla: 'Desplazan noradrenalina de la vesícula o vacían sus depósitos.' }),
+    g('adr-ind', 'Actúan sin tocar el receptor', 'liberador', 'Cambian cuánta noradrenalina hay', { regla: 'Las aminas desplazan noradrenalina de la vesícula. Morfina, histamina y angiotensina II frenan su liberación.' }),
     g('adr-balfa', 'Bloqueantes α', 'antagonista', 'Vasodilatación, antihipertensivos', { regla: 'Bloquean α1 en el vaso. Prazosin baja la presión y tamsulosina se usa en próstata.' }),
     g('adr-bns', 'β-bloqueantes no selectivos', 'antagonista', 'β1 y β2. Bajan la FC', { regla: 'Bloquean β1 y β2.', patron: 'La terminación -olol marca a los β-bloqueantes.', excepcion: 'Labetalol y carvedilol bloquean además α.' }),
     g('adr-bsel', 'β-bloqueantes cardioselectivos', 'antagonista', 'β1. Bajan la FC', { regla: 'Bloquean β1, el receptor del corazón.', patron: 'También terminan en -olol.' }),
@@ -35,36 +38,36 @@ export const adrenergico: Capitulo = {
     f('isoproterenol', 'Isoproterenol', 'adr-beta', 'agonista', 'β', 'Agonista β no selectivo', 'Vasodilatación y broncodilatación', 1, ['PIZ', 'ADR 9', 'ADR 17'], { variantes: ['Isoprenalina'] }),
     f('dobutamina', 'Dobutamina', 'adr-beta', 'agonista', 'β1', 'Agonista β1', 'Inotrópico positivo cardíaco', 1, ['PIZ', 'ADR 9'], { confusiones: ['dopamina'], selectividad: 'β1' }),
     f('salbutamol', 'Salbutamol', 'adr-beta', 'agonista', 'β2', 'Agonista β2 adrenérgico', 'Broncodilatador', 1, ['PIZ', 'ADR 9', 'DES c1', 'DES c18', 'DES c25'], { sinonimos: ['Albuterol'], confusiones: ['sotalol', 'ipratropio'], selectividad: 'β2', clave: 'Aparece en casi todos los cuadros reales.' }),
-    f('procaterol', 'Procaterol', 'adr-beta', 'agonista', 'β', 'Agonista β', 'Broncodilatador', 3, ['ADR 9'], { discrepancia: 'd-procaterol' }),
-    f('tiramina', 'Tiramina', 'adr-ind', 'liberador', 'Vesícula', 'Amina simpaticomimética: desplaza noradrenalina de la vesícula', 'Libera noradrenalina sin calcio', 3, ['ADR 5']),
-    f('efedrina', 'Efedrina', 'adr-ind', 'liberador', 'Vesícula', 'Amina simpaticomimética: desplaza noradrenalina de la vesícula', 'Libera noradrenalina sin calcio', 3, ['ADR 5']),
-    f('reserpina', 'Reserpina', 'adr-ind', 'inhibidor', 'Transportador vesicular', 'Bloquea el transportador vesicular y deja la noradrenalina expuesta a la MAO', 'Vacía los depósitos', 2, ['ADR 5', 'SER 6']),
+    f('tiramina', 'Tiramina', 'adr-ind', 'liberador', 'Vesícula', 'Amina simpaticomimética: desplaza noradrenalina de la vesícula', 'Aumenta los efectos simpáticos', 2, ['ADR 5', 'CUA 2'], { discrepancia: 'd-aminas' }),
+    f('efedrina', 'Efedrina', 'adr-ind', 'liberador', 'Vesícula', 'Amina simpaticomimética: desplaza noradrenalina de la vesícula', 'Aumenta los efectos simpáticos', 2, ['ADR 5', 'CUA 2'], { discrepancia: 'd-aminas' }),
 
     f('prazosin', 'Prazosin', 'adr-balfa', 'antagonista', 'α1', 'Antagonista selectivo α1', 'Antihipertensivo por vasodilatación', 1, ['PIZ', 'ADR 8', 'ADR 21', 'DES c17', 'DES c18', 'DES c25', 'DES c26', 'DES c28'], {
-      variantes: ['Prazosina', 'Prazocin'], selectividad: 'α1', discrepancia: 'd-prazosin', confusiones: ['propranolol', 'tamsulosina'], clave: 'Vasodilata. Un cuadro dice vasoconstricción y está mal.',
+      variantes: ['Prazosina', 'Prazocin'], selectividad: 'α1', confusiones: ['propranolol', 'tamsulosina'], clave: 'Vasodilata. Un cuadro dice vasoconstricción y está mal.',
     }),
-    f('tamsulosina', 'Tamsulosina', 'adr-balfa', 'antagonista', 'α1', 'Bloqueante α1 reversible', 'Hiperplasia prostática benigna: favorece la micción', 1, ['PIZ', 'ADR 21', 'PRE 31'], { confusiones: ['prazosin'], discrepancia: 'd-tamsulosina' }),
-    f('yohimbina', 'Yohimbina', 'adr-balfa', 'antagonista', 'α2', 'Antagonista α2', 'Bloquea el freno presináptico', 2, ['ADR 8', 'ADR 21']),
-    f('fentolamina', 'Fentolamina', 'adr-balfa', 'antagonista', 'α', 'Bloqueante α reversible', 'Feocromocitoma', 2, ['ADR 21', 'APU 52']),
-    f('fenoxibenzamina', 'Fenoxibenzamina', 'adr-balfa', 'antagonista', 'α', 'Bloqueante α irreversible', 'Vasodilatación', 2, ['ADR 21']),
-    f('beta-cloretilamina', 'β-cloretilamina', 'adr-balfa', 'antagonista', 'α', 'Bloqueante α irreversible', 'Vasodilatación', 4, ['ADR 21']),
-    f('ergotamina', 'Ergotamina', 'adr-balfa', 'antagonista', 'α y 5-HT', 'Actúa sobre receptores α y 5-HT', 'Migraña', 3, ['ADR 21']),
-    f('lsd', 'LSD', 'adr-balfa', 'antagonista', 'α y 5-HT2', 'Bloqueante α reversible. Agonista 5-HT2', 'Alucinaciones', 3, ['ADR 21', 'SER 16']),
+    f('tamsulosina', 'Tamsulosina', 'adr-balfa', 'antagonista', 'α1', 'Antagonista reversible selectivo α1', 'Favorece la micción: hiperplasia prostática benigna', 1, ['PIZ', 'ADR 21', 'PRE 31'], { confusiones: ['prazosin'], discrepancia: 'd-tamsulosina' }),
+    f('fentolamina', 'Fentolamina', 'adr-balfa', 'antagonista', 'α', 'Antagonista reversible no selectivo α', 'Vasodilatador: feocromocitoma', 2, ['ADR 21', 'APU 52']),
+    f('ergotamina', 'Ergotamina', 'adr-balfa', 'antagonista', 'α y 5-HT', 'Antagonista α no selectivo. Actúa también sobre 5-HT', 'Vasoconstricción: antimigrañoso', 2, ['ADR 21']),
 
     f('propranolol', 'Propranolol', 'adr-bns', 'antagonista', 'β1 y β2', 'Antagonista no selectivo de los receptores β adrenérgicos', 'Antihipertensivo', 1, ['PIZ', 'ADR 9', 'ADR 22', 'DES c17', 'DES c29', 'PRE 43', 'PRE 85', 'EXA 21'], {
       variantes: ['Propanolol'], selectividad: 'No selectivo', confusiones: ['atenolol', 'prazosin', 'propinoxato'], adversos: 'Broncoconstricción, bradicardia, fatiga, trastornos del sueño', indicaciones: 'HTA, cardiopatía isquémica, ICC, hipertensión portal, migraña, temblor',
     }),
     f('timolol', 'Timolol', 'adr-bns', 'antagonista', 'β1 y β2', 'Antagonista no selectivo de los receptores β', 'Baja la FC', 1, ['PIZ', 'ADR 22', 'PRE 43']),
     f('sotalol', 'Sotalol', 'adr-bns', 'antagonista', 'β1 y β2', 'Antagonista no selectivo de los receptores β', 'Baja la FC', 1, ['PIZ', 'ADR 22', 'PRE 43', 'EXA 36'], { confusiones: ['salbutamol'] }),
-    f('butoxamina', 'Butoxamina', 'adr-bns', 'antagonista', 'β2', 'Antagonista β2', 'Uso experimental', 4, ['ADR 9']),
     f('atenolol', 'Atenolol', 'adr-bsel', 'antagonista', 'β1', 'Antagonista selectivo β1', 'Disminuye la FC y la fuerza de contracción', 1, ['PIZ', 'ADR 9', 'ADR 22', 'DES c28', 'PRE 44', 'PRE 85', 'EXA 21'], { selectividad: 'β1', confusiones: ['propranolol', 'betanecol'], clave: 'No tiene acción α: el preguntero lo usa como trampa.' }),
     f('metoprolol', 'Metoprolol', 'adr-bsel', 'antagonista', 'β1', 'Antagonista selectivo β1', 'Disminuye la FC', 1, ['PIZ', 'ADR 9', 'ADR 22', 'PRE 44'], { selectividad: 'β1' }),
     f('esmolol', 'Esmolol', 'adr-bsel', 'antagonista', 'β1', 'Antagonista selectivo β1', 'Disminuye la FC', 2, ['ADR 22', 'PRE 44', 'DES 20'], { selectividad: 'β1' }),
     f('acebutolol', 'Acebutolol', 'adr-bsel', 'antagonista', 'β1', 'Antagonista selectivo β1', 'Disminuye la FC', 2, ['ADR 22', 'PRE 44'], { selectividad: 'β1' }),
     f('carvedilol', 'Carvedilol', 'adr-mix', 'antagonista', 'α y β', 'Antagonista de receptores β y α adrenérgicos', 'Antihipertensivo', 1, ['PIZ', 'ADR 24', 'DES c17', 'DES c30'], { confusiones: ['labetalol'] }),
-    f('labetalol', 'Labetalol', 'adr-mix', 'antagonista', 'α y β', 'Antagonista de receptores β y α adrenérgicos', 'Antihipertensivo', 1, ['PIZ', 'ADR 24', 'DES c28'], { discrepancia: 'd-labetalol', confusiones: ['carvedilol', 'haloperidol'], clave: 'Un cuadro le puso antipsicótico: está mal.' }),
+    f('labetalol', 'Labetalol', 'adr-mix', 'antagonista', 'α y β', 'Antagonista de receptores β y α adrenérgicos', 'Antihipertensivo', 1, ['PIZ', 'ADR 24', 'DES c28'], { confusiones: ['carvedilol', 'haloperidol'], clave: 'Un cuadro le puso antipsicótico: está mal.' }),
+    f('morfina-at2', 'Morfina, histamina, angiotensina II', 'adr-ind', 'inhibidor', 'Liberación de NA', 'Inhiben la liberación de noradrenalina', 'Disminuyen los efectos simpáticos', 2, ['CUA 2', 'ADR 6']),
   ],
   mnemotecnias: [
+    mn('m-dona', 'adr-cate', 'Doña Adrenalina', [['Do', 'Dopamina'], ['Na', 'Noradrenalina'], ['Adrenalina', 'Adrenalina']],
+      'Las tres catecolaminas, en el orden en que se fabrican.', 'Olvidar que la dopamina va antes en la cadena.'),
+    mn('m-a12', 'adr-alfa', 'Feni uno aprieta, Cloni dos apaga', [['Feni uno', 'Fenilefrina: α1'], ['aprieta', 'Vasoconstricción'], ['Cloni dos', 'Clonidina: α2'], ['apaga', 'Antihipertensivo']],
+      'Receptor y efecto de los dos agonistas α.', 'Pensar que todo agonista α sube la presión.'),
+    mn('m-ind', 'adr-ind', 'Tira y Efe empujan a la noradrenalina afuera', [['Tira', 'Tiramina'], ['Efe', 'Efedrina'], ['empujan', 'La desplazan de la vesícula']],
+      'Las aminas simpaticomiméticas.', 'Creer que actúan sobre el receptor.'),
     mn('m-b12', 'adr-beta', 'Tenés 1 corazón y 2 pulmones', [['1 corazón', 'β1 está en el corazón'], ['2 pulmones', 'β2 está en el bronquio']],
       'Qué órgano domina cada receptor β, y por qué dobutamina va al corazón y salbutamol al bronquio.', 'Cruzar β1 con β2 al explicar efectos.'),
     mn('m-sal', 'adr-beta', 'Salbutamol salva al asmático. Dobutamina dobla la fuerza del corazón', [['Salva', 'Salbutamol: β2, broncodilatador'], ['Dobla', 'Dobutamina: β1, inotrópico positivo']],
@@ -120,7 +123,7 @@ export const adrenergico: Capitulo = {
       ],
       pasos: [
         { di: 'Alfa uno va con proteína Gq: aumenta IP3 y DAG, y contrae. Es postsináptico. Agonista: fenilefrina. Antagonista: prazosin.', fila: 0, retener: ['α1: Gq', 'Fenilefrina', 'Prazosin'] },
-        { di: 'Alfa dos va con proteína Gi: inhibe la adenilato ciclasa. Agonista: clonidina. Antagonista: yohimbina.', fila: 1, retener: ['α2: Gi', 'Clonidina', 'Yohimbina'] },
+        { di: 'Alfa dos va con proteína Gi: inhibe la adenilato ciclasa. Agonista: clonidina.', fila: 1, retener: ['α2: Gi', 'Clonidina'] },
         { di: 'Beta va con proteína Gs: activa la adenilato ciclasa y aumenta el AMP cíclico. Agonista general: isoproterenol. Antagonista general: propranolol.', fila: 2, retener: ['β: Gs', 'Isoproterenol', 'Propranolol'] },
       ],
     },
@@ -200,54 +203,6 @@ export const adrenergico: Capitulo = {
       ],
     },
   ],
-  preguntas: [
-    vfReal('adr', 'PRE 5', 'El atenolol es un bloqueante α y β adrenérgico con actividad hipertensiva.', false, 'Es β1 selectivo y antihipertensivo. El preguntero marca el error en la palabra α.', { farmacos: ['atenolol'] }),
-    mcReal('adr', 'PRE 13', 'Todos son bloqueantes adrenérgicos excepto:', ['Propanolol', 'Biperideno', 'Atenolol', 'Carvedilol'], [1], [
-      'β-bloqueante no selectivo.', 'Correcta: es un antimuscarínico, no adrenérgico.', 'β1 selectivo.', 'Bloquea α y β.',
-    ], { farmacos: ['propranolol', 'atenolol', 'carvedilol'] }),
-    mcReal('adr', 'PRE 29', 'Los β-bloqueantes NO producen uno de los siguientes efectos o acciones:', ['Aumento de la resistencia periférica', 'Bradicardia', 'Glucogenólisis', 'Broncoconstricción'], [0, 2], [
-      'Es la clave del preguntero.', 'Sí la producen.', 'También vale: la glucogenólisis es un efecto β, y el bloqueo la frena.', 'Sí la producen.',
-    ], { estado: 'dudosa', claveMaterial: 0, nota: 'El preguntero marca la opción a. Farmacológicamente la c también es defendible, porque bloquear β frena la glucogenólisis. Se aceptan las dos.' }),
-    vfReal('adr', 'PRE 31', 'La tamsulosina es un bloqueante α-adrenérgico reversible', true, 'Figura entre los reversibles en la presentación.', { farmacos: ['tamsulosina'] }),
-    vfReal('adr', 'PRE 33', 'La fenilefrina provoca vasoconstricción por estimular al receptor α-1', true, 'Agonista α1.', { farmacos: ['fenilefrina'] }),
-    mcGen('adr', '¿Cuál es el mecanismo por el que la clonidina baja la presión?', ['Bloquea α1 en el vaso', 'Activa α2 y disminuye la liberación de noradrenalina', 'Bloquea β1 en el corazón', 'Inhibe la MAO'], 1, [
-      'Eso hace prazosin.', 'Correcta: α2 es el freno presináptico.', 'Eso hace atenolol.', 'No actúa sobre la MAO.',
-    ], { farmacos: ['clonidina'] }),
-    mcGen('adr', 'Un paciente asmático necesita un β-bloqueante. ¿Cuál conviene más?', ['Propranolol', 'Timolol', 'Atenolol', 'Sotalol'], 2, [
-      'No selectivo: bloquea β2 bronquial.', 'No selectivo.', 'Correcta: cardioselectivo.', 'No selectivo.',
-    ], { farmacos: ['atenolol', 'propranolol'] }),
-    mcGen('adr', 'La dopamina a dosis altas produce:', ['Vasodilatación renal', 'Vasoconstricción por receptores α', 'Broncodilatación por β2', 'Hipotensión por D2'], 1, [
-      'Eso es a dosis bajas.', 'Correcta.', 'No es su acción principal.', 'Eso es a dosis bajas.',
-    ], { farmacos: ['dopamina'] }),
-    mcGen('adr', '¿Qué receptor usa proteína Gq?', ['α1', 'α2', 'β1', 'β2'], 0, [
-      'Correcta: aumenta IP3 y DAG.', 'Gi.', 'Gs.', 'Gs.',
-    ]),
-    mcGen('adr', 'Señalá la INCORRECTA sobre noradrenalina:', ['Produce vasoconstricción periférica', 'Actúa sobre β2 produciendo broncodilatación', 'Activa α1, α2 y β1', 'Puede bajar la FC por descarga vagal'], 1, [
-      'Es cierto.', 'Correcta: no se la lista sobre β2.', 'Es cierto.', 'Es cierto.',
-    ], { farmacos: ['noradrenalina'] }),
-    mcGen('adr', 'Fármaco, grupo y efecto bien relacionados:', ['Prazosin, α1 bloqueante, vasoconstricción', 'Labetalol, bloqueante α y β, antipsicótico', 'Salbutamol, agonista β2, broncodilatador', 'Atenolol, α y β, broncodilatador'], 2, [
-      'Prazosin vasodilata: error de un cuadro real.', 'Es antihipertensivo: error de otro cuadro real.', 'Correcta.', 'Atenolol es β1.',
-    ], { farmacos: ['salbutamol', 'prazosin', 'labetalol'] }),
-    mcGen('adr', 'La tiramina y la efedrina liberan noradrenalina:', ['Por un proceso dependiente de calcio', 'Desplazándola de la vesícula, sin calcio', 'Bloqueando α2', 'Activando β1'], 1, [
-      'Justo al revés.', 'Correcta: la desplazan mol a mol.', 'No.', 'No.',
-    ], { farmacos: ['tiramina', 'efedrina'] }),
-    vfGen('adr', 'La yohimbina es antagonista α2', true, 'Slide de receptores: agonista clonidina, antagonista yohimbina.', ['yohimbina']),
-    vfGen('adr', 'Carvedilol bloquea únicamente receptores β', false, 'Bloquea α y β.', ['carvedilol']),
-    vfGen('adr', 'La COMT se localiza en la mitocondria', false, 'La mitocondria es de la MAO. La COMT es citoplasmática.'),
-  ],
-  desarrollos: [
-    dev('adr', 'PRE 43, PRE 44, EXA 21, DES 9', 'Mencione un bloqueante no selectivo de los receptores β adrenérgicos y uno selectivo β1', ['No selectivo: propranolol', 'Selectivo β1: atenolol'], 'Otros no selectivos: timolol, sotalol. Otros selectivos: metoprolol, esmolol, acebutolol.', { farmacos: ['propranolol', 'atenolol'] }),
-    dev('adr', 'DES 5', 'Mencione 3 fármacos ANTAGONISTAS BETA ADRENÉRGICOS y 4 indicaciones', ['Propranolol, atenolol, metoprolol', 'Hipertensión, IAM, migraña, temblores'], 'La presentación lista: cardiopatía isquémica, taquiarritmias supraventriculares, HTA, ICC, hipertensión portal, tirotoxicosis, prevención de migraña y temblor intencional.'),
-    dev('adr', 'DES 20, EXA 36, PRE 85', 'Clasifique los antagonistas β adrenérgicos, dé ejemplos y 4 indicaciones', ['No selectivos: propranolol, sotalol, timolol', 'Selectivos: atenolol, metoprolol, esmolol', 'Indicaciones: HTA, ICC, cardiopatía isquémica, hipertensión portal'], 'Los no selectivos bloquean β1 y β2. Los cardioselectivos bloquean β1. Los mixtos, carvedilol y labetalol, bloquean además α.'),
-    dev('adr', 'PRE 45', 'Cuatro indicaciones de los betabloqueantes', ['Cardiopatía isquémica', 'Taquiarritmias supraventriculares', 'HTA', 'Insuficiencia cardíaca'], 'También: hipertensión portal, tirotoxicosis, prevención de migraña, temblor intencional.'),
-    dev('adr', 'DES 10, EXA 37, PRE 50, EXA Y1', 'Mencione 4 efectos adversos de los BETA BLOQUEANTES', ['Bradicardia', 'Fatiga', 'Broncoconstricción', 'Constipación'], 'También: retención de sodio, Raynaud, disminución de la libido, trastornos del sueño.', { nota: 'El preguntero lista "asma" como efecto adverso. Es más preciso decir broncoconstricción.' }),
-    dev('adr', 'EXA 8', 'Mencione 3 drogas que actúen sobre la neurotransmisión adrenérgica e indique su mecanismo de acción', ['Atenolol: bloqueante selectivo β1', 'Propranolol: bloqueante β no selectivo', 'Fenilefrina: agonista α1, vasoconstricción'], 'Podés usar también salbutamol, agonista β2, o prazosin, antagonista α1.', { farmacos: ['atenolol', 'propranolol', 'fenilefrina'] }),
-    dev('adr', 'DES 11, EXA 22', 'Mencione el efecto principal cardiovascular de la dopamina según se encuentre en concentraciones bajas, medias y altas', ['Bajas: vasodilatación renal, mesentérica, cerebral y coronaria', 'Medias: aumenta la contractilidad y da taquicardia', 'Altas: vasoconstricción'], 'A dosis bajas actúa sobre D1 y aumenta la diuresis, con hipotensión y bradicardia por D2. A dosis medias estimula β1. A dosis altas estimula receptores α.', { farmacos: ['dopamina'] }),
-    dev('adr', 'DES 19', 'Mencione 5 efectos de la DOPAMINA sobre diferentes tejidos', ['Vasodilatación renal y mesentérica', 'Aumento de la diuresis', 'Aumento de la contractilidad cardíaca', 'Vasoconstricción a dosis altas', 'Disminuye la motilidad digestiva y participa en la emesis'], 'En el túbulo renal inhibe la reabsorción de sodio. En el tubo digestivo inhibe la motilidad y actúa en el centro del vómito. En SNC controla el movimiento.', {
-      encontrada: 'Vasodilatación alveolar, midriasis pupilar, broncodilatación en shock', nota: 'Esos efectos no aparecen en la presentación de dopamina. Usá esta lista.', farmacos: ['dopamina'],
-    }),
-    dev('adr', 'PRE 66', 'Paciente en guardia con euforia, hipertensión arterial, taquicardia y midriasis. Su familiar refiere consumo de sustancias ilícitas. ¿A qué sistema de neurotransmisión corresponden estos efectos? ¿Sobre qué sitio de acción podría actuar esta sustancia?', ['Sistema adrenérgico y dopaminérgico: efecto simpaticomimético', 'Sitio: transportador de recaptación, como cocaína y anfetamina'], 'La euforia con hipertensión orienta a cocaína o anfetaminas: inhiben la recaptación y aumentan la noradrenalina y la dopamina en la sinapsis. Un cuadro anticolinérgico daría piel seca y caliente, boca seca y alucinaciones, sin hipertensión marcada.', {
-      encontrada: 'Efectos anticolinérgicos', nota: 'El preguntero responde anticolinérgico. La euforia y la hipertensión encajan mejor con un simpaticomimético. Si te la toman, mencioná el mecanismo y compará con los anticolinérgicos.',
-    }),
-  ],
+  preguntas: [],
+  desarrollos: [],
 };

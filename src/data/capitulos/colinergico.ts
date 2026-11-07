@@ -1,5 +1,5 @@
 import type { Capitulo } from '../tipos';
-import { dev, g, hacerFicha, mcGen, mcReal, mn, par, vfGen, vfReal } from '../h';
+import { g, hacerFicha, mn, par } from '../h';
 
 const f = hacerFicha('col');
 
@@ -9,50 +9,47 @@ export const colinergico: Capitulo = {
   titulo: 'Colinérgicos',
   objetivo: 'Separar agonistas, anticolinesterásicos, antimuscarínicos y bloqueantes neuromusculares sin dudar.',
   avisos: [
-    'En los exámenes reales piden seguido: 2 antagonistas colinérgicos y 4 efectos anticolinérgicos, y 5 efectos de la acetilcolina en distintos tejidos.',
-    'Un error repetido en los apuntes: poner fisostigmina o malatión como antagonistas. Son anticolinesterásicos y hacen lo contrario.',
+    'Pedidos en exámenes: 2 antagonistas colinérgicos, 4 efectos anticolinérgicos y 5 efectos de la acetilcolina. Los casos de clase de pupila, bronquio, cólico e intoxicación son de este capítulo.',
   ],
   mapa: [
-    { titulo: 'Aumentan la acción de la acetilcolina', grupos: ['col-agom', 'col-rev', 'col-irr'] },
-    { titulo: 'Bloquean a la acetilcolina', grupos: ['col-atr', 'col-esp', 'col-bro', 'col-nm'] },
+    { titulo: 'Agonistas colinérgicos', grupos: ['col-agom'] },
+    { titulo: 'Inhibe la liberación de ACh', grupos: ['col-lib'] },
+    { titulo: 'Anticolinesterásicos', grupos: ['col-rev', 'col-rev2', 'col-irr'] },
+    { titulo: 'Bloqueantes muscarínicos', grupos: ['col-atr', 'col-esp', 'col-bro'] },
+    { titulo: 'Bloqueantes nicotínicos', grupos: ['col-nm'] },
   ],
   grupos: [
     g('col-agom', 'Agonistas muscarínicos', 'agonista', 'Imitan a la ACh en el receptor M', { regla: 'Se unen al receptor muscarínico y lo activan, como la acetilcolina.' }),
-    g('col-rev', 'Anticolinesterásicos reversibles', 'inhibidor', '↑ ACh. Miastenia gravis', { regla: 'Inhiben la acetilcolinesterasa de forma reversible: la ACh dura más en la sinapsis.', patron: 'La terminación -stigmina marca a este grupo.', excepcion: 'Edrofonio también es reversible y no termina en -stigmina.' }),
-    g('col-irr', 'Anticolinesterásicos irreversibles', 'inhibidor', 'Crisis colinérgica', { regla: 'Organofosforados: se unen de forma covalente a la acetilcolinesterasa y la anulan.' }),
-    g('col-atr', 'Antimuscarínico clásico', 'antagonista', '↑ FC, midriasis, efectos anticolinérgicos', { regla: 'Bloqueante competitivo no selectivo de los receptores M. Es el modelo de todo el grupo.' }),
-    g('col-esp', 'Antimuscarínicos antiespasmódicos', 'antagonista', 'Antiespasmódicos', { regla: 'Mismo mecanismo: bloqueo competitivo del receptor M. Relajan el músculo liso.' }),
-    g('col-bro', 'Antimuscarínicos broncodilatadores', 'antagonista', 'Broncodilatación', { regla: 'Mismo mecanismo, usados en el aparato respiratorio.', patron: 'La terminación -tropio marca a los inhalados.' }),
-    g('col-nm', 'Bloqueantes neuromusculares', 'bloqueante', 'Parálisis del músculo esquelético, para intubar', { regla: 'Bloquean el receptor nicotínico de la placa motora de forma reversible.', patron: 'La terminación -curio o -curonio marca a muchos.', excepcion: 'Succinilcolina es despolarizante y no termina así.' }),
+    g('col-rev', 'Reversibles: sustrato', 'inhibidor', '↑ ACh por falso sustrato. Miastenia gravis', { regla: 'Inhiben la acetilcolinesterasa de forma reversible: la enzima los toma como falso sustrato.', patron: 'La terminación -stigmina marca a este grupo.' }),
+    g('col-rev2', 'Reversibles: no sustrato', 'inhibidor', '↑ ACh', { regla: 'Inhiben la acetilcolinesterasa sin ser sustrato.' }),
+    g('col-lib', 'Toxina', 'bloqueante', 'Parálisis flácida', { regla: 'Impide que la vesícula libere acetilcolina.' }),
+    g('col-irr', 'Irreversibles: organofosforados', 'inhibidor', 'Crisis colinérgica', { regla: 'Organofosforados: se unen de forma covalente a la acetilcolinesterasa y la anulan.' }),
+    g('col-atr', 'Natural: atropina', 'antagonista', '↑ FC, midriasis, efectos anticolinérgicos', { regla: 'Bloqueante competitivo no selectivo de los receptores M. Es el modelo de todo el grupo.' }),
+    g('col-esp', 'Antiespasmódicos', 'antagonista', 'Antiespasmódicos', { regla: 'Mismo mecanismo: bloqueo competitivo del receptor M. Relajan el músculo liso.' }),
+    g('col-bro', 'Broncodilatadores', 'antagonista', 'Broncodilatación', { regla: 'Mismo mecanismo, usados en el aparato respiratorio.', patron: 'La terminación -tropio marca a los inhalados.' }),
+    g('col-nm', 'Bloqueantes neuromusculares', 'bloqueante', 'Parálisis del músculo esquelético, para intubar', { regla: 'Bloquean el receptor nicotínico de la placa motora de forma reversible.', patron: 'La terminación -curio o -curonio marca a muchos.', excepcion: 'Succinilcolina es despolarizante.' }),
   ],
   farmacos: [
     f('acetilcolina', 'Acetilcolina', 'col-agom', 'agonista', 'Receptores M y N', 'Agonista endógeno de receptores muscarínicos y nicotínicos', 'Efectos parasimpáticos y contracción del músculo esquelético', 1, ['COL 2', 'COL 14', 'DES 7'], {
-      sinonimos: ['ACh', 'ACH'], clave: 'No es selectiva: activa M y N, aunque tiene más afinidad por M.', selectividad: 'No selectiva', discrepancia: 'd-ach',
+      sinonimos: ['ACh', 'ACH'], clave: 'No es selectiva: activa M y N, aunque tiene más afinidad por M.', selectividad: 'No selectiva',
     }),
     f('betanecol', 'Betanecol', 'col-agom', 'agonista', 'Receptor M', 'Agonista colinérgico (éster de colina) de los receptores muscarínicos', 'Trata la retención urinaria', 1, ['PIZ', 'COL 14'], {
       clave: 'Tiene "beta" en el nombre pero no es adrenérgico.', confusiones: ['atenolol'], selectividad: 'Muscarínico',
     }),
-    f('pilocarpina', 'Pilocarpina', 'col-agom', 'agonista', 'Receptor M', 'Agonista selectivo de receptores muscarínicos', 'Miosis y aumento de saliva', 1, ['PIZ', 'COL 14'], {
+    f('pilocarpina', 'Pilocarpina', 'col-agom', 'agonista', 'Receptor M', 'Agonista selectivo de receptores muscarínicos', 'Miosis, espasmo de acomodación y aumento de saliva', 1, ['PIZ', 'COL 14'], {
       indicaciones: 'Uso como miótico en oftalmología', selectividad: 'Selectivo M',
     }),
-    f('metacolina', 'Metacolina', 'col-agom', 'agonista', 'Receptores M y N', 'Éster de colina, agonista colinérgico', 'Efecto colinérgico', 3, ['COL 14']),
-    f('carbacol', 'Carbacol', 'col-agom', 'agonista', 'Receptores M y N', 'Éster de colina, agonista colinérgico no selectivo', 'Efecto colinérgico', 3, ['COL 14']),
-    f('muscarina', 'Muscarina', 'col-agom', 'agonista', 'Receptor M', 'Agonista selectivo del receptor muscarínico', 'Da nombre al receptor', 3, ['COL 14']),
-    f('oxotremorina', 'Oxotremorina', 'col-agom', 'agonista', 'Receptor M', 'Agonista selectivo del receptor muscarínico', 'Uso experimental', 4, ['COL 14']),
-    f('nicotina', 'Nicotina', 'col-agom', 'agonista', 'Receptor N', 'Agonista selectivo del receptor nicotínico', 'Da nombre al receptor', 3, ['COL 14']),
-    f('dmpp', 'Dimetilfenilpiperazinio', 'col-agom', 'agonista', 'Receptor N', 'Agonista selectivo del receptor nicotínico', 'Uso experimental', 4, ['COL 14'], { sinonimos: ['DMPP'] }),
 
     f('fisostigmina', 'Fisostigmina', 'col-rev', 'inhibidor', 'Acetilcolinesterasa', 'Inhibidor reversible de la acetilcolinesterasa (sustrato)', '↑ ACh en la sinapsis', 1, ['PIZ', 'COL 15', 'EXA 9'], {
-      clave: 'Anticolinesterásico. Nunca lo pongas como antagonista.', confusiones: ['atropina', 'neostigmina'], discrepancia: 'd-fiso', sinonimos: ['Eserina'],
+      clave: 'Anticolinesterásico. Nunca lo pongas como antagonista.', confusiones: ['atropina', 'neostigmina'], sinonimos: ['Eserina'],
     }),
     f('neostigmina', 'Neostigmina', 'col-rev', 'inhibidor', 'Acetilcolinesterasa', 'Inhibidor reversible de la acetilcolinesterasa (sustrato)', '↑ ACh. Miastenia gravis', 1, ['PIZ', 'COL 15', 'PRE 10'], {
       indicaciones: 'Miastenia gravis', clave: 'Es la excepción en la lista de irreversibles del preguntero.', confusiones: ['fisostigmina'],
     }),
-    f('piridostigmina', 'Piridostigmina', 'col-rev', 'inhibidor', 'Acetilcolinesterasa', 'Inhibidor reversible de la acetilcolinesterasa', '↑ ACh. Miastenia gravis', 2, ['APU 45'], { indicaciones: 'Miastenia gravis' }),
-    f('edrofonio', 'Edrofonio', 'col-rev', 'inhibidor', 'Acetilcolinesterasa', 'Inhibidor reversible (no sustrato) de la acetilcolinesterasa', 'Diagnóstico de miastenia gravis', 2, ['COL 15', 'APU 45']),
+    f('edrofonio', 'Edrofonio', 'col-rev2', 'inhibidor', 'Acetilcolinesterasa', 'Inhibidor reversible (no sustrato) de la acetilcolinesterasa', 'Diagnóstico de miastenia gravis', 2, ['COL 15', 'APU 45']),
 
     f('paration', 'Paratión', 'col-irr', 'inhibidor', 'Acetilcolinesterasa', 'Organofosforado: inhibidor irreversible de la acetilcolinesterasa', 'Crisis colinérgica', 1, ['PIZ', 'COL 15', 'PRE 10'], { variantes: ['Parathion', 'Paration'], clave: 'Insecticida. Intoxica con exceso de efectos parasimpáticos.', confusiones: ['malation'] }),
-    f('malation', 'Malatión', 'col-irr', 'inhibidor', 'Acetilcolinesterasa', 'Organofosforado: inhibidor irreversible de la acetilcolinesterasa', 'Crisis colinérgica', 1, ['PIZ', 'COL 15', 'PRE 10'], { variantes: ['Malathion', 'Malation'], clave: 'Un apunte lo pone como antagonista colinérgico: está mal.', discrepancia: 'd-fiso', confusiones: ['paration'] }),
+    f('malation', 'Malatión', 'col-irr', 'inhibidor', 'Acetilcolinesterasa', 'Organofosforado: inhibidor irreversible de la acetilcolinesterasa', 'Crisis colinérgica', 1, ['PIZ', 'COL 15', 'PRE 10'], { variantes: ['Malathion', 'Malation'], clave: 'Un apunte lo pone como antagonista colinérgico: está mal.', confusiones: ['paration'] }),
     f('ecotiofato', 'Ecotiofato', 'col-irr', 'inhibidor', 'Acetilcolinesterasa', 'Organofosforado: inhibidor irreversible de la acetilcolinesterasa', 'Crisis colinérgica', 1, ['PIZ', 'COL 15', 'PRE 10'], { variantes: ['Ecotiofosfato'] }),
 
     f('atropina', 'Atropina', 'col-atr', 'antagonista', 'Receptores M', 'Antagonista competitivo no selectivo de los receptores muscarínicos', 'Aumenta la frecuencia cardíaca', 1, ['PIZ', 'COL 16', 'DES c25', 'DES c18', 'EXA 9'], {
@@ -66,10 +63,9 @@ export const colinergico: Capitulo = {
     }),
     f('oxibutinina', 'Oxibutinina', 'col-esp', 'antagonista', 'Receptores M', 'Antagonista competitivo no selectivo de los receptores muscarínicos', 'Antiespasmódico', 1, ['PIZ', 'COL 16'], { variantes: ['Oxibutina'] }),
     f('propinoxato', 'Propinoxato', 'col-esp', 'antagonista', 'Receptores M', 'Antagonista no selectivo del receptor colinérgico muscarínico', 'Antiespasmódico', 1, ['PIZ', 'COL 16', 'DES c18', 'DES c27'], { sinonimos: ['Propinox'], confusiones: ['propranolol'] }),
-    f('ciclopentolato', 'Ciclopentolato', 'col-esp', 'antagonista', 'Receptores M', 'Antagonista competitivo no selectivo de los receptores muscarínicos', 'Midriasis', 3, ['COL 16']),
-    f('ipratropio', 'Ipratropio', 'col-bro', 'antagonista', 'Receptores M', 'Antagonista no selectivo del receptor muscarínico', 'Broncodilatación', 1, ['PIZ', 'COL 16', 'DES c26'], { confusiones: ['tiotropio', 'salbutamol'], clave: 'Broncodilata sin ser agonista β2.' }),
-    f('tiotropio', 'Tiotropio', 'col-bro', 'antagonista', 'Receptores M', 'Antagonista competitivo no selectivo de los receptores muscarínicos', 'Broncodilatación', 1, ['PIZ', 'COL 16'], { confusiones: ['ipratropio'] }),
-    f('biperideno', 'Biperideno', 'col-atr', 'antagonista', 'Receptores M', 'Antagonista muscarínico', 'Anticolinérgico central', 3, ['PRE 13'], { clave: 'Es el intruso de la pregunta de bloqueantes adrenérgicos.', externo: true }),
+    f('ciclopentolato', 'Ciclopentolato', 'col-esp', 'antagonista', 'Receptores M', 'Antagonista competitivo no selectivo de los receptores muscarínicos', 'Midriasis pasiva y cicloplejía', 1, ['COL 16', 'CASO 1']),
+    f('ipratropio', 'Ipratropio', 'col-bro', 'antagonista', 'Receptores M', 'Antagonista no selectivo del receptor muscarínico', 'Broncodilatación. Vida media corta: crisis agudas', 1, ['PIZ', 'COL 16', 'CUA 1'], { confusiones: ['tiotropio', 'salbutamol'], clave: 'Broncodilata sin ser agonista β2.' }),
+    f('tiotropio', 'Tiotropio', 'col-bro', 'antagonista', 'Receptores M', 'Antagonista competitivo no selectivo de los receptores muscarínicos', 'Broncodilatación. Vida media larga: tratamiento crónico', 1, ['PIZ', 'COL 16', 'CUA 1'], { confusiones: ['ipratropio'] }),
 
     f('succinilcolina', 'Succinilcolina', 'col-nm', 'bloqueante', 'Receptor N de la placa', 'Bloqueante neuromuscular: bloquea de forma reversible el receptor nicotínico (despolarizante)', 'Parálisis del músculo esquelético', 1, ['PIZ', 'COL 18', 'DES c17', 'DES c26', 'DES c27', 'APU 46'], {
       variantes: ['Succinil colina', 'Suxametonio'], clave: 'En los cuadros figura como antagonista nicotínico. Si querés sumar, aclará que es despolarizante.', discrepancia: 'd-succi', adversos: 'Apnea prolongada con colinesterasa atípica',
@@ -77,12 +73,18 @@ export const colinergico: Capitulo = {
     f('atracurio', 'Atracurio', 'col-nm', 'bloqueante', 'Receptor N de la placa', 'Bloquea de forma reversible el receptor nicotínico de la placa', 'Parálisis del músculo esquelético', 1, ['PIZ', 'COL 18'], { confusiones: ['atropina'] }),
     f('tubocurarina', 'Tubocurarina', 'col-nm', 'bloqueante', 'Receptor N de la placa', 'Bloquea de forma reversible el receptor nicotínico de la placa', 'Parálisis del músculo esquelético', 1, ['PIZ', 'COL 18', 'APU 46'], { sinonimos: ['Curare'] }),
     f('pancuronio', 'Pancuronio', 'col-nm', 'bloqueante', 'Receptor N de la placa', 'Bloquea de forma reversible el receptor nicotínico de la placa', 'Parálisis del músculo esquelético', 1, ['PIZ', 'COL 18', 'APU 46']),
-    f('rocuronio', 'Rocuronio', 'col-nm', 'bloqueante', 'Receptor N de la placa', 'Antagonista competitivo del receptor nicotínico', 'Parálisis del músculo esquelético', 3, ['APU 46']),
-    f('vecuronio', 'Vecuronio', 'col-nm', 'bloqueante', 'Receptor N de la placa', 'Antagonista competitivo del receptor nicotínico', 'Parálisis del músculo esquelético', 3, ['APU 46']),
-    f('mivacurio', 'Mivacurio', 'col-nm', 'bloqueante', 'Receptor N de la placa', 'Antagonista competitivo del receptor nicotínico', 'Parálisis del músculo esquelético', 3, ['APU 46']),
-    f('toxina-botulinica', 'Toxina botulínica', 'col-nm', 'bloqueante', 'Liberación de ACh', 'Inhibe la liberación de acetilcolina', 'Parálisis por falta de liberación', 3, ['COL 4']),
+    f('toxina-botulinica', 'Toxina botulínica', 'col-lib', 'bloqueante', 'Liberación de ACh', 'Inhibe la liberación de acetilcolina', 'Disminuye la contracción: parálisis flácida', 2, ['COL 4']),
+    f('tetraetilamonio', 'Tetraetilamonio', 'col-rev2', 'inhibidor', 'Acetilcolinesterasa', 'Inhibidor reversible (no sustrato) de la acetilcolinesterasa', '↑ ACh', 2, ['CUA 1', 'COL 15']),
   ],
   mnemotecnias: [
+    mn('m-rev', 'col-rev', 'Fisi y Neo engañan a la enzima con comida falsa', [['Fisi', 'Fisostigmina'], ['Neo', 'Neostigmina'], ['comida falsa', 'Falso sustrato']],
+      'Los dos reversibles sustrato.', 'Mezclarlos con los organofosforados.'),
+    mn('m-rev2', 'col-rev2', 'Edro y Tetra ni entran a la enzima', [['Edro', 'Edrofonio'], ['Tetra', 'Tetraetilamonio'], ['ni entran', 'No son sustrato']],
+      'Los dos reversibles no sustrato.', 'Decir que todos los reversibles son sustrato.'),
+    mn('m-lib', 'col-lib', 'Botox relaja: no sale la orden', [['Botox', 'Toxina botulínica'], ['no sale la orden', 'Inhibe la liberación de ACh']],
+      'Mecanismo y efecto de la toxina.', 'Ponerla como bloqueante del receptor.'),
+    mn('m-atr', 'col-atr', 'Atropina acelera', [['Atropina', 'Antagonista muscarínico'], ['acelera', 'Aumenta la frecuencia cardíaca']],
+      'El efecto que el cuadro le asigna a la atropina.', 'Confundirla con atracurio.'),
     mn('m-nm', 'col-nm', 'Su atraco entubó al paciente', [['Su', 'Succinilcolina'], ['atraco', 'Atracurio'], ['entubó', 'Tubocurarina'], ['paciente', 'Pancuronio']],
       'Los cuatro bloqueantes neuromusculares de la pizarra, y su uso: intubar.', 'Confundir Atracurio con Atropina: el atraco termina en parálisis, no en taquicardia.'),
     mn('m-irr', 'col-irr', 'Para mal, eco: lo malo deja eco para siempre', [['Para', 'Paratión'], ['mal', 'Malatión'], ['eco', 'Ecotiofato']],
@@ -196,55 +198,6 @@ export const colinergico: Capitulo = {
       ],
     },
   ],
-  preguntas: [
-    mcReal('col', 'PRE 1', 'Los agonistas colinérgicos NO producen:', ['Salivación', 'Rubicundez', 'Vómito', 'Bradicardia'], [2], [
-      'Sí la producen: estimulan glándulas por receptores M3.',
-      'Puede aparecer por vasodilatación: no es la opción marcada.',
-      'Es la clave del preguntero.',
-      'Sí la producen: M2 en el corazón.',
-    ], { estado: 'dudosa', nota: 'La clave marca vómito, pero un exceso colinérgico también puede dar vómitos. Respondé la clave si sale igual, y sabé que la pregunta es discutible.' }),
-    vfReal('col', 'PRE 3', 'La acetilcolina es un agonista selectivo del receptor muscarínico', false, 'Activa receptores muscarínicos y nicotínicos. La presentación la pone entre los ésteres de colina no selectivos.', { farmacos: ['acetilcolina'] }),
-    vfReal('col', 'PRE 9', 'La acetilcolina es un agonista selectivo del receptor muscarínico', false, 'Esta es la misma afirmación de la pregunta 3. El preguntero la marca verdadera acá y falsa allá. Lo correcto es falso: tiene más afinidad por M, pero también activa N.', { estado: 'corregida', claveMaterial: true, nota: 'El preguntero se contradice: pregunta 3 falso, pregunta 9 verdadero.', farmacos: ['acetilcolina'] }),
-    vfReal('col', 'PRE 6', 'En el ojo la atropina provoca midriasis y parálisis de la acomodación', true, 'Bloquea M en el esfínter del iris y en el músculo ciliar.', { farmacos: ['atropina'] }),
-    mcReal('col', 'PRE 10', 'Los siguientes fármacos son inhibidores irreversibles de la colinesterasa, EXCEPTO:', ['Parathion', 'Malathion', 'Ecotiofosfato', 'Neostigmina'], [3], [
-      'Organofosforado, irreversible.', 'Organofosforado, irreversible.', 'Organofosforado, irreversible.', 'Correcta: es reversible.',
-    ], { farmacos: ['neostigmina', 'paration', 'malation', 'ecotiofato'] }),
-    vfReal('col', 'PRE 23', 'La hioscina es un antagonista selectivo del receptor muscarínico', true, 'Selectivo acá significa que actúa sobre M y no sobre N. Entre subtipos M no distingue: por eso los cuadros dicen "no selectivo". Son dos usos de la misma palabra.', { farmacos: ['hioscina'] }),
-    vfReal('col', 'PRE 65', 'La hiosina es un antagonista selectivo del receptor nicotínico', false, 'Es muscarínica.', { farmacos: ['hioscina'] }),
-    mcGen('col', 'Un paciente con intoxicación por insecticida llega con miosis, bradicardia y sialorrea. ¿Qué mecanismo explica el cuadro?', ['Bloqueo del receptor muscarínico', 'Inhibición irreversible de la acetilcolinesterasa', 'Bloqueo del receptor nicotínico de la placa', 'Agonismo del receptor β1'], 1, [
-      'Daría lo contrario: midriasis y taquicardia.', 'Correcta: los organofosforados acumulan ACh y dan crisis colinérgica.', 'Daría parálisis, sin esos signos muscarínicos.', 'Daría taquicardia.',
-    ], { farmacos: ['paration', 'malation'] }),
-    mcGen('col', '¿Cuál de estos pares es de antagonistas colinérgicos?', ['Fisostigmina y malatión', 'Atropina e hioscina', 'Betanecol y pilocarpina', 'Neostigmina y atropina'], 1, [
-      'Son anticolinesterásicos: aumentan la ACh. Este es el error de un apunte real.', 'Correcta: bloquean el receptor muscarínico.', 'Son agonistas.', 'La neostigmina es anticolinesterásica.',
-    ], { farmacos: ['atropina', 'hioscina', 'fisostigmina', 'malation'] }),
-    mcGen('col', 'Señalá la INCORRECTA sobre los antimuscarínicos:', ['Producen taquicardia', 'Están contraindicados en glaucoma', 'Aumentan la motilidad gastrointestinal', 'Producen boca seca'], 2, [
-      'Es cierto: quitan el freno vagal.', 'Es cierto.', 'Correcta: la disminuyen.', 'Es cierto.',
-    ]),
-    mcGen('col', '¿Cuál de estos broncodilatadores NO es un agonista β2?', ['Salbutamol', 'Ipratropio', 'Isoproterenol', 'Adrenalina'], 1, [
-      'Es agonista β2.', 'Correcta: bloquea receptores muscarínicos.', 'Agonista β.', 'Activa α y β.',
-    ], { farmacos: ['ipratropio', 'salbutamol'] }),
-    mcGen('col', '¿Qué fármaco produce parálisis del músculo esquelético por actuar en la placa motora?', ['Atropina', 'Propinoxato', 'Pancuronio', 'Pilocarpina'], 2, [
-      'Bloquea M, no la placa.', 'Antiespasmódico: músculo liso.', 'Correcta: bloquea el receptor nicotínico.', 'Agonista muscarínico.',
-    ], { farmacos: ['pancuronio', 'atropina'] }),
-    mcGen('col', 'La neostigmina se usa en miastenia gravis porque:', ['Bloquea el receptor nicotínico', 'Aumenta la ACh disponible en la placa', 'Imita a la ACh en el receptor M', 'Aumenta la liberación de calcio'], 1, [
-      'Eso paralizaría más.', 'Correcta: inhibe la acetilcolinesterasa.', 'No es agonista.', 'No actúa por calcio.',
-    ], { farmacos: ['neostigmina'] }),
-    mcGen('col', '¿Dónde predomina el receptor M2?', ['Músculo liso bronquial', 'Glándulas salivales', 'Miocardio', 'Placa motora'], 2, [
-      'Es M3.', 'Es M3.', 'Correcta.', 'Es nicotínico.',
-    ]),
-    vfGen('col', 'Hioscina y escopolamina son la misma droga', true, 'La presentación dice escopolamina (l-hioscina).', ['hioscina']),
-    vfGen('col', 'El betanecol es un agonista β adrenérgico', false, 'Es un agonista muscarínico: el nombre engaña.', ['betanecol']),
-    vfGen('col', 'Los organofosforados inhiben la acetilcolinesterasa de forma irreversible', true, 'Unión covalente: por eso producen crisis colinérgica.', ['paration']),
-    vfGen('col', 'La liberación de acetilcolina es independiente del calcio', false, 'Es dependiente de calcio. Algunos antibióticos la disminuyen compitiendo con el calcio.'),
-  ],
-  desarrollos: [
-    dev('col', 'DES 8, EXA 20', 'Mencione 2 antagonistas colinérgicos y 4 efectos anticolinérgicos', ['Atropina e hioscina', 'Midriasis, taquicardia, boca seca, menor motilidad gastrointestinal'], 'Los antagonistas muscarínicos bloquean en forma competitiva el receptor M. Sin el tono parasimpático aparecen: midriasis y parálisis de la acomodación en el ojo, boca seca, taquicardia, broncodilatación con menor secreción bronquial, menor motilidad gastrointestinal, dilatación de uréteres y vejiga, piel seca y caliente, y en SNC excitación y alucinaciones.', {
-      encontrada: 'EXA 20 respondía: Fisostigmina, Malatión', nota: 'Fisostigmina y malatión son anticolinesterásicos: aumentan la ACh. Nunca los pongas como antagonistas.', farmacos: ['atropina', 'hioscina'],
-    }),
-    dev('col', 'DES 2', 'Mencione 4 efectos de las drogas ANTICOLINÉRGICAS', ['Taquicardia', 'Alucinaciones', 'Dilatación de uréteres', 'Broncodilatación'], 'Sumá si te alcanza el tiempo: midriasis, boca seca, menor motilidad gastrointestinal, piel seca y caliente.'),
-    dev('col', 'DES 7, EXA 19', 'Mencione 5 efectos de la ACETILCOLINA sobre diferentes tejidos', ['Bradicardia en el corazón', 'Miosis en el ojo', 'Aumento de secreción glandular', 'Aumento de la motilidad gastrointestinal', 'Contracción del músculo esquelético'], 'En el corazón hiperpolariza por M2 y baja la frecuencia. En músculo liso despolariza y contrae por M3. Estimula la secreción glandular. En la placa motora actúa sobre receptores nicotínicos y contrae el músculo esquelético.', { nota: 'EXA 19 listaba "efector de la unión neuromuscular" y "efector de fibras postganglionares": eso es dónde actúa, no un efecto. Mejor usar esta lista.' }),
-    dev('col', 'EXA 9', 'Mencione 2 drogas que actúen sobre neurotransmisión colinérgica e indique su mecanismo de acción', ['Atropina: antagonista competitivo no selectivo de receptores muscarínicos', 'Fisostigmina: inhibidor reversible de la acetilcolinesterasa'], 'La atropina compite con la ACh en M1 a M5. La fisostigmina inhibe la enzima que degrada la ACh y la aumenta en la sinapsis.', {
-      encontrada: 'Atropina: antagonista no competitivo', nota: 'La presentación dice que todos son bloqueantes no selectivos competitivos.', farmacos: ['atropina', 'fisostigmina'],
-    }),
-  ],
+  preguntas: [],
+  desarrollos: [],
 };

@@ -55,7 +55,7 @@ export function Inicio() {
       <section className="plan">
         {primera ? <>
           <h2>Antes de arrancar, mirá el mapa</h2>
-          <p>Qué vas a ver, de dónde sale cada tema, en qué orden estudiarlo y para qué.</p>
+          <p>Cómo es el examen, qué sale de qué y cómo repartir los dos días.</p>
           <Link className="boton" to="/guia">Ver el mapa de la 2ª ERA</Link>
         </> : vencidos.length > 0 ? <>
           <h2>{vencidos.length} nombres para repasar hoy</h2>
@@ -75,7 +75,7 @@ export function Inicio() {
       </section>
       <section className="seccion">
         <Link className="fila-cap" to="/esencial"><h3>Lo esencial para aprobar</h3><span className="tenue chico">Para el final</span></Link>
-        <Link className="fila-cap" to="/examen/simulacro"><h3>Simulacro</h3><span className="tenue chico">Todo mezclado</span></Link>
+        <Link className="fila-cap" to="/examen/simulacro"><h3>Simulacro</h3><span className="tenue chico">4 a desarrollar y 40 choice</span></Link>
         <Link className="fila-cap" to="/ajustes"><h3>Mi progreso y ajustes</h3><span className="tenue chico">Pasar al celu o tablet</span></Link>
       </section>
     </main>

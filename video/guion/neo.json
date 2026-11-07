@@ -68,7 +68,7 @@
    "id": "neo-1-3",
    "escena": 1,
    "paso": 3,
-   "text": "En G dos: etopósido, bleomicina, mitoxantrona e irinotecán.",
+   "text": "En G dos: etopósido y bleomicina.",
    "retener": [
     "G2: etopósido, bleomicina"
    ]
@@ -105,12 +105,11 @@
    "id": "neo-2-2",
    "escena": 2,
    "paso": 2,
-   "text": "Antimetabolitos: interfieren con la síntesis de ácidos nucleicos. Análogo de ácido fólico: metotrexato. Pirimidinas: citarabina y cinco fluorouracilo. Purinas: mercaptopurina.",
+   "text": "Antimetabolitos: interfieren con la síntesis de ácidos nucleicos. Análogo de ácido fólico: metotrexato. Pirimidinas: cinco fluorouracilo. Purinas: cladribina.",
    "retener": [
     "Metotrexato",
     "5-Fluorouracilo",
-    "Citarabina",
-    "Mercaptopurina"
+    "Cladribina"
    ]
   },
   {
@@ -133,7 +132,7 @@
    "id": "neo-3-1",
    "escena": 3,
    "paso": 1,
-   "text": "Vincristina, vinblastina y vinorelbine se unen a la tubulina e inhiben el ensamblaje. El huso se disuelve.",
+   "text": "Vincristina y vinblastina se unen a la tubulina e inhiben el ensamblaje. El huso se disuelve.",
    "retener": [
     "Vinca: inhibe ensamblaje"
    ]

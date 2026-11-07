@@ -1,5 +1,5 @@
 import type { Capitulo } from '../tipos';
-import { dev, g, hacerFicha, mcGen, mcReal, mn, par, vfGen, vfReal } from '../h';
+import { g, hacerFicha, mn, par } from '../h';
 
 const f = hacerFicha('dop');
 
@@ -14,7 +14,8 @@ export const dopaminergico: Capitulo = {
   ],
   mapa: [
     { titulo: 'Suben la señal dopaminérgica', grupos: ['dop-pre', 'dop-ago', 'dop-enz', 'dop-rec'] },
-    { titulo: 'Bajan la señal dopaminérgica', grupos: ['dop-ant', 'dop-dep'] },
+    { titulo: 'Bajan la señal dopaminérgica', grupos: ['dop-ant'] },
+    { titulo: 'También en este cuadro: antieméticos', grupos: [], tambien: ['metoclopramida', 'ondansetron'], efecto: 'Metoclopramida bloquea D2 y 5-HT3. Ondansetrón, 5-HT3' },
   ],
   grupos: [
     g('dop-pre', 'Precursor y liberador', 'precursor', 'Antiparkinsonianos', { regla: 'Dan materia prima o hacen salir más dopamina.' }),
@@ -22,38 +23,36 @@ export const dopaminergico: Capitulo = {
     g('dop-enz', 'Inhibidores del metabolismo', 'inhibidor', 'Antiparkinsonianos: ↑ dopamina', { regla: 'Frenan las enzimas que degradan dopamina.', patron: 'La terminación -capona marca a los inhibidores de COMT.' }),
     g('dop-rec', 'Inhiben la recaptación', 'inhibidor', 'Euforia. Psicosis por consumo', { regla: 'Bloquean el transportador DAT.' }),
     g('dop-ant', 'Antagonistas D2', 'antagonista', 'Antipsicótico o antiemético', { regla: 'Bloquean el receptor D2. En SNC, antipsicóticos. Domperidona actúa en la periferia y es antiemética.' }),
-    g('dop-dep', 'Vacían vesículas', 'inhibidor', 'Depleción de dopamina', { regla: 'Impiden guardar dopamina en la vesícula.' }),
   ],
   farmacos: [
     f('levodopa', 'Levodopa', 'dop-pre', 'precursor', 'Síntesis de dopamina', 'Precursor de dopamina: atraviesa la BHE', 'Antiparkinsoniano', 1, ['PIZ', 'DOP 30', 'DES c25', 'PRE 86', 'EXA 38'], {
-      sinonimos: ['L-DOPA', 'L-Dopa', 'Levo-dopa'], clave: 'La dopamina no cruza la BHE; la levodopa sí. Un apunte dice lo contrario.', discrepancia: 'd-levodopa', confusiones: ['amantadina'], adversos: 'Pérdida de eficacia con el avance neuronal',
+      sinonimos: ['L-DOPA', 'L-Dopa', 'Levo-dopa'], clave: 'La dopamina no cruza la BHE; la levodopa sí. Un apunte dice lo contrario.', confusiones: ['amantadina'], adversos: 'Pérdida de eficacia con el avance neuronal',
     }),
-    f('carbidopa', 'Carbidopa', 'dop-pre', 'inhibidor', 'L-AAD periférica', 'Inhibe la L-AAD', 'Se asocia a levodopa', 3, ['ADR 14'], { externo: true }),
     f('amantadina', 'Amantadina', 'dop-pre', 'liberador', 'Liberación de dopamina', 'Aumenta la liberación de dopamina', 'Antiparkinsoniano de primera etapa', 1, ['PIZ', 'DOP 30', 'DES c26', 'PRE 7'], {
       clave: 'Es la que "no actúa sobre receptores dopaminérgicos" del preguntero.', confusiones: ['levodopa'],
     }),
-    f('bromocriptina', 'Bromocriptina', 'dop-ago', 'agonista', 'D2', 'Agonista selectivo de los receptores D2', 'Antiparkinsoniano', 1, ['PIZ', 'DOP 31', 'DES c12', 'DES c26', 'DES c28', 'PRE 36'], {
-      discrepancia: 'd-bromo', selectividad: 'D2', confusiones: ['haloperidol', 'cabergolina'], clave: 'Agonista. Nunca antagonista.', indicaciones: 'Parkinson, hiperprolactinemia',
+    f('bromocriptina', 'Bromocriptina', 'dop-ago', 'agonista', 'D2', 'Agonista selectivo de los receptores D2', 'Antiparkinsoniano', 1, ['PIZ', 'DOP 31', 'DES c12', 'DES c26', 'DES c28', 'PRE 36'], { selectividad: 'D2', confusiones: ['haloperidol', 'cabergolina'], clave: 'Agonista. Nunca antagonista.', indicaciones: 'Parkinson, hiperprolactinemia',
     }),
     f('pergolida', 'Pergolida', 'dop-ago', 'agonista', 'D', 'Agonista dopaminérgico no selectivo', 'Disminuye prolactina', 1, ['PIZ', 'DOP 30', 'DOP 31'], { variantes: ['Pergolina'], selectividad: 'No selectivo', discrepancia: 'd-grafias' }),
     f('cabergolina', 'Cabergolina', 'dop-ago', 'agonista', 'D', 'Agonista dopaminérgico no selectivo', 'Disminuye prolactina', 1, ['PIZ', 'DOP 30', 'DOP 31'], { variantes: ['Carbegolina', 'Cabergolida', 'Carbegolida'], selectividad: 'No selectivo', confusiones: ['bromocriptina'], discrepancia: 'd-grafias' }),
     f('selegilina', 'Selegilina', 'dop-enz', 'inhibidor', 'MAO-B', 'Inhibidor irreversible selectivo de la MAO-B', 'Antiparkinsoniano', 1, ['PIZ', 'ADR 12', 'DOP 30', 'DES c1', 'DES c12', 'DES 24', 'PRE 55', 'PRE 37', 'PRE 38'], {
-      variantes: ['Seleglina'], selectividad: 'MAO-B', confusiones: ['moclobemida', 'clorgilina', 'entacapona'], clave: 'MAO-B, no COMT ni MAO-A.',
+      variantes: ['Seleglina'], selectividad: 'MAO-B', confusiones: ['moclobemida', 'clorgilina', 'entacapona'], clave: 'Irreversible. El cuadro dice reversible, pero Campregher la pone como irreversible.', discrepancia: 'd-selegilina',
     }),
     f('entacapona', 'Entacapona', 'dop-enz', 'inhibidor', 'COMT', 'Inhibidor reversible de la COMT', '↑ concentración de dopamina', 1, ['PIZ', 'ADR 13', 'DOP 30'], { variantes: ['Entacapone'], confusiones: ['selegilina', 'tolcapona'] }),
     f('tolcapona', 'Tolcapona', 'dop-enz', 'inhibidor', 'COMT', 'Inhibidor reversible de la COMT', '↑ concentración de dopamina', 2, ['ADR 13', 'DOP 30'], { variantes: ['Tolcapone'] }),
     f('cocaina', 'Cocaína', 'dop-rec', 'inhibidor', 'DAT', 'Inhibe la recaptación de dopamina y noradrenalina (DAT)', 'Euforia, simpaticomimético', 2, ['DOP 7', 'DOP 30', 'ADR 12', 'PRE 12'], { confusiones: ['anfetamina'] }),
     f('anfetamina', 'Anfetamina', 'dop-rec', 'liberador', 'DAT y vesícula', 'Aumenta la liberación de dopamina y bloquea DAT', 'Cuadros psicóticos similares a la esquizofrenia', 2, ['DOP 7', 'DOP 25', 'DOP 30', 'ADR 5', 'PRE 12'], { sinonimos: ['Anfetaminas'], confusiones: ['cocaina'] }),
-    f('haloperidol', 'Haloperidol', 'dop-ant', 'antagonista', 'D2', 'Antagonista selectivo de los receptores D2', 'Antipsicótico', 1, ['PIZ', 'DOP 30', 'DES c1', 'DES c12', 'DES c18', 'PRE 55', 'PRE 61', 'EXA 35'], {
-      selectividad: 'D2', confusiones: ['bromocriptina', 'domperidona', 'labetalol'], clave: 'Puede dar parkinsonismo. Un cuadro le puso antiemético: el efecto de examen es antipsicótico.', discrepancia: 'd-haloperidol', adversos: 'Parkinsonismo, aumento de prolactina',
+    f('haloperidol', 'Haloperidol', 'dop-ant', 'antagonista', 'D2', 'Antagonista selectivo de los receptores D2', 'Antipsicótico', 1, ['PIZ', 'DOP 30', 'CUA 4'], {
+      selectividad: 'D2', confusiones: ['bromocriptina', 'domperidona', 'labetalol'], clave: 'También bloquea receptores α y H1: por eso da hipotensión y sueño.', adversos: 'Hipotensión, sueño, parkinsonismo, aumento de prolactina',
     }),
     f('clorpromazina', 'Clorpromazina', 'dop-ant', 'antagonista', 'D2', 'Bloquea receptores D2', 'Antipsicótico', 2, ['DOP 30', 'APU 57'], { variantes: ['Clorpromacina'], adversos: 'Parkinsonismo' }),
     f('domperidona', 'Domperidona', 'dop-ant', 'antagonista', 'D2', 'Antagonista de los receptores D2', 'Antiemético y proquinético', 1, ['PIZ', 'DOP 30', 'DES c4', 'DES c27'], {
       confusiones: ['metoclopramida', 'haloperidol'], discrepancia: 'd-domperidona', clave: 'D2, no 5-HT3. La pizarra la agrupa con los 5-HT3.', selectividad: 'D2',
     }),
-    f('tetrabenazina', 'Tetrabenazina', 'dop-dep', 'inhibidor', 'Vesícula', 'Impide almacenar dopamina en la vesícula', 'Depleción de dopamina', 3, ['DOP 31']),
   ],
   mnemotecnias: [
+    mn('m-rec', 'dop-rec', 'Coca tapa, Anfeta empuja', [['Coca tapa', 'Cocaína inhibe la recaptación'], ['Anfeta empuja', 'Anfetamina aumenta la liberación']],
+      'Las dos drogas sobre el transportador DAT.', 'Creer que hacen exactamente lo mismo.'),
     mn('m-bromo', 'dop-ago', 'Bromo con la dopamina: la Bromocriptina la acompaña, no la bloquea', [['Bromo', 'Bromocriptina'], ['con', 'Agonista D2']],
       'Que bromocriptina es agonista.', 'El error de ponerla como antagonista.'),
     mn('m-perg', 'dop-ago', 'Pero Cabe más dopamina: Pergolida y Cabergolina', [['Pero', 'Pergolida'], ['Cabe', 'Cabergolina'], ['más dopamina', 'Agonistas: no selectivos']],
@@ -139,56 +138,6 @@ export const dopaminergico: Capitulo = {
       ],
     },
   ],
-  preguntas: [
-    mcReal('dop', 'PRE 4', 'Marque la incorrecta sobre el metabolismo de la dopamina:', ['Es metabolizada por acción de la MAO y COMT', 'El metabolito final es el ácido homovanílico', 'La enzima aldehído-deshidrogenasa actúa en las fases finales del metabolismo', 'La oxidación es exclusiva de la MAO-b'], [3], [
-      'Es cierto.', 'Es cierto.', 'Es cierto.', 'Correcta: la dopamina es sustrato de MAO-A y MAO-B.',
-    ]),
-    mcReal('dop', 'PRE 7', 'Cuál de las siguientes drogas NO actúan sobre los receptores dopaminérgicos:', ['Bromocriptina', 'Domperidona', 'Amantadina', 'Haloperidol'], [2], [
-      'Agonista D2.', 'Antagonista D2.', 'Correcta: aumenta la liberación, no toca el receptor.', 'Antagonista D2.',
-    ], { farmacos: ['amantadina', 'bromocriptina', 'domperidona', 'haloperidol'] }),
-    mcReal('dop', 'PRE 12', 'La correcta sobre la recaptación de dopamina:', ['El transportador permite el flujo de DA solo hacia el interior de la neurona', 'Es inhibido por cocaína y anfetamina', 'El transportador es una proteína dependiente de Na+/Ca+', 'Es exclusiva de neuronas del SNC y tubo digestivo'], [1], [
-      'Transporta en ambas direcciones.', 'Correcta.', 'Depende de sodio y cloro.', 'Exclusivo de SNC y retina.',
-    ], { farmacos: ['cocaina', 'anfetamina'] }),
-    mcReal('dop', 'PRE 34', '¿Cuál NO es una vía dopaminérgica larga?', ['Mesolímbica', 'Mesopontina', 'Nigroestriada', 'Mesocortical'], [1], [
-      'Larga.', 'Correcta: es intermedia.', 'Larga.', 'Larga.',
-    ]),
-    mcReal('dop', 'PRE 27', 'La correcta sobre la acción periférica de la dopamina:', ['Dosis altas actúa sobre la reabsorción renal de Na+, aumentando la diuresis', 'Dosis intermedia produce aumento de la contractilidad cardíaca dependiente de los receptores β1 adrenérgicos', 'Dosis bajas actúa sobre los vasos renales produciendo aumento de la tensión arterial', 'No tiene efectos periféricos a nivel cardíaco'], [1], [
-      'Eso pasa a dosis bajas.', 'Correcta.', 'A dosis bajas vasodilata y baja la presión.', 'Sí los tiene.',
-    ], { farmacos: ['dopamina'] }),
-    vfReal('dop', 'PRE 36', 'La bromocriptina es un antagonista NO selectivo de los receptores dopaminérgicos utilizada en el tratamiento del Parkinson', false, 'Es agonista.', { farmacos: ['bromocriptina'] }),
-    vfReal('dop', 'PRE 37', 'La selegilina es un inhibidor selectivo de la enzima MAO-A', false, 'Es de la MAO-B.', { farmacos: ['selegilina'] }),
-    vfReal('dop', 'PRE 38', 'La selegilina inhibe el metabolismo de la DA ya que es un inhibidor reversible de la COMT', false, 'Inhibidor selectivo de MAO-B. Disminuye el metabolismo de la dopamina.', { farmacos: ['selegilina'] }),
-    mcReal('dop', 'PRE 39', 'La correcta sobre la familia de receptores dopaminérgicos D1:', ['Actúan sobre la adenilatociclasa aumentando AMPc', 'Incluye los receptores D1, D3, D4', 'Aumenta Ca++ intracelular', 'Incluye a los receptores D1, D4, D5'], [0], [
-      'Correcta.', 'D3 y D4 son familia D2.', 'No es lo característico.', 'D4 es familia D2.',
-    ]),
-    vfReal('dop', 'PRE 61', 'El haloperidol es un antagonista de los receptores D2 y se usa como antipsicótico', true, 'Exacto.', { farmacos: ['haloperidol'] }),
-    mcGen('dop', '¿Cuál produciría aumento de prolactina?', ['Bromocriptina', 'Cabergolina', 'Haloperidol', 'Pergolida'], 2, [
-      'Agonista: la baja.', 'Agonista: la baja.', 'Correcta: bloquea D2 y la dopamina deja de frenarla.', 'Agonista: la baja.',
-    ], { farmacos: ['haloperidol', 'bromocriptina'] }),
-    mcGen('dop', 'Un paciente con Parkinson inicial recibe un fármaco que aumenta la liberación de dopamina. ¿Cuál es?', ['Selegilina', 'Amantadina', 'Entacapona', 'Haloperidol'], 1, [
-      'Inhibe MAO-B.', 'Correcta.', 'Inhibe COMT.', 'Empeoraría el cuadro.',
-    ], { farmacos: ['amantadina'] }),
-    mcGen('dop', '¿Por qué se da levodopa y no dopamina en el Parkinson?', ['La dopamina se absorbe mejor', 'La levodopa atraviesa la BHE y la dopamina no', 'La levodopa es agonista D2', 'La dopamina inhibe la MAO'], 1, [
-      'No es la razón.', 'Correcta.', 'Es precursor.', 'No.',
-    ], { farmacos: ['levodopa'] }),
-    mcGen('dop', '¿Qué autorreceptor regula la vía dopaminérgica?', ['D1', 'D2', 'D4', 'D5'], 1, [
-      'Es postsináptico.', 'Correcta: los presinápticos son D2.', 'Postsináptico.', 'Postsináptico.',
-    ]),
-    mcGen('dop', 'Inhibidor de COMT:', ['Selegilina', 'Tolcapona', 'Moclobemida', 'Clorgilina'], 1, [
-      'MAO-B.', 'Correcta.', 'MAO-A.', 'MAO-A.',
-    ], { farmacos: ['tolcapona'] }),
-    vfGen('dop', 'Los síntomas parkinsonianos aparecen cuando la pérdida neuronal alcanza el 80%', true, 'Por eso el diagnóstico es tardío.'),
-    vfGen('dop', 'La domperidona es agonista dopaminérgico', false, 'Es antagonista D2.', ['domperidona']),
-    vfGen('dop', 'Las neuronas dopaminérgicas carecen de dopamina β-hidroxilasa', true, 'Por eso no llegan a noradrenalina.'),
-  ],
-  desarrollos: [
-    dev('dop', 'EXA 6', 'Mencione 3 drogas que actúen sobre la neurotransmisión dopaminérgica e indique su mecanismo de acción', ['Haloperidol: antagonista D2, esquizofrenia', 'Bromocriptina: agonista selectivo D2, Parkinson', 'Selegilina: inhibidor de MAO-B, Parkinson'], 'También sirven levodopa como precursor, amantadina que libera dopamina y entacapona que inhibe COMT.', {
-      encontrada: 'Bromocriptina: Inhibe selectivamente Rs D2', nota: 'Es agonista, no inhibidora del receptor.', farmacos: ['haloperidol', 'bromocriptina', 'selegilina'],
-    }),
-    dev('dop', 'PRE 86, EXA 38', 'Mencione el mecanismo de acción e indicaciones de la L-Dopa', ['Precursor de dopamina que atraviesa la BHE', 'Indicación: Parkinson'], 'La dopamina no cruza la barrera hematoencefálica. La levodopa sí, y en los ganglios basales se convierte en dopamina, compensando la pérdida de la vía nigroestriada.', {
-      encontrada: 'Precursor de DOPAMINA, no atraviesa la barrera hematoencefálica', nota: 'Lo que no atraviesa es la dopamina. La levodopa sí.', farmacos: ['levodopa'],
-    }),
-    dev('dop', 'EXA 35', 'Mecanismo de acción del Haloperidol', ['Antagonista de receptores D2'], 'Bloquea D2 en la vía mesolímbica. Efecto antipsicótico. Adversos: parkinsonismo y aumento de prolactina.', { farmacos: ['haloperidol'] }),
-    dev('dop', 'DES 24', 'Complete el cuadro sobre las Monoaminooxidasas: isoformas, sustratos e inhibidor', ['MAO-A: serotonina, adrenalina y noradrenalina. Inhibidores: clorgilina y moclobemida', 'MAO-B: feniletilamina. Inhibidor: selegilina'], 'Tiramina y dopamina son sustratos de ambas. Moclobemida es reversible; clorgilina y selegilina, irreversibles.', { farmacos: ['selegilina', 'clorgilina', 'moclobemida'] }),
-  ],
+  preguntas: [],
+  desarrollos: [],
 };

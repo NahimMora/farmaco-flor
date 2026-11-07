@@ -1,5 +1,5 @@
 import type { Capitulo } from '../tipos';
-import { dev, g, hacerFicha, mcGen, mcReal, mn, par, vfGen, vfReal } from '../h';
+import { g, hacerFicha, mn, par } from '../h';
 
 const f = hacerFicha('gab');
 
@@ -9,22 +9,21 @@ export const gaba: Capitulo = {
   titulo: 'GABA y glutamato',
   objetivo: 'Explicar por qué BZD y barbitúricos abren distinto el canal, y los tres mecanismos del valproico.',
   avisos: [
-    'Los tres mecanismos del ácido valproico aparecen en seis preguntas reales distintas. Son fijos.',
-    'Benzodiacepinas: aumentan la frecuencia de apertura. Barbitúricos: el tiempo. El preguntero lo pregunta directo.',
+    'Mecanismo y efecto del ácido valproico se piden a desarrollar. Tenelo de memoria.',
+    'Benzodiacepinas: aumentan la frecuencia de apertura. Barbitúricos: el tiempo. Sale en choice.',
   ],
   mapa: [
     { titulo: 'Aumentan la inhibición GABA', grupos: ['gab-bzd', 'gab-bar', 'gab-val', 'gab-rec'] },
-    { titulo: 'Disminuyen la excitación', grupos: ['gab-na', 'gab-ca', 'gab-glu'] },
+    { titulo: 'Disminuyen la excitación', grupos: ['gab-na', 'gab-ca'] },
     { titulo: 'Antagonista', grupos: ['gab-flu'] },
   ],
   grupos: [
     g('gab-bzd', 'Benzodiacepinas', 'modulador', '↑ frecuencia de apertura de Cl−. Ansiolítico, sedante, hipnótico, anticonvulsivante', { regla: 'No activan solas al receptor: potencian al GABA en el GABA-A por un sitio alostérico.', patron: 'Terminan en -azepam o -zolam.' }),
     g('gab-bar', 'Barbitúricos', 'modulador', '↑ tiempo de apertura de Cl−. Anticonvulsivante, sedante', { regla: 'Actúan sobre el canal GABA-A y prolongan la apertura.', patron: 'Terminan en -barbital o -tal.' }),
     g('gab-val', 'Ácido valproico', 'inhibidor', 'Antiepiléptico. Tres mecanismos', { regla: 'Inhibe recaptación de GABA, inhibe GABA transaminasa e inhibe canales de Na+.' }),
-    g('gab-rec', 'Inhiben recaptación o degradación', 'inhibidor', 'Más GABA: antiepilépticos', { regla: 'Vigabatrina frena la enzima y tiagabina la recaptación.' }),
+    g('gab-rec', 'Frena la degradación de GABA', 'inhibidor', 'Más GABA: antiepiléptico', { regla: 'Vigabatrina inhibe la GABA transaminasa.' }),
     g('gab-na', 'Inactivan canales de Na+', 'modulador', '↑ tiempo de inactivación de Na+. Antiepilépticos', { regla: 'Aumentan el tiempo de inactivación del canal de sodio y bajan la excitación.' }),
     g('gab-ca', 'Bloquean canales de Ca++', 'bloqueante', 'Antiepiléptico', { regla: 'Bloqueo de canales de calcio.' }),
-    g('gab-glu', 'Reducen el glutamato', 'antagonista', 'Antiepilépticos', { regla: 'Disminuyen la excitación glutamatérgica.' }),
     g('gab-flu', 'Antagonista de benzodiacepinas', 'antagonista', 'Revierte la intoxicación por BZD', { regla: 'Compite por el sitio de benzodiacepinas en el GABA-A.' }),
   ],
   farmacos: [
@@ -34,29 +33,34 @@ export const gaba: Capitulo = {
     f('clonazepam', 'Clonazepam', 'gab-bzd', 'modulador', 'GABA-A', 'Aumenta la frecuencia de apertura de los canales de cloro', 'Ansiolítico, sedante, hipnótico, anticonvulsivante', 1, ['PIZ', 'DES c30', 'DES 6'], { variantes: ['Clonazepan'] }),
     f('alprazolam', 'Alprazolam', 'gab-bzd', 'modulador', 'GABA-A', 'Aumenta la frecuencia de apertura de los canales de cloro', 'Ansiolítico, sedante, hipnótico', 1, ['PIZ', 'GAB 30', 'DES 6'], { variantes: ['Alprozolam'] }),
     f('midazolam', 'Midazolam', 'gab-bzd', 'modulador', 'GABA-A', 'Aumenta la frecuencia de apertura de los canales de cloro', 'Ansiolítico, sedante, hipnótico', 1, ['PIZ', 'GAB 30', 'PRE 22']),
-    f('imidazenil', 'Imidazenil', 'gab-bzd', 'modulador', 'GABA-A', 'Actúa en el sitio de benzodiacepinas', 'Ansiolítico', 3, ['GAB 30']),
-    f('zopiclona', 'Zopiclona', 'gab-bzd', 'modulador', 'GABA-A', 'Hipnótico que actúa en el complejo GABA-A', 'Hipnótico', 3, ['APU 61'], { externo: true }),
     f('fenobarbital', 'Fenobarbital', 'gab-bar', 'modulador', 'GABA-A', 'Aumenta el tiempo de apertura de los canales de cloro', 'Anticonvulsivante y antiepiléptico', 1, ['PIZ', 'GAB 30', 'GAB 31', 'DES c18', 'DES c27', 'PRE 26', 'PRE 42'], { confusiones: ['diazepam', 'fenitoina'], clave: 'Tiempo, no frecuencia.' }),
-    f('tiopental', 'Tiopental', 'gab-bar', 'modulador', 'GABA-A', 'Aumenta el tiempo de apertura de los canales de cloro', 'Sedante', 1, ['PIZ', 'GAB 30'], { variantes: ['Tiopental sódico'] }),
+    f('tiopental', 'Tiopental', 'gab-bar', 'modulador', 'GABA-A', 'Aumenta el tiempo de apertura de los canales de cloro', 'Anestésico general: sedante', 1, ['PIZ', 'GAB 30', 'CUA 6'], { variantes: ['Tiopental sódico'] }),
     f('valproico', 'Ácido valproico', 'gab-val', 'inhibidor', 'GABA-T, recaptación, Na+', 'Inhibe la recaptación de GABA, inhibe la GABA transaminasa e inhibe canales de Na+', 'Antiepiléptico', 1, ['PIZ', 'GAB 31', 'GAB 32', 'DES c1', 'DES c17', 'DES c25', 'DES 15', 'DES 23', 'EXA 4', 'EXA 26', 'PRE 28', 'PRE 51'], {
       sinonimos: ['Valproato'], variantes: ['Ac. Valproico', 'Acido valproico'], discrepancia: 'd-valproico', clave: 'Tres mecanismos. Si piden uno solo, cualquiera vale.', confusiones: ['vigabatrina', 'carbamazepina'],
     }),
     f('vigabatrina', 'Vigabatrina', 'gab-rec', 'inhibidor', 'GABA-T', 'Inhibe la GABA transaminasa', 'Antiepiléptico', 1, ['GAB 30', 'GAB 31', 'PRE 42'], { confusiones: ['valproico'] }),
-    f('tiagabina', 'Tiagabina', 'gab-rec', 'inhibidor', 'Recaptación de GABA', 'Inhibe la recaptación de GABA', 'Antiepiléptico', 2, ['GAB 30'], { externo: true }),
     f('carbamazepina', 'Carbamazepina', 'gab-na', 'modulador', 'Canal de Na+', 'Aumenta el tiempo de inactivación de los canales de Na+', 'Antiepiléptico', 1, ['PIZ', 'GAB 30', 'GAB 32'], { variantes: ['Carbamacepina'], confusiones: ['fenitoina'], clave: 'También es inductor del citocromo P450.' }),
     f('fenitoina', 'Fenitoína', 'gab-na', 'modulador', 'Canal de Na+', 'Aumenta el tiempo de inactivación de los canales de Na+, disminuye la excitación neuronal', 'Antiepiléptico', 1, ['PIZ', 'GAB 30', 'GAB 32', 'DES c4', 'DES c17', 'DES c30', 'PRE 22', 'PRE 70'], {
-      confusiones: ['carbamazepina', 'fenobarbital'], discrepancia: 'd-fenitoina', clave: 'No actúa sobre GABA-A. Bloquea sodio, no potasio.',
+      confusiones: ['carbamazepina', 'fenobarbital'], clave: 'No actúa sobre GABA-A. Bloquea sodio, no potasio.',
     }),
     f('lamotrigina', 'Lamotrigina', 'gab-na', 'modulador', 'Canal de Na+', 'Bloquea canales de Na+ e inhibe la excitación glutamatérgica', 'Antiepiléptico', 1, ['GAB 30', 'GAB 32', 'PRE 42', 'PRE 75'], { clave: 'No inhibe la recaptación de glutamato.' }),
-    f('etosuximida', 'Etosuximida', 'gab-ca', 'bloqueante', 'Canal de Ca++', 'Bloqueo de canales de Ca++', 'Antiepiléptico', 2, ['GAB 32']),
-    f('felbamato', 'Felbamato', 'gab-glu', 'antagonista', 'NMDA', 'Reduce la excitación glutamatérgica', 'Antiepiléptico', 2, ['GAB 30', 'PRE 42'], { clave: 'No inhibe AMPA: es la opción falsa del preguntero.', externo: true }),
+    f('etosuximida', 'Etosuximida', 'gab-ca', 'bloqueante', 'Canal de Ca++', 'Bloqueo de canales de Ca++', 'Antiepiléptico: crisis de ausencia', 1, ['GAB 32', 'CUA 6']),
     f('flumazenil', 'Flumazenil', 'gab-flu', 'antagonista', 'GABA-A, sitio BZD', 'Antagonista competitivo del receptor GABA-A en el sitio de benzodiacepinas', 'Revierte la intoxicación por benzodiacepinas', 1, ['GAB 30', 'DES c17', 'APU 65'], {
       confusiones: ['diazepam'], discrepancia: 'd-flumazenil', clave: 'No "disminuye los niveles de GABA".',
     }),
+    f('lorazepam', 'Lorazepam', 'gab-bzd', 'modulador', 'GABA-A', 'Aumenta la frecuencia de apertura de los canales de cloro', 'Anticonvulsivante en crisis agudas', 2, ['CUA 6']),
   ],
   mnemotecnias: [
-    mn('m-bzd', 'gab-bzd', 'Di Clo Al Mi: frecuencia en el cloro', [['Di', 'Diazepam'], ['Clo', 'Clonazepam'], ['Al', 'Alprazolam'], ['Mi', 'Midazolam']],
-      'Las cuatro benzodiacepinas de la pizarra.', 'Olvidar una de las cuatro.'),
+    mn('m-bar', 'gab-bar', 'Feno y Tío se quedan más tiempo', [['Feno', 'Fenobarbital'], ['Tío', 'Tiopental'], ['más tiempo', 'Aumentan el tiempo de apertura']],
+      'Los dos barbitúricos y su mecanismo.', 'Decir frecuencia.'),
+    mn('m-vig', 'gab-rec', 'Vigabatrina vigila a la transaminasa', [['Vigila', 'Inhibe la GABA transaminasa']],
+      'El blanco de la vigabatrina.', 'Ponerla sobre el receptor.'),
+    mn('m-eto', 'gab-ca', 'Eto se ausenta con calcio', [['Eto', 'Etosuximida'], ['ausenta', 'Crisis de ausencia'], ['calcio', 'Bloquea canales de Ca++']],
+      'Mecanismo y uso de la etosuximida.', 'Decir que actúa sobre sodio.'),
+    mn('m-flu', 'gab-flu', 'Flumazenil es el fusible de las benzos', [['Fusible', 'Corta el efecto: antagonista competitivo']],
+      'Para qué sirve el flumazenil.', 'Ponerlo como agonista parcial.'),
+    mn('m-bzd', 'gab-bzd', 'Di Clo Al Mi Lo: frecuencia en el cloro', [['Di', 'Diazepam'], ['Clo', 'Clonazepam'], ['Al', 'Alprazolam'], ['Mi', 'Midazolam'], ['Lo', 'Lorazepam']],
+      'Las cinco benzodiacepinas.', 'Olvidar una.'),
     mn('m-fre', 'gab-bzd', 'BenzoFrecuencia, BarbiTiempo', [['Benzo, Frecuencia', 'BZD: abre más veces'], ['Barbi, Tiempo', 'Barbitúricos: abre más tiempo']],
       'La diferencia exacta en el canal de cloro.', 'El error del preguntero 26: fenobarbital con frecuencia.'),
     mn('m-val', 'gab-val', 'VAL: Vuelve, Atrapa y Limita', [['Vuelve', 'Inhibe la recaptación'], ['Atrapa', 'Inhibe la GABA transaminasa'], ['Limita', 'Inhibe canales de Na+']],
@@ -144,7 +148,7 @@ export const gaba: Capitulo = {
       pasos: [
         { di: 'La epilepsia es un desequilibrio entre excitación e inhibición. Hay dos caminos: aumentar la inhibición GABA o bajar la excitación. Este es el segundo. El canal de sodio dispara la descarga.', modo: 'frecuencia', texto: 'Descarga excesiva' },
         { di: 'Carbamazepina, fenitoína, lamotrigina y ácido valproico aumentan el tiempo de inactivación del canal de sodio. Se abre menos veces.', modo: 'normal', ligandos: [{ n: 'Fenitoína', a: 'modulador' }, { n: 'Carbamazepina', a: 'modulador' }], texto: 'Más tiempo inactivado', retener: ['Carbamazepina', 'Fenitoína', 'Lamotrigina'] },
-        { di: 'Además, etosuximida bloquea canales de calcio. Felbamato y lamotrigina bajan la excitación por glutamato.', modo: 'bloqueado', ligandos: [{ n: 'Etosuximida', a: 'bloqueante' }], texto: 'Otras dianas', retener: ['Etosuximida: Ca++'] },
+        { di: 'Además, etosuximida bloquea canales de calcio y se usa en crisis de ausencia.', modo: 'bloqueado', ligandos: [{ n: 'Etosuximida', a: 'bloqueante' }], texto: 'Otras dianas', retener: ['Etosuximida: Ca++'] },
       ],
     },
     {
@@ -163,72 +167,6 @@ export const gaba: Capitulo = {
       ],
     },
   ],
-  preguntas: [
-    mcReal('gab', 'PRE 21', 'La correcta con respecto a los receptores GABA-b:', ['Se ubican exclusivamente en el terminal postsináptico', 'Está involucrado en las acciones centrales del GABA', 'Es un receptor involucrado en las acciones centrales del GABA', 'Es un receptor asociado a proteína G'], [3], [
-      'Está pre y post.', 'La presentación destaca sus acciones periféricas.', 'Repite la opción anterior.', 'Correcta: metabotrópico, Gi/o.',
-    ]),
-    mcReal('gab', 'PRE 22', 'Cuál NO actúa sobre los receptores GABA-a:', ['Fenobarbital', 'Midazolam', 'Fenitoína', 'Diazepam'], [2], [
-      'Barbitúrico.', 'Benzodiacepina.', 'Correcta: actúa en canales de Na+.', 'Benzodiacepina.',
-    ], { farmacos: ['fenitoina', 'fenobarbital', 'midazolam', 'diazepam'] }),
-    mcReal('gab', 'PRE 25', '¿Cuál de las siguientes sustancias actúan como cofactor en la síntesis y metabolismo del GABA?', ['Piridoxina', 'Calcio', 'Fosfolípidos', 'ATP'], [0], [
-      'Correcta: fosfato de piridoxal, vitamina B6.', 'No.', 'No.', 'No.',
-    ]),
-    vfReal('gab', 'PRE 26', 'El fenobarbital es una droga anticonvulsivante agonista del receptor GABA-a, aumentando la frecuencia de apertura del canal de cloro', false, 'Aumenta el tiempo de apertura. La frecuencia es de las benzodiacepinas.', { farmacos: ['fenobarbital'] }),
-    vfReal('gab', 'PRE 28', 'El ácido valproico es una droga anticonvulsivante que inhibe a la GABA transaminasa', true, 'Es uno de sus tres mecanismos.', { farmacos: ['valproico'] }),
-    mcReal('gab', 'PRE 30', 'El GABA:', ['Es una proteína neurotransmisora inhibitoria', 'Es un aminoácido neurotransmisor excitatorio', 'Es un aminoácido NT inhibitorio', 'Es una proteína NT excitatoria'], [2], [
-      'No es proteína.', 'Es inhibitorio.', 'Correcta.', 'Incorrecta en las dos palabras.',
-    ]),
-    mcReal('gab', 'PRE 32', 'Correcta con respecto a los receptores glutamatérgicos:', ['El receptor AMPA es un canal de Ca++', 'El receptor AMPA es metabotrópico y de ubicación post-sináptica', 'El receptor KAINATO es ionotrópico y de ubicación pre y post sináptica', 'El NMDA es ionotrópico y de ubicación presináptica'], [2], [
-      'Na+ y K+.', 'Es ionotrópico.', 'Correcta.', 'Es postsináptico.',
-    ]),
-    mcReal('gab', 'PRE 35', 'La correcta con respecto al GABA-A:', ['Es un receptor ionotrópico asociado a un canal de Ca++', 'El GABA se une a la subunidad α', 'Presenta una estructura pentamérica', 'Es un receptor asociado a proteína'], [2], [
-      'Canal de Cl−.', 'Se une a la subunidad β.', 'Correcta.', 'Es ionotrópico.',
-    ]),
-    mcReal('gab', 'PRE 40', 'La incorrecta con respecto al glutamato:', ['La recaptación neuronal depende de un transporte de Ca++', 'Distribuido en forma abundante en el SNC', 'Es un neurotransmisor excitatorio sintetizado a partir de glutamina', 'Es un neurotransmisor excitatorio sintetizado a partir de α-cetoglutarato'], [0], [
-      'Correcta: depende del gradiente de Na+.', 'Es cierto.', 'Es cierto.', 'Es cierto.',
-    ]),
-    mcReal('gab', 'PRE 41', 'Marque la opción incorrecta con respecto a las vías gabaérgicas estriatófugas:', ['Terminan en la sustancia nigra reticulada', 'Terminan en el segmento interior del globus pallidus', 'Están formadas por neuronas excitatorias', 'Juega un rol en el control de la motricidad extrapiramidal'], [2], [
-      'Es cierto.', 'Es cierto.', 'Correcta: son inhibitorias.', 'Es cierto.',
-    ]),
-    mcReal('gab', 'PRE 42', 'Marque la opción correcta:', ['El Felbamato inhibe el receptor glutamatérgico AMPA', 'El Fenobarbital inhibe la recaptación del Gaba', 'La Lamotrigina inhibe la recaptación de Glutamato', 'La Vigabatrina inhibe la GABA Transaminasa'], [3], [
-      'No es su mecanismo en la presentación.', 'Actúa en GABA-A.', 'Canal de Na+ y excitación glutamatérgica.', 'Correcta.',
-    ], { farmacos: ['vigabatrina', 'felbamato', 'lamotrigina', 'fenobarbital'] }),
-    vfReal('gab', 'PRE 70', 'La Fenitoína es una droga anticonvulsivante y antiarrítmica y actúa bloqueando los canales de K', false, 'Actúa sobre canales de sodio.', { farmacos: ['fenitoina'] }),
-    vfReal('gab', 'PRE 75', 'La Lamotrigina es un bloqueante de canales de sodio y tiene efecto anticonvulsivante', true, 'Está entre los que aumentan la inactivación del canal de Na+.', { farmacos: ['lamotrigina'] }),
-    mcGen('gab', 'Un paciente con sobredosis de benzodiacepinas recibe:', ['Fenobarbital', 'Flumazenil', 'Vigabatrina', 'Fenitoína'], 1, [
-      'Agravaría el cuadro.', 'Correcta: antagonista competitivo.', 'Antiepiléptico.', 'Antiepiléptico.',
-    ], { farmacos: ['flumazenil'] }),
-    mcGen('gab', '¿Qué aumenta el tiempo de inactivación de los canales de Na+?', ['Midazolam', 'Carbamazepina', 'Tiopental', 'Flumazenil'], 1, [
-      'Actúa en GABA-A.', 'Correcta.', 'Actúa en GABA-A.', 'Actúa en GABA-A.',
-    ], { farmacos: ['carbamazepina'] }),
-    mcGen('gab', 'Señalá la correcta sobre las benzodiacepinas:', ['Son agonistas totales del GABA-A', 'Aumentan la frecuencia de apertura del canal de cloro', 'Aumentan el tiempo de apertura', 'Abren canales de sodio'], 1, [
-      'Moduladoras: un cuadro las pone así y es impreciso.', 'Correcta.', 'Eso es de barbitúricos.', 'No.',
-    ], { farmacos: ['diazepam'] }),
-    mcGen('gab', '¿Qué tres mecanismos tiene el ácido valproico?', ['Inhibe recaptación de GABA, inhibe GABA-T, inhibe canales de Na+', 'Abre canales de Cl−, bloquea Ca++, inhibe MAO', 'Agonista GABA-A, antagonista NMDA, inhibe COMT', 'Inhibe GABA-T, activa AMPA, abre K+'], 0, [
-      'Correcta.', 'No.', 'No.', 'No.',
-    ], { farmacos: ['valproico'] }),
-    mcGen('gab', 'La toxina tetánica:', ['Aumenta el GABA', 'Bloquea la liberación de GABA', 'Es un agonista GABA-A', 'Inhibe la GABA-T'], 1, [
-      'Lo contrario.', 'Correcta.', 'No.', 'No.',
-    ]),
-    vfGen('gab', 'El receptor NMDA necesita glicina como coagonista', true, 'Ese sitio debe estar ocupado para que se active.'),
-    vfGen('gab', 'El GABA-B es un canal de cloro', false, 'Es metabotrópico, acoplado a proteína Gi/o.'),
-  ],
-  desarrollos: [
-    dev('gab', 'DES 15, DES 23, EXA 4, EXA 26, PRE 51', 'Mencione los mecanismos de acción del ÁCIDO VALPROICO', ['Inhibe la recaptación de GABA', 'Inhibe la GABA transaminasa', 'Inhibe canales de Na+'], 'Aumenta el GABA por dos vías y baja la excitación por la tercera. Efecto: antiepiléptico.', { farmacos: ['valproico'] }),
-    dev('gab', 'DES 3, PRE 52, EXA Y2', 'Mencione el mecanismo de acción y 4 efectos del DIAZEPAM', ['Interactúa con el receptor GABA-A y aumenta la inhibición gabaérgica, con mayor frecuencia de apertura del canal de Cl−', 'Ansiolítico, sedante, hipnótico, anticonvulsivante'], 'Es modulador: potencia al GABA por un sitio alostérico. Quinto efecto: miorrelajante.', {
-      encontrada: 'Inhibe al GABA en el SNC', nota: 'Una respuesta de EXA dice eso: está al revés. Potencia al GABA.', farmacos: ['diazepam'],
-    }),
-    dev('gab', 'DES 6', 'Mencione el mecanismo de acción de las BENZODIACEPINAS y 3 ejemplos', ['Aumentan la frecuencia de apertura de los canales de cloro del GABA-A', 'Diazepam, clonazepam, alprazolam'], 'Actúan por un sitio alostérico, no como agonistas directos.', {
-      encontrada: 'Son agonistas totales', nota: 'La presentación dice que se fijan a sitios alostéricos y regulan el canal.', farmacos: ['diazepam', 'clonazepam', 'alprazolam'],
-    }),
-    dev('gab', 'DES 14, EXA 25', 'Mencione dos drogas que actúen sobre los receptores GABA-A y especifique sus principales efectos', ['Diazepam: ansiolítico, sedante, hipnótico, anticonvulsivante', 'Fenobarbital: anticonvulsivante, antiepiléptico, sedante'], 'Si te piden familias: benzodiacepinas y barbitúricos.', { farmacos: ['diazepam', 'fenobarbital'] }),
-    dev('gab', 'EXA 1', 'Mencione 3 fármacos que actúen sobre Rs GABA-A', ['Diazepam', 'Fenobarbital', 'Flumazenil'], 'Benzodiacepinas y barbitúricos son familias: conviene dar un fármaco de cada una.', {
-      encontrada: 'Benzodiacepinas, Barbitúricos, Ac. Valproico', nota: 'Pedían fármacos y hay dos familias. El valproico no actúa directamente sobre GABA-A.', farmacos: ['diazepam', 'fenobarbital', 'flumazenil'],
-    }),
-    dev('gab', 'EXA 2', 'Mencione un ejemplo de fármaco que inhiba la enzima GABA transaminasa', ['Ácido valproico'], 'Vigabatrina también.', { farmacos: ['valproico', 'vigabatrina'] }),
-    dev('gab', 'EXA 3', 'Mencione 4 efectos farmacológicos de las Benzodiacepinas', ['Anticonvulsivante', 'Ansiolítico', 'Miorrelajante', 'Hipnótico'], 'También sedante.'),
-    dev('gab', 'PRE 71', 'Sobre el diazepam mencione: biofase, mecanismo de acción, acción, efecto', ['Biofase: receptor GABA-A', 'Mecanismo: potencia la inhibición gabaérgica, más frecuencia de apertura', 'Acción: aumenta la conductancia al cloro e hiperpolariza', 'Efecto: sedación, relajación muscular y actividad anticonvulsiva'], 'Acción es lo que cambia en la célula; efecto es lo que se ve.', {
-      encontrada: 'Biofase: GABA-A y GABA-B. Acción: prolongada', nota: 'Benzodiacepinas se relacionan con GABA-A, no con GABA-B. Y prolongada no es una acción.', farmacos: ['diazepam'],
-    }),
-  ],
+  preguntas: [],
+  desarrollos: [],
 };
