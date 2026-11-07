@@ -32,7 +32,17 @@ function CuadroMaestro() {
         <button type="button" className="boton sec" onClick={() => setOcultar(o => !o)}>{ocultar ? 'Mostrar respuestas' : 'Tapar para practicar'}</button>
         <button type="button" className="boton sec" onClick={() => window.print()}>Guardar en PDF</button>
       </div>
-      <table className="tabla">
+      <div className="solo-angosto">
+        {lista.map(f => (
+          <div className="tarjeta-fila" key={f.id + String(ocultar)} style={estiloAccion(f.accion)}>
+            <Link className="nom" to={`/f/${f.id}`}>{f.nombre}</Link>
+            <div className="chico tenue">{grupoDe(f).nombre}</div>
+            <span className="rotulo">Mecanismo</span><Cinta tapada={ocultar}>{f.mecanismo}</Cinta>
+            <span className="rotulo">Efecto</span><Cinta tapada={ocultar}>{f.efecto}</Cinta>
+          </div>
+        ))}
+      </div>
+      <table className="tabla solo-ancho">
         <thead><tr><th>Fármaco</th><th>Grupo</th><th>Mecanismo de acción</th><th>Efecto</th></tr></thead>
         <tbody>{lista.map(f => (
           <tr key={f.id + String(ocultar)} style={estiloAccion(f.accion)}>

@@ -47,7 +47,7 @@
 
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
-body { margin: 0; background: var(--pizarra); color: var(--tinta); font: 400 17px/1.5 var(--texto); }
+body { margin: 0; background: var(--pizarra); color: var(--tinta); font: 400 17px/1.5 var(--texto); overflow-wrap: break-word; }
 button, input, select { font: inherit; color: inherit; }
 button { cursor: pointer; }
 a { color: inherit; }
@@ -136,10 +136,10 @@ p { margin: 0 0 12px; }
 .mnemo ul { margin: 8px 0; padding: 0; list-style: none; }
 .mnemo li { padding: 1px 0; font-size: 16px; }
 .mnemo li b { color: var(--m-ago); }
-.dos { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.dos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .pareja { padding: 14px 0; border-bottom: 2px solid var(--linea); }
 .pareja .lado b { display: block; font-size: 19px; }
-.pareja .lado { font-size: 15.5px; line-height: 1.32; }
+.pareja .lado, .lado { font-size: 15.5px; line-height: 1.32; overflow-wrap: anywhere; hyphens: auto; }
 
 /* Ejercicios */
 .barra { height: 7px; background: var(--papel); border-radius: 4px; overflow: hidden; margin-bottom: 14px; }
@@ -248,5 +248,7 @@ table.tabla { width: 100%; border-collapse: collapse; font-size: 15.5px; }
   body { background: #fff; font-size: 12px; }
   .pagina { max-width: none; padding: 0; }
   .hoja-cuerpo { display: block; }
+  .solo-ancho { display: table !important; }
+  .solo-angosto { display: none !important; }
   .hoja, .rama-cap, .cadena, .caja { break-inside: avoid; }
 }

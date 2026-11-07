@@ -92,3 +92,25 @@ test('la guía abre desde el inicio y baja hasta cada fármaco', async ({ page }
   await page.getByRole('button', { name: 'Serotoninérgicos' }).click();
   await expect(page.locator('.lugares .chip', { hasText: 'Fluoxetina' })).toBeVisible();
 });
+
+test('nada se sale de la pantalla en un celular chico', async ({ page }) => {
+  await page.setViewportSize({ width: 360, height: 740 });
+  const rutas = ['/', '/guia', '/capitulos', '/integracion', '/examen/cuadros', '/farmacoteca', ...['toman', 'cuadro', 'mapa', 'lista', 'errores', 'minimo', 'calidad'].map(v => `/esencial/${v}`), ...['col', 'adr', 'dop', 'ser', 'gab', 'his', 'neo', 'acm', 'fun'].flatMap(c => ['mapa', 'nombres', 'cuadro', 'desarrollo'].map(p => `/c/${c}/${p}`))];
+  const malas: string[] = [];
+  for (const r of rutas) {
+    await page.goto(`/farmaco-flor/#${r}`);
+    await expect(page.locator('main').first()).toBeVisible();
+    await page.waitForTimeout(250);
+    const o = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    if (o > 0) malas.push(`${r}: ${o}px`);
+  }
+  expect(malas).toEqual([]);
+});
+
+test('las parejas peligrosas entran con los nombres más largos', async ({ page }) => {
+  await page.setViewportSize({ width: 360, height: 740 });
+  await page.goto('/farmaco-flor/#/esencial/errores');
+  await expect(page.locator('.pareja').first()).toBeVisible();
+  const o = await page.evaluate(() => [...document.querySelectorAll('.lado')].filter(e => e.getBoundingClientRect().right > document.documentElement.clientWidth).length);
+  expect(o).toBe(0);
+});
